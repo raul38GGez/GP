@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <title>Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/paginaip.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <a id="logoHeader" href="index.html">
+            <img id="logoImage" alt="Logo">
+        </a>
+
+    </header>
+
+    <section class="tudo">
+
+        <div>
+
+
+            <img class="livro-1" src="../static/img/login-image.png" alt="Logo">
+
+
+        </div>
+
+        <div class="formulario">
+
+
+            <h3 class="titulo">Cadastrar-se</h3>
+
+
+            <form id="formCadastro">
+
+                <div class="cadastro">
+                    <div>
+                        <label class="coisa">Nome:</label>
+                        <input type="text" placeholder="Nome Completo" class="inserir" id="nome" name="nome" required>
+
+                        <label class="coisa" for="email">Email:</label>
+                        <input type="email" placeholder="email@email.com" class="inserir email" id="email" name="email"
+                            required>
+
+                        <label class="coisa">Senha:</label>
+                        <div style="position:relative;">
+                            <input placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha"
+                                required>
+
+                            <i class="visivelbtn" id="visivelBtn">
+                                <img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                                    alt="">
+                            </i>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="coisa">Data de Nascimento:</label>
+                        <input type="date" placeholder="AA/MM/DD" class="data" id="data" name="data_nascimento"
+                            required>
+
+                        <label class="coisa">Telefone:</label>
+                        <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone"
+                            onkeyup="handlePhone(event)" required>
+                    </div>
+                </div>
+
+
+
+                <button type="submit" class="botao-cadastro">Cadastrar</button>
+
+            </form>
+
+
+            <div class="final">
+                <p class="texto">Você tem uma conta? <a target="_blank" class="link" href="login.html">Login</a></p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        const visivelBtn = document.getElementById("visivelBtn");
+        visivelBtn.addEventListener("click", toggleSenha);
+
+        function toggleSenha() {
+            const passwordInput = document.getElementById("senha");
+            const icon = document.getElementById("visivelBtn");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.innerHTML = `<img id="icon" src="../static/img/visibility_off_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`
+            } else {
+                passwordInput.type = "password";
+                icon.innerHTML = `<img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`;
+            }
+        }
+
+
+        $("#formCadastro").on("submit", function (e) {
+            e.preventDefault();
+
+            const data = {
+                nome: $("#nome").val(),
+                email: $("#email").val(),
+                senha: $("#senha").val(),
+                telefone: $("#tel").val(),
+                data_nascimento: $("#data").val().split("-").reverse().join("-")  // yyyy-mm-dd → dd-mm-yyyy
+            };
+
+            $.ajax({
+                method: "POST",
+                url: ipPython + "/usuarios",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Cadastro feito com sucesso",
+                        icon: "success"
+                    }).then(() => window.location.href = "login.html");
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+
+
+        const tel = document.getElementById('tel') // Seletor do campo de telefone
+
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+
+        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+    </script>
+
+</body>
+
+</html>

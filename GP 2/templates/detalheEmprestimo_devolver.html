@@ -1,0 +1,286 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/detalheEmprestimo.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
+
+    <script src="../static/js/seguranca.js" defer></script>
+    <script src="../static/js/segurancaBiblio.js" defer></script>
+    <script src="../static/js/paginaip.js"></script>
+
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+</head>
+
+<body>
+    <header>
+        <div id="logo-site" class="header-left">
+            <a id="logoHeader" href="home.html">
+                <img id="logoImage" alt="Logo">
+            </a>
+        </div>
+
+        <div class="search-container">
+            <a href="catalogo.html"><i class="fas fa-search"></i></a>
+            <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
+        </div>
+
+        <div class="coisa">
+            <div class="header-end">
+                <div class="menu-container">
+                    <div class="menu-icon" id="menuButton">
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                    </div>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
+                </div>
+            </div>
+
+    </header>
+    
+    <h1>Detalhes do empréstimo</h1>
+
+    <section class="container">
+
+        <div class="pai">
+
+            <div class="pai1">
+
+                <div id="listaLivros" class="filho1">
+
+                    <img id="imagemLivro" class="foto-livro imagemLivro" src="" alt="">
+
+                </div>
+
+                <div>
+
+                    <h2 id="titulo"></h2>
+
+                    <p id="autor" class="autor"></p>
+
+                    <span style="font-weight: bold;">Usuário:</span>
+                    <p id="usuario"></p>
+
+                    <span style="font-weight: bold;">Data do empréstimo:</span>
+                    <p id="data_emprestimo"></p>
+
+                    <span style="font-weight: bold;">Data de devolução:</span>
+                    <p id="data_devolucao"></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="pai2">
+
+            <div class="display-pai">
+
+                <button id="btn_devolucao" class="botao-devolucao" type="submit"
+                    onclick="devolverLivro()">Devolver</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="inter">
+        <div class="separacao1">
+            <p>Entre em contato conosco</p>
+            <div class="redes">
+                <a href="https://www.whatsapp.com/?lang=pt_BR">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://br.linkedin.com">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/?lang=pt">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+        <div class="rodape-inter">
+            <div class="informacao">
+                <p class="informacoes">INFORMAÇÕES</p>
+                <div class="linha"></div>
+                <div class="display">
+                    <i class="fa-solid fa-envelope icons"></i>
+                    <p class="text">asa.literaria@email.com</p>
+                </div>
+                <div class="display">
+                    <i class="fa-solid fa-phone icons"></i>
+                    <p class="text">(18)99999-9999</p>
+                </div>
+            </div>
+            <div class="imagem">
+                <a id="logoHeader" href="home.html">
+                    <img id="logoImage2" alt="Logo">
+                </a>
+            </div>
+            <div class="localizacao">
+                <p class="local">LOCALIZAÇÃO
+                    <br>
+                    Birigui - SP
+                </p>
+            </div>
+        </div>
+        <div class="as">
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+        </div>
+    </footer>
+
+    </main>
+
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        document.getElementById("titulo").innerHTML = params.get('titulo_livro')
+
+        document.getElementById("autor").innerHTML = params.get('autor_livro')
+
+        document.getElementById("usuario").innerHTML = params.get('nome_usuario')
+
+        let dataOriginal = params.get('data_emprestimo') || "";
+        let dataFormatada = dataOriginal.replace(/-/g, "/");
+        document.getElementById("data_emprestimo").innerHTML = dataFormatada;
+
+        let dataDevolucaoOriginal = params.get('data_devolucao') || "";
+        let dataDevolucaoFormatada = dataDevolucaoOriginal.replace(/-/g, "/");
+        document.getElementById("data_devolucao").innerHTML = dataDevolucaoFormatada;
+
+
+        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
+
+        function obterParametroDaURL(nome) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nome);
+        }
+
+
+        async function devolverLivro() {
+            const id_emprestimo = obterParametroDaURL("id_emprestimo");
+            const token = localStorage.getItem("token"); // ou onde você estiver salvando o token
+
+            try {
+                const resposta = await fetch(ipPython + `/devolucao/${id_emprestimo}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                if (!resposta.ok) {
+                    const erro = await resposta.json();
+                    throw new Error(erro.mensagem || "Erro ao realizar a devolução.");
+                }
+
+                const dados = await resposta.json();
+
+                // Exibir SweetAlert de sucesso
+                Swal.fire({
+                    title: 'Devolvido!',
+                    text: 'A devolução foi realizada com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Redirecionar para a página de listagem de reservas
+                    window.location.href = "ListagemEmprestimos.html";
+                });
+
+            } catch (erro) {
+                console.error("Erro na requisição:", erro);
+                // Exibir SweetAlert de erro com a mensagem da API
+                Swal.fire({
+                    title: 'Erro!',
+                    text: dados.mensagem || erro.message || "Erro ao devolver livro.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+
+
+                 // Função para atualizar os hrefs dos relatórios
+                 function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+    </script>
+
+
+</body>
+
+</html>

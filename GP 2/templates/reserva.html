@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página inicial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/reserva.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/js/paginaip.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <script src="../static/js/paginaip.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Logo -->
+        <div id="logo-site" class="header-left">
+            <a id="logoHeader" href="home.html">
+                <img id="logoImage" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <a href="catalogo.html"><i class="fas fa-search"></i></a>
+            <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
+        </div>
+
+        <div class="coisa">
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="header-end">
+                <div class="menu-container">
+                    <div class="menu-icon" id="menuButton">
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                    </div>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
+                </div>
+            </div>
+
+    </header>
+
+    <main>
+
+        <section class="container">
+            <div class="pai">
+                <div class="pai1">
+                    <div id="listaLivros" class="filho1">
+                        <img id="imagemLivro" class="foto-livro imagemLivro" src="" alt="">
+                        <div class="pai2">
+                            <div class="display-pai">
+                                <h2 class="quantidade">Quantidade: <span id="quantidade" class="quantidade"></span></h2>
+                                <button id="btn_esgotado" class="botao-esgotado" type="submit">Esgotado</button>
+                                <button id="btn_reserva" class="botao-reserva" type="submit">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filho2">
+                        <h1 id="titulo"></h1>
+                        <span style="font-weight: bold;">Descrição:</span>
+                        <p id="descricao" class="texto"></p>
+                        <span style="font-weight: bold;">Autor:</span>
+                        <p id="autor"></p>
+                        <span style="font-weight: bold;">Ano de Publicação:</span>
+                        <p id="data_publicacao"></p>
+                        <span style="font-weight: bold;">Gênero:</span>
+                        <p id="categoria"></p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Avaliações</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Avalie</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Histórico</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Avaliações -->
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                <div id="reviewsContainer" class="reviews-container">
+                    <!-- As avaliações serão inseridas aqui -->
+                </div>
+            </div>
+
+            <!-- Avalie -->
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <div class="avaliacoes">
+                    <form id="formAvaliar">
+                        <div class="rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
+                        <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Histórico -->
+            <div class="tab-pane fade table-container" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                <table class="tabela-container" id="tabela-historico" border="3">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data da Reserva</th>
+                            <th>Data do Empréstimo</th>
+                            <th>Data de Devolução</th>
+                            <th>Data Devolvida</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const token = localStorage.getItem('token');
+                let payload = {};
+
+                if (token) {
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    try {
+                        payload = JSON.parse(atob(base64));
+                    } catch (e) {
+                        console.error("Erro ao decodificar o token:", e);
+                    }
+                }
+
+                const stars = document.querySelectorAll(".star");
+                const commentInput = document.getElementById("comment");
+                const formAvaliar = document.getElementById("formAvaliar");
+                const reviewsContainer = document.getElementById("reviewsContainer");
+                let selectedRating = 0;
+
+                function highlightStars(rating) {
+                    stars.forEach((star, index) => {
+                        star.classList.toggle("filled", index < rating);
+                        star.setAttribute('aria-checked', index < rating ? 'true' : 'false');
+                        star.tabIndex = index < rating ? 0 : -1;
+                    });
+                }
+
+                stars.forEach((star, index) => {
+                    star.addEventListener("mouseover", () => highlightStars(index + 1));
+                    star.addEventListener("mouseout", () => highlightStars(selectedRating));
+                    star.addEventListener("click", () => {
+                        selectedRating = index + 1;
+                        highlightStars(selectedRating);
+                    });
+                    star.addEventListener("keydown", (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            selectedRating = index + 1;
+                            highlightStars(selectedRating);
+                        }
+                        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            let next = (index + 1) % stars.length;
+                            stars[next].focus();
+                        }
+                        if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            let prev = (index - 1 + stars.length) % stars.length;
+                            stars[prev].focus();
+                        }
+                    });
+                });
+
+                formAvaliar.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const comment = commentInput.value.trim();
+
+                    if (selectedRating === 0) {
+                        alert("Por favor, selecione uma nota.");
+                        return;
+                    }
+                    if (comment === "") {
+                        alert("Por favor, escreva um comentário.");
+                        return;
+                    }
+                    if (!token) {
+                        alert("Você precisa estar logado para enviar uma avaliação.");
+                        return;
+                    }
+
+                    const dados = {
+                        id_livro: id_livro,
+                        comentario: comment,
+                        nota: selectedRating,
+                    };
+
+                    fetch(`${ipPython}/avaliacao`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        },
+                        body: JSON.stringify(dados)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.mensagem === "Avaliação registrada com sucesso!") {
+                                Swal.fire("Avaliação enviada!", "Obrigado pela sua avaliação.", "success");
+                                carregarAvaliacoes();
+                                selectedRating = 0;
+                                highlightStars(0);
+                                commentInput.value = "";
+                            } else {
+                                Swal.fire("Erro ao enviar!", data.mensagem || "Erro desconhecido.", "error");
+                            }
+                        })
+                        .catch(() => {
+                            Swal.fire("Erro!", "Houve um problema ao enviar a avaliação.", "error");
+                        });
+                });
+
+                function carregarAvaliacoes() {
+                    if (!token) {
+                        reviewsContainer.innerHTML = "<p>Você precisa estar logado para ver as avaliações.</p>";
+                        return;
+                    }
+
+                    fetch(`${ipPython}/avaliacoes?id_livro=${id_livro}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Erro ao carregar avaliações');
+                        return response.json();
+                    })
+                    .then(data => {
+                        reviewsContainer.innerHTML = "";
+                        const avaliacoes = data.configuracoes || [];
+
+                        if (avaliacoes.length === 0) {
+                            reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
+                            return;
+                        }
+
+                        const cargo_usuario = localStorage.getItem('cargo');
+
+                        if (cargo_usuario !== "ADM" && cargo_usuario !== "Bibliotecário") {
+                            document.getElementById("pills-contact-tab").style.display = "none";
+                            document.getElementById("pills-contact").style.display = "none";
+                        }
+
+                        avaliacoes.forEach(avaliacao => {
+                            const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
+                            const nota = avaliacao.nota || 0;
+                            const comentario = avaliacao.comentario || "";
+                            const dataFormatada = new Date(avaliacao.data_avaliacao || avaliacao.data || "").toLocaleDateString('pt-BR');
+
+                            let stars = "";
+                            for (let i = 1; i <= 5; i++) {
+                                stars += i <= nota ? "★" : "☆";
+                            }
+
+                            const botaoExcluir = (cargo_usuario === "ADM" || cargo_usuario === "Bibliotecário") ? `
+                                    <button class="btn-excluir" data-id="${avaliacao.id_avaliacao}">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 69 14"
+                                        class="svgIcon bin-top"
+                                    >
+                                        <g clip-path="url(#clip0_35_24)">
+                                        <path
+                                            fill="black"
+                                            d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"
+                                        ></path>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_35_24">
+                                            <rect fill="white" height="14" width="69"></rect>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 69 57"
+                                        class="svgIcon bin-bottom"
+                                    >
+                                        <g clip-path="url(#clip0_35_22)">
+                                        <path
+                                            fill="black"
+                                            d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"
+                                        ></path>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_35_22">
+                                            <rect fill="white" height="57" width="69"></rect>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                    </button>
+
+                            ` : '';
+
+                            reviewsContainer.innerHTML += `
+                                <div class="review">
+                                    <div class="review-header">
+                                        <span class="review-user">${usuario}</span>
+                                        <span class="review-rating" aria-label="Avaliação: ${nota} de 5">${stars}</span>
+                                    </div>
+                                    <div class="review-comment">${comentario}</div>
+                                    <div class="review-date">${dataFormatada}</div>
+                                    ${botaoExcluir}
+                                </div>
+                            `;
+                        });
+
+                        // // Evento de clique para excluir avaliações
+                        document.querySelectorAll('.btn-excluir').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const idAvaliacao = this.getAttribute('data-id');
+                                Swal.fire({
+                                    title: 'Tem certeza?',
+                                    text: "Essa ação não poderá ser desfeita!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'Sim, excluir!',
+                                    cancelButtonText: 'Cancelar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch(`${ipPython}/avaliacao/${idAvaliacao}`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'Authorization': `Bearer ${token}`
+                                            }
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.mensagem === "Avaliação deletada com sucesso!") {
+                                                Swal.fire("Sucesso!", data.mensagem, "success");
+                                                carregarAvaliacoes(); // Atualiza a lista de avaliações
+                                            } else {
+                                                Swal.fire("Erro!", data.mensagem || "Erro desconhecido.", "error");
+                                            }
+                                        })
+                                        .catch(() => {
+                                            Swal.fire("Erro!", "Houve um problema ao excluir a avaliação.", "error");
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    })
+                    .catch(() => {
+                        reviewsContainer.innerHTML = "<p>Erro ao carregar avaliações. Por favor, tente novamente mais tarde.</p>";
+                    });
+                }
+
+                // Carrega o histórico de reservas e empréstimos
+                function carregarHistorico() {
+                    const tbody = document.querySelector("#tabela-historico tbody");
+                    tbody.innerHTML = "";
+
+                    fetch(`${ipPython}/historico?id_livro=${id_livro}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                        .then(response => {
+                            if (!response.ok) throw new Error("Erro ao buscar histórico");
+                            return response.json();
+                        })
+                        .then(data => {
+                            const historico = data.historico || [];
+
+                            if (historico.length === 0) {
+                                tbody.innerHTML = "<tr><td colspan='6'>Nenhum histórico disponível.</td></tr>";
+                                return;
+                            }
+
+                            historico.forEach(entry => {
+                                const linha = document.createElement("tr");
+                                linha.innerHTML = `
+                                    <td>${entry.nome_usuario || "Desconhecido"}</td>
+                                    <td>${entry.data_reserva ? new Date(entry.data_reserva).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_retirada ? new Date(entry.data_retirada).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_devolucao ? new Date(entry.data_devolucao).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_devolvida ? new Date(entry.data_devolvida).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.status || "—"}</td>
+                                `;
+                                tbody.appendChild(linha);
+                            });
+                        })
+                }
+                // Dispara a carga do histórico ao mudar para a aba
+                const tabHistorico = document.getElementById("pills-contact-tab");
+                if (tabHistorico) {
+                    tabHistorico.addEventListener("click", carregarHistorico);
+                }
+
+                carregarAvaliacoes();
+            });
+        </script>
+    </main>
+
+    <footer class="inter">
+        <div class="separacao1">
+            <p>Entre em contato conosco</p>
+            <ul class="wrapper">
+                <a href="https://www.facebook.com/asa.literaria.biblioteca" target="_blank">
+                    <li class="icon facebook" title="Facebook">
+                        <span class="tooltip">Facebook</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="28" height="28" fill="currentColor">
+                            <path
+                                d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
+                        </svg>
+                    </li>
+                </a>
+                <a href="https://twitter.com" target="_blank">
+                    <li class="icon twitter" title="Twitter">
+                        <span class="tooltip">Twitter</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" fill="currentColor">
+                            <path
+                                d="M459.4 151.7c.3 4.5.3 9 .3 13.6 0 138.7-105.6 298.7-298.7 298.7-59.5 0-114.9-17.2-161.4-47 8.4 1 16.8 1.3 25.5 1.3 49.2 0 94.6-16.7 130.7-44.8-46-.9-84.8-31.2-98.3-72.9 6.5 1 12.9 1.6 19.7 1.6 9.4 0 18.5-1.3 27.1-3.6-48.1-9.7-84-52-84-102.8v-1.3c14 7.8 30 12.6 47 13.1-27.8-18.5-46-50.2-46-86 0-18.5 5-35.7 13.7-50.6 50.1 61.3 125 101.4 209.5 105.6-1.7-7.7-2.6-15.7-2.6-23.9 0-57.9 46.9-104.8 104.8-104.8 30.2 0 57.6 12.6 76.8 32.9 23.9-4.5 46.4-13.5 66.5-25.6-7.8 24.4-24.4 44.8-46.4 57.6 21.2-2.4 41.6-8.2 60.4-16.7-14 20.8-31.8 39.1-52.4 53.8z" />
+                        </svg>
+                    </li>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <li class="icon instagram" title="Instagram">
+                        <span class="tooltip">Instagram</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor" class="bi bi-instagram"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+                            </path>
+                        </svg>
+                    </li>
+                </a>
+                <a href="https://api.whatsapp.com" target="_blank">
+                    <li class="icon whatsapp" title="WhatsApp">
+                        <span class="tooltip">WhatsApp</span>
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </li>
+                </a>
+                <a href="https://www.linkedin.com/company/asa-literaria-biblioteca/" target="_blank">
+                    <li class="icon linkedin" title="LinkedIn">
+                        <span class="tooltip">LinkedIn</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="currentColor">
+                            <path
+                                d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.5 53.5 0 1 1 0-107 53.5 53.5 0 1 1 0 107zm394.92 340h-92.68V302.4c0-34.7-.7-79.4-48.4-79.4-48.6 0-56 38.1-56 77.5V448h-92.68V148.9h89V196h1.3c12.4-23.5 42.5-48.4 87.5-48.4 93.7 0 111 61.7 111 141.9V448z" />
+                        </svg>
+                    </li>
+                </a>
+            </ul>
+
+        </div>
+        <div class="rodape-inter">
+            <div class="informacao">
+                <p class="informacoes">INFORMAÇÕES</p>
+                <div class="linha"></div>
+                <div class="display">
+                    <i class="fa-solid fa-envelope icons"></i>
+                    <p class="text">asa.literaria@email.com</p>
+                </div>
+                <div class="display">
+                    <i class="fa-solid fa-phone icons"></i>
+                    <p class="text">(18)99999-9999</p>
+                </div>
+            </div>
+            <div class="imagem">
+                <a id="logoHeader" href="home.html">
+                    <img id="logoImage2" alt="Logo">
+                </a>
+            </div>
+            <div class="localizacao">
+                <p class="local">LOCALIZAÇÃO
+                    <br>
+                    Birigui - SP
+                </p>
+            </div>
+        </div>
+        <div class="as">
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+        </div>
+    </footer>
+                                       
+    <script>
+
+
+        var params = new URLSearchParams(window.location.search);
+        var id_livro = params.get('id');
+        var token = localStorage.getItem('token');
+
+        // Verifica se o usuário está autenticado
+        if (!token) {
+            Swal.fire({
+                title: "Página restrita!",
+                text: "Entre em uma conta para acessar essa página",
+                icon: "error"
+            }).then(() => {
+                window.location.href = "login.html";
+            });
+        }
+
+        // Carrega os dados do livro usando o ID
+        function carregarDadosLivro() {
+            $.ajax({
+                url: `${ipPython}/livro/${id_livro}`,
+                method: "GET",
+                headers: {
+                    "Authorization": token
+                },
+                success: function (resposta) {
+                    const livro = resposta.livro;
+                    const usuario_emprestimo = resposta.usuario_emprestimo;
+
+                    document.getElementById("titulo").innerHTML = livro.titulo;
+                    document.getElementById("descricao").innerHTML = livro.descricao;
+                    document.getElementById("autor").innerHTML = livro.autor;
+                    document.getElementById("data_publicacao").innerHTML = livro.data_publicacao;
+                    document.getElementById("categoria").innerHTML = livro.categoria;
+                    document.getElementById("quantidade").innerHTML = livro.quantidade;
+                    document.getElementById("imagemLivro").src = `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`;
+
+                    atualizarVisibilidadeBotoes(livro.quantidade);
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Não foi possível carregar os dados do livro.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        // Atualiza os botões de reserva conforme a quantidade
+        function atualizarVisibilidadeBotoes(quantidade) {
+            if (quantidade > 0) {
+                document.getElementById("btn_reserva").style.display = "inline-block";
+                document.getElementById("btn_esgotado").style.display = "none";
+            } else {
+                document.getElementById("btn_reserva").style.display = "none";
+                document.getElementById("btn_esgotado").style.display = "inline-block";
+            }
+        }
+
+        // Função de reserva
+        document.querySelector("#btn_reserva").addEventListener("click", function () {
+            $.ajax({
+                url: `${ipPython}/reservas/${id_livro}`,
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                },
+                success: function (resposta) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: resposta.message,
+                        icon: "success"
+                    });
+
+                    // Atualiza quantidade após reserva
+                    let novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
+                    document.getElementById("quantidade").innerHTML = novaQuantidade;
+                    atualizarVisibilidadeBotoes(novaQuantidade);
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).mensagem,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+
+        // Formata data para o formato BR
+        function formatarData(dataStr) {
+            if (!dataStr) return "";
+            
+            // Esperado: "dd-mm-aaaa" 
+            const partes = dataStr.split("-");
+            if (partes.length !== 3) return "Data inválida";
+
+            const [dia, mes, ano] = partes;
+            return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
+        }
+
+        // Ajusta os elementos conforme o cargo do usuário
+
+        // Atualiza os links dos relatórios
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Submenu toggle dos relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('relatorios')?.querySelector('.submenu-toggle')?.addEventListener('click', function () {
+                document.querySelector('#relatorios .submenu')?.classList.toggle('show');
+            });
+
+            atualizarLinksRelatorios();
+            carregarDadosLivro();
+        });
+
+        var settings = {
+            "url": `${ipPython}/avaliacoes?id_livro=${id_livro}`,
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "Bearer " + token
+            },
+        };
+
+        $.ajax({
+            url: `${ipPython}/livro/${id_livro}`,
+            method: "GET",
+            success: function (resposta) {
+                const emprestimos = resposta.usuarios_emprestimos;
+
+                const container = $("#historicoContainer");
+                container.empty(); // Limpa o conteúdo anterior
+
+                if (emprestimos.length === 0) {
+                    container.append("<p>Nenhum histórico encontrado.</p>");
+                    return;
+                }
+
+                emprestimos.forEach(usuario => {
+
+                    var css = ""
+
+                    // VERIFICA O Tipo 
+                    if (usuario.status === "Devolvido") {
+
+                        css = "livro-devolvido"
+
+                    } else if (usuario.status === "Reservado") {
+
+                        css = "livro-reservado"
+
+                    } else if (usuario.status === "Emprestado") {
+
+                        css = "livro-emprestado"
+
+                    } else {
+
+                        css = "livro-cancelado"
+
+                    }
+
+                    document.getElementById("tabela-historico").innerHTML += `
+                        <tr>
+                            <td>${usuario.nome_usuario}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolucao) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolvida) || '--/--/----'}</td>
+                            <td class="${css}">${usuario.status}</td>
+                        </tr>
+                    `;
+                });
+                if (data_emprestimo == null) {
+                    document.getElementById("data_emprestimo").style.display = "none"
+                }
+            },
+            error: function () {
+                $("#historicoContainer").html("<p>Erro ao carregar histórico.</p>");
+            }
+        });
+        // Logout
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+
+    </script>
+
+</body>
+
+</html>

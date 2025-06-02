@@ -1,0 +1,124 @@
+body.modo-escuro .dropdown-menu a {
+    color: var(--branco);
+}
+
+body.modo-escuro .switch-container {
+    color: var(--preto);
+}
+
+body.modo-escuro header {
+    background-color: var(--azul-modoescuro);
+    color: var(--preto);
+}
+
+body.modo-escuro header .menulinha {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-box {
+    color: var(--branco);
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container i {
+    color: var(--branco);
+}
+
+body.modo-escuro header .menu-icon div {
+    background-color: var(--preto);
+}
+
+body.modo-escuro footer {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro footer a {
+    color: rgb(194, 255, 235);;
+}
+
+body.modo-escuro footer h3 {
+    color: var(--escuro);
+}
+
+body.modo-escuro footer p {
+    color: var(--branco);
+}
+body.modo-escuro .separacao1 p {
+    color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu .menu-item {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-icon-img {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-item:hover {
+    background-color: var(--preto);
+}
+
+body.modo-escuro .dropdown-menu .sair {
+    color: var(--branco);
+    background-color: var(--escuro);
+    border: none;
+}
+
+body.modo-escuro .dropdown-menu .sair:hover {
+    background-color: var(--preto);
+}
+
+body.modo-escuro {
+    background-color: var(--escuro);
+    color: var(--branco);
+}
+
+body.modo-escuro .separacao1 {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro .redes i{
+    color: var(--escuro);
+}
+
+body.modo-escuro .rodape-inter {
+    color: var(--branco);
+}
+
+body.modo-escuro .linha {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro .span {
+    color: var(--escuro);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+body.modo-escuro h1 {
+    color: var(--branco);
+}
+
+body.modo-escuro button {
+    background-color: var(--branco);
+    color: var(--escuro);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro button:hover {
+    background-color: var(--escuro);
+    color: var(--branco);
+    border: 3px solid var(--branco);
+}

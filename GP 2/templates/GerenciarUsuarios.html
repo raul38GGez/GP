@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela de Usuários</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../static/css/usuarios.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="../static/js/scripts.js"></script>
+  <script src="../static/js/seguranca.js" defer></script>
+  <script src="../static/js/segurancaBiblio.js" defer></script>
+
+  <script src="../static/js/paginaip.js"></script>
+
+  <link rel="stylesheet" href="../static/css/usuarios.css" />
+  <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+</head>
+
+
+<body>
+  <header>
+    <!-- Logo -->
+      <div id="logo-site" class="header-left">
+          <a id="logoHeader" href="home.html">
+              <img id="logoImage" alt="Logo">
+          </a>
+      </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+          <a href="catalogo.html"><i class="fas fa-search"></i></a>
+          <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
+        </div>
+
+    <div class="coisa">
+      <!-- Ícone de Menu com Dropdown -->
+      <div class="header-end">
+        <div class="menu-container">
+          <div class="menu-icon" id="menuButton">
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+          </div>
+
+          <ul class="dropdown-menu" id="dropdownMenu">
+
+          </ul>
+
+        </div>
+      </div>
+
+  </header>
+  <!-- FIM DO CABEÇALHO -->
+
+  <div class="container">
+    <div class="texto">
+      <h1 class="titulo">Gerenciar Usuário</h1>
+    </div>
+
+    <div class="addusuario">
+      <button id="btn-adicionar-usuario" class="btn2">
+        <i class="fa fa-user-plus"></i> Adicionar Usuário
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="tabela-container" id="tabela-usuarios" border="3">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Nascimento</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="paginacao">
+
+      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-chevron-left"></i> </a>
+      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-chevron-right"></i> </a>
+    </div>
+  </div>
+
+  <!-- Modal para Adição de Usuário -->
+  <div id="modal-adicao">
+    <form id="form-adicao">
+      <h3>Adicionar Novo Usuário</h3>
+
+      <label for="nome_adicao">Nome:</label>
+      <input type="text" id="nome_adicao" required>
+
+      <label for="email_adicao">Email:</label>
+      <input type="email" id="email_adicao" required>
+
+      <label for="senha_adicao">Senha:</label>
+      <input type="password" id="senha_adicao" required>
+
+
+      <label for="telefone_adicao">Telefone:</label>
+      <input type="text" id="telefone_adicao" onkeyup="handlePhone(event)" required>
+
+      <label for="data_nascimento_adicao">Data de nascimento:</label>
+      <input type="date" id="data_nascimento_adicao" required>
+
+      <label for="cargo_adicao">Cargo:</label>
+      <select name="cargo_adicao" id="cargo_adicao">
+        <option value="Cliente">Cliente</option>
+        <option value="Bibliotecário">Bibliotecário</option>
+        <option value="ADM">ADM</option>
+      </select>
+
+      <label for="status_adicao">Status:</label>
+      <select name="status_adicao" id="status_adicao">
+        <option value="Ativo">Ativo</option>
+        <option value="Inativo">Inativo</option>
+      </select>
+
+      <div class="modal-buttons">
+        <button type="submit" class="enviar">Adicionar</button>
+        <button type="button" id="fechar-modal-adicao">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="inter">
+    <div class="separacao1">
+      <p>Entre em contato conosco</p>
+      <ul class="wrapper">
+        <a href="https://www.facebook.com/asa.literaria.biblioteca" target="_blank">
+          <li class="icon facebook" title="Facebook">
+            <span class="tooltip">Facebook</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="28" height="28" fill="currentColor">
+              <path
+                d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
+            </svg>
+          </li>
+        </a>
+        <a href="https://twitter.com" target="_blank">
+          <li class="icon twitter" title="Twitter">
+            <span class="tooltip">Twitter</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" fill="currentColor">
+              <path
+                d="M459.4 151.7c.3 4.5.3 9 .3 13.6 0 138.7-105.6 298.7-298.7 298.7-59.5 0-114.9-17.2-161.4-47 8.4 1 16.8 1.3 25.5 1.3 49.2 0 94.6-16.7 130.7-44.8-46-.9-84.8-31.2-98.3-72.9 6.5 1 12.9 1.6 19.7 1.6 9.4 0 18.5-1.3 27.1-3.6-48.1-9.7-84-52-84-102.8v-1.3c14 7.8 30 12.6 47 13.1-27.8-18.5-46-50.2-46-86 0-18.5 5-35.7 13.7-50.6 50.1 61.3 125 101.4 209.5 105.6-1.7-7.7-2.6-15.7-2.6-23.9 0-57.9 46.9-104.8 104.8-104.8 30.2 0 57.6 12.6 76.8 32.9 23.9-4.5 46.4-13.5 66.5-25.6-7.8 24.4-24.4 44.8-46.4 57.6 21.2-2.4 41.6-8.2 60.4-16.7-14 20.8-31.8 39.1-52.4 53.8z" />
+            </svg>
+          </li>
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <li class="icon instagram" title="Instagram">
+            <span class="tooltip">Instagram</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor" class="bi bi-instagram"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+              </path>
+            </svg>
+          </li>
+        </a>
+        <a href="https://api.whatsapp.com" target="_blank">
+          <li class="icon whatsapp" title="WhatsApp">
+            <span class="tooltip">WhatsApp</span>
+            <i class="fa-brands fa-whatsapp"></i>
+          </li>
+        </a>
+        <a href="https://www.linkedin.com/company/asa-literaria-biblioteca/" target="_blank">
+          <li class="icon linkedin" title="LinkedIn">
+            <span class="tooltip">LinkedIn</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="currentColor">
+              <path
+                d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.5 53.5 0 1 1 0-107 53.5 53.5 0 1 1 0 107zm394.92 340h-92.68V302.4c0-34.7-.7-79.4-48.4-79.4-48.6 0-56 38.1-56 77.5V448h-92.68V148.9h89V196h1.3c12.4-23.5 42.5-48.4 87.5-48.4 93.7 0 111 61.7 111 141.9V448z" />
+            </svg>
+          </li>
+        </a>
+      </ul>
+    </div>
+    <div class="rodape-inter">
+      <div class="informacao">
+        <p class="informacoes">INFORMAÇÕES</p>
+        <div class="linha"></div>
+        <div class="display">
+          <i class="fa-solid fa-envelope icons"></i>
+          <p class="text">asa.literaria@email.com</p>
+        </div>
+        <div class="display">
+          <i class="fa-solid fa-phone icons"></i>
+          <p class="text">(18)99999-9999</p>
+        </div>
+      </div>
+            <div class="imagem">
+                <a id="logoHeader" href="home.html">
+                    <img id="logoImage2" alt="Logo">
+                </a>
+            </div>
+
+      <div class="localizacao">
+        <p class="local">LOCALIZAÇÃO
+          <br>
+          Birigui - SP
+        </p>
+      </div>
+    </div>
+
+    <div class="as">
+      <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+      <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+    </div>
+  </footer>
+
+  <script>
+
+    function validarEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    $(document).ready(function () {
+      const token = localStorage.getItem("token");
+
+      carregarUsuarios();
+
+      $("#btn-adicionar-usuario").click(function () {
+        $("#modal-adicao").addClass("ativo");
+      });
+
+      $("#fechar-modal-adicao").click(function () {
+        $("#modal-adicao").removeClass("ativo");
+      });
+
+      // Submissão do formulário de adição
+      $("#form-adicao").submit(function (e) {
+        e.preventDefault();
+
+        const novoUsuario = {
+          nome: $("#nome_adicao").val().trim(),
+          email: $("#email_adicao").val().trim(),
+          senha: $("#senha_adicao").val().trim(), // <- ESSENCIAL
+          telefone: $("#telefone_adicao").val().trim(),
+          data_nascimento: $("#data_nascimento_adicao").val(),
+          cargo: $("#cargo_adicao").val(),
+          status: $("#status_adicao").val()
+        };
+
+        $.ajax({
+          method: "POST",
+          url: ipPython + "/usuariosadm",
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(novoUsuario),
+          success: function () {
+            Swal.fire({
+              title: "Sucesso!",
+              text: "Usuário adicionado com sucesso.",
+              icon: "success"
+            });
+            $("#modal-adicao").hide();
+            $("#form-adicao")[0].reset();
+            carregarUsuarios();
+          },
+          error: function (retorno) {
+            Swal.fire({
+              title: "Erro!",
+              text: JSON.parse(retorno.responseText).error || "Erro ao adicionar usuário.",
+              icon: "error"
+            });
+          }
+        });
+      });
+
+      function carregarUsuarios() {
+        const params = new URLSearchParams(window.location.search);
+        var pagina = params.get('pagina');
+
+        if (!pagina) pagina = 1;
+
+        if (pagina == 1) {
+          document.getElementById('pagina-anterior').style.display = "none";
+        }
+
+        $.ajax({
+          method: "GET",
+          url: ipPython + "/usuario?pagina=" + pagina,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function (data) {
+            var total = data.total_paginas
+            var paginaAtual = data.pagina_atual
+            var anterior = paginaAtual - 1
+            var proxima = paginaAtual + 1
+
+            document.getElementById("pagina-anterior").href = "/templates/GerenciarUsuarios.html?pagina=" + anterior
+
+            document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima
+
+            if (paginaAtual >= total) {
+              document.getElementById('pagina-proxima').style.display = "none"
+            }
+
+            if (paginaAtual > total) {
+              document.getElementById('listaLivros').innerHTML = `
+                    <p>Usuários não encontrados!</p>
+                `;
+            }
+
+            document.getElementById("paginaAtual").innerHTML = paginaAtual
+
+            let usuarios = data.usuarios;
+            let tabela = $("#tabela-usuarios tbody");
+            tabela.empty();
+
+            if (usuarios.length === 0) {
+              tabela.append(`<tr><td colspan="8">Usuários não encontrados!</td></tr>`);
+              return;
+            }
+
+            usuarios.forEach(usuario => {
+              let linha = `
+                <tr>
+                  <td>${usuario.nome}</td>
+                  <td>${usuario.email}</td>
+                  <td class="tel">${usuario.telefone}</td>
+                  <td>${formatarData(usuario.data_nascimento)}</td>
+                  <td>${usuario.cargo}</td>
+                  <td>${usuario.status}</td>
+                  <td>
+                    <a href="detalhesUsuario.html?id=${usuario.id_usuario}">
+                      <button class="detalhes-btn">Detalhes</button>
+                    </a>
+                  </td>
+                </tr>
+              `;
+              tabela.append(linha);
+            });
+
+
+            $(".editar-btn").click(function () {
+              let id = $(this).data("id");
+              let nome = $(this).data("nome");
+              let email = $(this).data("email");
+              let telefone = $(this).data("telefone");
+              let data_nascimento_raw = $(this).data("data_nascimento");
+              let data_nascimento = new Date(data_nascimento_raw).toISOString().split("T")[0];
+              let cargo = $(this).data("cargo");
+              let status = $(this).data("status");
+
+              $("#id_usuario").val(id);
+              $("#nome").val(nome);
+              $("#email").val(email);
+              $("#telefone").val(telefone);
+              $("#data_nascimento").val(data_nascimento);
+              $("#cargo").val(cargo);
+              $("#status").val(status);
+
+              $("#modal-edicao").show();
+            });
+
+            $(".excluir-btn").click(function () {
+              const id = $(this).data("id");
+
+              Swal.fire({
+                title: 'Tem certeza?',
+                text: "Essa ação não poderá ser desfeita!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $.ajax({
+                    method: "DELETE",
+                    url: ipPython + "/usuariosadm/" + id,
+                    headers: {
+                      'Authorization': 'Bearer ' + token
+                    },
+                    success: function () {
+                      Swal.fire({
+                        title: "Excluído!",
+                        text: "O usuário foi excluído com sucesso.",
+                        icon: "success"
+                      });
+                      carregarUsuarios();
+                    },
+                    error: function (retorno) {
+                      Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).error || "Não foi possível excluir o usuário.",
+                        icon: "error"
+                      });
+                    }
+                  });
+                }
+              });
+            });
+          },
+          error: function (retorno) {
+            Swal.fire({
+              title: "Erro!",
+              text: JSON.parse(retorno.responseText).error,
+              icon: "error"
+            });
+          }
+        });
+      }
+
+      // Envio do formulário de edição
+      $("#form-edicao").submit(function (e) {
+        e.preventDefault();
+
+        let id = $("#id_usuario").val();
+        let nome = $("#nome").val().trim();
+        let email = $("#email").val().trim();
+        let telefone = $("#telefone").val().trim();
+        let data_nascimento = $("#data_nascimento").val().trim();
+        let cargo = $("#cargo").val().trim();
+        let status = $("#status").val().trim();
+
+        $.ajax({
+          method: "PUT",
+          url: ipPython + "/usuariosadm/" + id,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          data: JSON.stringify({
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            data_nascimento: data_nascimento,
+            cargo: cargo,
+            status: status
+          }),
+          contentType: "application/json",
+          success: function () {
+            Swal.fire({
+              title: "Sucesso!",
+              text: "Usuário atualizado com sucesso!",
+              icon: "success"
+            });
+            $("#modal-edicao").hide();
+            carregarUsuarios();
+          },
+          error: function (retorno) {
+            Swal.fire({
+              title: "Erro!",
+              text: JSON.parse(retorno.responseText).error || "Falha ao editar usuário.",
+              icon: "error"
+            });
+          }
+        });
+      });
+
+      $("#fechar-modal").click(function () {
+        $("#modal-edicao").hide();
+      });
+
+      $("#telefone, #telefone_adicao").on("keyup", function (event) {
+        handlePhone(event);
+      });
+
+      const handlePhone = (event) => {
+        let input = event.target;
+        input.value = phoneMask(input.value);
+      };
+
+      const phoneMask = (value) => {
+        if (!value) return "";
+        value = value.replace(/\D/g, '');
+        value = value.replace(/(\d{2})(\d)/, "($1) $2");
+        value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+        return value;
+      };
+
+      function formatarData(dataISO) {
+        if (!dataISO) return "";
+        let data = new Date(dataISO);
+        data.setDate(data.getDate() + 1);
+        let dia = data.getDate().toString().padStart(2, "0");
+        let mes = (data.getMonth() + 1).toString().padStart(2, "0");
+        let ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+      }
+    });
+
+    function abrirModal(id) {
+      document.getElementById('modal-' + id).style.display = 'block';
+    }
+
+    function fecharModal(id) {
+      document.getElementById('modal-' + id).style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      const modais = document.querySelectorAll('.modal');
+      modais.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const relatoriosItem = document.getElementById('relatorios');
+      const submenu = relatoriosItem.querySelector('.submenu');
+      relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+        submenu.classList.toggle('show');
+      });
+    });
+
+    function atualizarLinksRelatorios() {
+      const linksRelatorios = {
+        relatorioMultas: "/multas_relatorio",
+        relatorioLivros: "/livros_relatorio",
+        relatorioUsuarios: "/usuarios_relatorio",
+        relatorioEmprestimos: "/emprestimos_relatorio"
+      };
+      for (let id in linksRelatorios) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+
+    $(document).ready(function () {
+      const token = localStorage.getItem("token");
+      let debounceTimeout = null;
+
+      // Função para atualizar a tabela de usuários
+      function atualizarTabelaUsuarios(usuarios) {
+        let tabela = $("#tabela-usuarios tbody");
+        tabela.empty();
+
+        if (!usuarios || usuarios.length === 0) {
+          tabela.append(`<tr><td colspan="8">Usuários não encontrados!</td></tr>`);
+          return;
+        }
+
+        usuarios.forEach(usuario => {
+          let linha = `
+        <tr>
+          <td>${usuario.nome}</td>
+          <td>${usuario.email}</td>
+          <td class="tel">${usuario.telefone}</td>
+          <td>${usuario.data_nascimento}</td>
+          <td>${usuario.cargo}</td>
+          <td>${usuario.status}</td>
+          <td>
+            <a href="detalhesUsuario.html?id=${usuario.id_usuario}">
+              <button class="detalhes-btn">Detalhes</button>
+            </a>
+          </td>
+        </tr>
+      `;
+          tabela.append(linha);
+        });
+      }
+
+      // Função para pesquisar usuários
+      function pesquisarUsuarios(termo, pagina = 1) {
+        $.ajax({
+          method: "GET",
+          url: `${ipPython}/pesquisar_usuario?q=${encodeURIComponent(termo)}&pagina=${pagina}`,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function (data) {
+            atualizarTabelaUsuarios(data.usuarios);
+            $("#paginaAtual").text(data.pagina_atual);
+            // Atualize a paginação conforme necessário
+          },
+          error: function (retorno) {
+            atualizarTabelaUsuarios([]);
+          }
+        });
+      }
+
+      // Debounce para evitar requisições em excesso
+      $("#campoBusca").on("input", function () {
+        const termo = $(this).val().trim();
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(function () {
+          if (termo.length === 0) {
+            carregarUsuarios(); // função já existente para listar todos
+          } else {
+            pesquisarUsuarios(termo, 1);
+          }
+        }, 400); // 400ms de debounce
+      });
+    });
+
+    $("#campoBusca").closest("form").on("submit", function (e) {
+      e.preventDefault(); // Impede o envio do formulário
+    });
+
+    $("#campoBusca").on("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // Impede o comportamento padrão do Enter
+
+        const termo = $(this).val().trim();
+        if (termo.length === 0) {
+          carregarUsuarios();
+        } else {
+          pesquisarUsuarios(termo, 1);
+        }
+
+        $(this).blur(); // Remove o foco do campo de busca
+      }
+    });
+    // Detecta se o usuário limpou o campo de busca
+    $("#campoBusca").on("input", function () {
+      if ($(this).val().trim() === "") {
+        carregaUsuarios(); // Recarrega todos os livros se o campo estiver vazio
+      }
+    });
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+
+        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+          function atualizarLogoSite() {
+            let i = 0;
+            function tentarProxima() {
+              if (i >= logoExts.length) {
+                let logoImage = document.getElementById("logoImage");
+                let logoImage2 = document.getElementById("logoImage2");
+                if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                return;
+              }
+              let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+              fetch(url).then(resp => {
+                if (resp.ok) {
+                  let logoImage = document.getElementById("logoImage");
+                  let logoImage2 = document.getElementById("logoImage2");
+                  if (logoImage) logoImage.src = url;
+                  if (logoImage2) logoImage2.src = url;
+                } else {
+                  i++;
+                  tentarProxima();
+                }
+              });
+            }
+            tentarProxima();
+          }
+          document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+  </script>
+
+</body>
