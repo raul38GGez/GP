@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página inicial - Biblioteca Asa Literária</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+</head>
+
+<body>
+    <header class="header">
+        <!-- Logo -->
+        <div class="header-left">
+            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo Asa Literária"></a>
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <form id="formBuscaLivro" class="search-form">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+                <button type="submit" class="search-button">Buscar</button>
+            </div>
+        </form>
+
+        <div class="header-right">
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="menu-container">
+                <div class="menu-icon" id="menuButton">
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                </div>
+                <ul class="dropdown-menu" id="dropdownMenu"></ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="container">
+                <h3 class="welcome-message">Bem-vindo<span id="nomeUsuario" class="user-name"></span></h3>
+                <p class="welcome-text">Explore nosso acervo literário e descubra novas aventuras!</p>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <div class="container">
+                <h1 class="section-title">Nosso Catálogo</h1>
+
+                <div class="book-grid" id="listaLivros">
+                    <!-- Livros serão carregados aqui -->
+                </div>
+
+                <div class="pagination">
+                    <a href="" class="pagination-button" id="pagina-anterior">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </a>
+                    <span class="current-page" id="paginaAtual">Página 1</span>
+                    <a href="" class="pagination-button" id="pagina-proxima">
+                        Próxima <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="info-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>+1000 Livros</h3>
+                    <p>Um acervo diversificado para todos os gostos</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horário Flexível</h3>
+                    <p>Funcionamos de segunda a sábado, das 8h às 20h</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Espaço de Estudo</h3>
+                    <p>Ambiente tranquilo para leitura e estudos</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-contact">
+                <h3>Entre em contato conosco</h3>
+                <div class="social-links">
+                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="footer-column">
+                    <h4>Informações</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-envelope"></i> asa.literaria@email.com</p>
+                    <p><i class="fas fa-phone"></i> (18) 99999-9999</p>
+                </div>
+
+                <div class="footer-column footer-logo">
+                    <img src="../static/img/logo.png" alt="Logo Asa Literária" class="footer-logo-img">
+                </div>
+
+                <div class="footer-column">
+                    <h4>Localização</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-map-marker-alt"></i> Birigui - SP</p>
+                    <p>Rua Exemplo, 123 - Centro</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <a href="https://www.google.com.br/?hl=pt-BR">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR">Política de privacidade</a>
+            <p>&copy; 2023 Asa Literária. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
+    <script src="../static/js/paginaip.js"></script>
+
+    <script>
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        document.addEventListener('DOMContentLoaded', function () {
+            var nome = localStorage.getItem("nome");
+            if (nome) {
+                document.getElementById("nomeUsuario").innerHTML = ", " + nome;
+            }
+
+            // Inicializa carrossel
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                responsive: {
+                    0: { items: 1 },
+                    600: { items: 3 },
+                    1000: { items: 5 }
+                }
+            });
+
+            // Carrega livros em destaque
+            carregarLivrosDestaque();
+
+            // Carrega todos os livros
+            carregaLivros();
+
+            // Carrega gêneros para filtro
+            carregarGeneros();
+        });
+
+        function carregarLivrosDestaque() {
+            $.ajax({
+                url: ipPython + "/livros_destaque",
+                method: "GET",
+                success: function (retorno) {
+                    if (retorno.livros && retorno.livros.length > 0) {
+                        let carousel = $('#featuredCarousel');
+                        carousel.owlCarousel('destroy');
+
+                        retorno.livros.forEach(livro => {
+                            carousel.append(`
+                                <div class="featured-item">
+                                    <a href="reserva.html?id=${livro.id_livro}">
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                        <div class="featured-info">
+                                            <h4>${livro.titulo}</h4>
+                                            <p>${livro.autor}</p>
+                                            <span class="featured-badge">Destaque</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            `);
+                        });
+
+                        carousel.owlCarousel({
+                            loop: true,
+                            margin: 20,
+                            nav: true,
+                            responsive: {
+                                0: { items: 1 },
+                                600: { items: 3 },
+                                1000: { items: 5 }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        function carregarGeneros() {
+            $.ajax({
+                url: ipPython + "/generos",
+                method: "GET",
+                success: function (retorno) {
+                    if (retorno.generos && retorno.generos.length > 0) {
+                        let select = $('#filterGenre');
+                        retorno.generos.forEach(genero => {
+                            select.append(`<option value="${genero}">${genero}</option>`);
+                        });
+                    }
+                }
+            });
+        }
+
+        function carregaLivros() {
+            const params = new URLSearchParams(window.location.search);
+            var pagina = parseInt(params.get('pagina')) || 1;
+
+            // Aplica filtros
+            const genero = $('#filterGenre').val();
+            const disponibilidade = $('#filterAvailability').val();
+
+            if (genero) params.set('genero', genero);
+            if (disponibilidade) params.set('disponivel', disponibilidade === 'available' ? 'true' : 'false');
+
+            var urlAjax = ipPython + "/livro?" + params.toString();
+
+            if (pagina <= 1) {
+                document.getElementById('pagina-anterior').style.display = "none";
+            } else {
+                document.getElementById('pagina-anterior').style.display = "block";
+            }
+
+            $.ajax({
+                url: urlAjax,
+                method: "GET",
+                success: function (retorno) {
+                    var total = retorno.total_paginas;
+                    var paginaAtual = retorno.pagina_atual;
+                    var anterior = paginaAtual - 1;
+                    var proxima = paginaAtual + 1;
+
+                    params.set('pagina', anterior);
+                    document.getElementById("pagina-anterior").href = "/templates/home.html?" + params.toString();
+
+                    params.set('pagina', proxima);
+                    document.getElementById("pagina-proxima").href = "/templates/home.html?" + params.toString();
+
+                    params.set('pagina', paginaAtual);
+
+                    if (paginaAtual >= total) {
+                        document.getElementById('pagina-proxima').style.display = "none";
+                    } else {
+                        document.getElementById('pagina-proxima').style.display = "block";
+                    }
+
+                    var html = document.getElementById("listaLivros");
+                    html.innerHTML = "";
+
+                    if (!retorno.livros || retorno.livros.length === 0) {
+                        html.innerHTML = `<div class="no-books"><i class="fas fa-book-open"></i><p>Nenhum livro encontrado!</p></div>`;
+                        return;
+                    }
+
+                    document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
+
+                    retorno.livros.forEach((livro) => {
+                        html.innerHTML += `
+                            <div class="book-card">
+                                <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
+                                    <div class="book-image">
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                        <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
+                                            ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
+                                        </div>
+                                    </div>
+                                    <div class="book-info">
+                                        <h4 class="book-title">${livro.titulo}</h4>
+                                        <p class="book-author">${livro.autor}</p>
+                                        <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                    });
+                },
+                error: function () {
+                    document.getElementById("listaLivros").innerHTML = `
+                        <div class="no-books error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Erro ao carregar livros. Tente novamente mais tarde.</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Filtros
+        $('#filterGenre, #filterAvailability').change(function () {
+            carregaLivros();
+        });
+
+        // Busca
+        $("#formBuscaLivro").on("submit", function (e) {
+            e.preventDefault();
+            let termo = $("#campoBusca").val().trim();
+
+            if (!termo) {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Digite algo para buscar.",
+                    icon: "warning"
+                });
+                return;
+            }
+
+            // Limpa filtros ao buscar
+            $('#filterGenre').val('');
+            $('#filterAvailability').val('');
+
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
+                success: function (retorno) {
+                    $("#listaLivros").empty();
+
+                    if (retorno.livros && retorno.livros.length > 0) {
+                        retorno.livros.forEach(livro => {
+                            $("#listaLivros").append(`
+                                <div class="book-card">
+                                    <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
+                                        <div class="book-image">
+                                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                            <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
+                                                ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
+                                            </div>
+                                        </div>
+                                        <div class="book-info">
+                                            <h4 class="book-title">${livro.titulo}</h4>
+                                            <p class="book-author">${livro.autor}</p>
+                                            <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            `);
+                        });
+                    } else {
+                        $("#listaLivros").html(`
+                            <div class="no-books">
+                                <i class="fas fa-search"></i>
+                                <p>Nenhum livro encontrado para "${termo}"</p>
+                            </div>
+                        `);
+                    }
+                },
+                error: function (xhr) {
+                    let erroMsg = "Erro ao buscar livros.";
+                    if (xhr.responseText) {
+                        try {
+                            erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+                        } catch (e) { }
+                    }
+
+                    Swal.fire({
+                        title: "Erro!",
+                        text: erroMsg,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+
+        // Detecta se o usuário limpou o campo de busca
+        $("#campoBusca").on("input", function () {
+            if ($(this).val().trim() === "") {
+                carregaLivros();
+            }
+        });
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+    </script>
+</body>
+
+</html>
