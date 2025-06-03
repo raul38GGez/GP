@@ -22,10 +22,7 @@
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="../static/dist/owl.carousel.min.js"></script>
-    <script src="../static/js/scripts.js"></script>
-    <script src="../static/js/segIndex.js" defer></script>
+    <script src="../static/js/segIndex.js"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="../static/js/paginaip.js"></script>
 </head>
@@ -146,10 +143,6 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="../static/dist/owl.carousel.min.js"></script>
-    <script src="../static/js/scripts.js"></script>
-    <script src="../static/js/segIndex.js" defer></script>
     <script src="../static/js/paginaip.js"></script>
     <script>
 
@@ -236,7 +229,7 @@
                             retorno.livros.forEach((livro) => {
                                 html += `
                                     <div class="book-card">
-                                        <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
+                                        <a href="cadastro.html">
                                             <div class="book-image">
                                                 <img src="${typeof ipPython !== "undefined" ? ipPython : ""}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
                             
