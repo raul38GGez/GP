@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <style>
+        .book-genre {
+            font-size: 0.92em;
+            color: #555;
+            margin-top: 0.3em;
+        }
+    </style>
 </head>
 
 <body>
@@ -163,11 +170,13 @@
         // Adiciona o evento de clique no botão de relatórios
         document.addEventListener('DOMContentLoaded', function () {
             const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
+            const submenu = relatoriosItem ? relatoriosItem.querySelector('.submenu') : null;
 
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
+            if (relatoriosItem && submenu) {
+                relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                    submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+                });
+            }
         });
         // Função para atualizar os hrefs dos relatórios
         function atualizarLinksRelatorios() {
@@ -187,8 +196,6 @@
 
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
-
-
         $(document).ready(function () {
             // Exibe o nome do usuário do localStorage
             function exibirNomeUsuario() {
@@ -200,7 +207,6 @@
                 }
 
             }
-
             // Chama a função para exibir o nome do usuário ao carregar a página
             exibirNomeUsuario();
 
@@ -242,8 +248,7 @@
                             html = `<p>Livros não encontrados!</p>`;
                         } else {
                             retorno.livros.forEach((livro) => {
-                                if (livro.quantidade > 0) {
-                                    html += `
+                                html += `
                                 <div class="book-card">
                                     <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
                                         <div class="book-image">
@@ -255,33 +260,10 @@
                                         <div class="book-info">
                                             <h4 class="book-title">${livro.titulo}</h4>
                                             <p class="book-author">${livro.autor || ''}</p>
-                                            <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
                                         </div>
                                     </a>
                                 </div>
-                                        `;
-                                } else {
-
-                                    html += `
-                                <div class="book-card">
-                                    <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
-                                        <div class="book-image">
-                                            <img src="${typeof ipPython !== "undefined" ? ipPython : ""}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                            <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
-                                                ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
-                                            </div>
-                                        </div>
-                                        <div class="book-info">
-                                            <h4 class="book-title">${livro.titulo}</h4>
-                                            <p class="book-author">${livro.autor || ''}</p>
-                                            <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                        `;
-                                }
-
-
+                                `;
                             });
                         }
 
@@ -292,7 +274,6 @@
                     }
                 });
             }
-
             // Busca ao enviar o formulário
             $("#formBuscaLivro").on("submit", function (e) {
                 e.preventDefault();
@@ -376,7 +357,7 @@
             tentarProxima();
         }
         document.addEventListener('DOMContentLoaded', atualizarLogoSite);
-        
+
     </script>
 </body>
 
