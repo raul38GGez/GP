@@ -53,30 +53,7 @@ header {
     margin-left: 10px;
     height: auto;
 }
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
 
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -399,10 +376,6 @@ input:checked + .slider:before {
     padding: 2px 6px;
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
-
 .menu-item {
     padding: 10px;
     display: flex;
@@ -559,7 +532,7 @@ select {
 
 /* Estilos para a tabela de usuários */
 #tabela-emprestimos {
-    width: 90%;
+    width: 100%;
     margin: 27px auto;
     border-collapse: collapse;
     background-color: #fff;
@@ -574,10 +547,10 @@ select {
 }
 
 #tabela-emprestimos thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-emprestimos tbody tr:hover {
@@ -907,7 +880,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {
