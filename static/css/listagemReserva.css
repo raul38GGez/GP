@@ -11,6 +11,11 @@ a{
     text-decoration: none;
     color:black;
 }
+
+p {
+    margin: 0;
+}
+
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;
@@ -85,7 +90,11 @@ header {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
@@ -539,11 +548,14 @@ select {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#tabela-reservas th, 
-#tabela-reservas td {
+#tabela-reservas th, #tabela-reservas td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+#tabela-reservas th, #tabela-reservas td p {
+    padding: 10px 10px;
 }
 
 #tabela-reservas thead th {

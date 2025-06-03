@@ -88,7 +88,11 @@ s
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
@@ -569,11 +573,9 @@ input:checked+.slider:before {
 }
 
 .btn2:hover {
-    font-weight: bold;
-    transform: scale(1.05);
+    transform: translateY(-2px);
     transition: 0.5s;
     background-color: black;
-    color: white;
 }
 
 .addusuario {

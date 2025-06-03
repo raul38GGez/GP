@@ -28,6 +28,14 @@ body {
     line-height: 1.6;
 }
 
+.swal2-confirm {
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
+}
+
 /* Header */
 .header {
     background-color: var(--primary-color);
@@ -188,7 +196,7 @@ body {
 }
 
 .btn-change-img {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: var(--white);
     border: none;
     padding: 10px 15px;
@@ -202,7 +210,7 @@ body {
 }
 
 .btn-change-img:hover {
-    background-color: var(--primary-color);
+    background-color: black;
     transform: translateY(-2px);
 }
 
@@ -246,7 +254,7 @@ body {
 .form-group input {
     padding: 12px 15px;
     border: 1px solid #ddd;
-    border-radius: 6px;
+    border-radius: 25px;
     font-size: 1rem;
     transition: var(--transition);
 }
@@ -266,11 +274,11 @@ body {
 }
 
 .btn-save {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 12px 20px;
-    border-radius: 6px;
+    border-radius: 25px;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -282,7 +290,7 @@ body {
 }
 
 .btn-save:hover {
-    background-color: var(--primary-color);
+    background-color: black;
     transform: translateY(-2px);
 }
 
@@ -291,7 +299,7 @@ body {
     color: var(--text-color);
     border: 1px solid #ddd;
     padding: 12px 20px;
-    border-radius: 6px;
+    border-radius: 25px;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;

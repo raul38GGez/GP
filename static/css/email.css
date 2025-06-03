@@ -156,9 +156,12 @@ input::placeholder {
 }
 
 .swal2-confirm {
-    background-color: var(--azul) !important;
+    background-color: var(--primary-color);
 }
 
+.swal2-confirm:hover {
+    background-color: black;
+}
 
 @media (max-width: 800px) {
     .livro-1 {

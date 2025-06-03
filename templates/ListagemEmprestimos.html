@@ -322,11 +322,11 @@
             emprestimos.forEach(emprestimo => {
               let linha = `
                 <tr data-id="${emprestimo.id_emprestimo}">
-                  <td>${emprestimo.nome_usuario}</td>
-                  <td>${emprestimo.data_emprestimo.replaceAll("-", "/")}</td>
-                  <td>${emprestimo.data_devolucao.replaceAll("-", "/")}</td>
-                  <td>${emprestimo.titulo_livro}</td>
-                  <td>${emprestimo.autor_livro}</td>
+                  <td><p>${emprestimo.nome_usuario}</p></td>
+                  <td><p>${emprestimo.data_emprestimo.replaceAll("-", "/")}</p></td>
+                  <td><p>${emprestimo.data_devolucao.replaceAll("-", "/")}</p></td>
+                  <td><p>${emprestimo.titulo_livro}</p></td>
+                  <td><p>${emprestimo.autor_livro}</p></td>
                   <td>
                     <button class="botao-devolucao" type="button" onclick="devolverLivro(this)">Devolver</button>
                   </td>
