@@ -27,7 +27,7 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-    <form id="formBuscaLivro" class="search-form" style="display: flex;">
+    <form id="formBuscaLivro" class="search-form">
       <div class="search-container">
         <i class="fas fa-search"></i>
         <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
@@ -36,11 +36,16 @@
     </form>
     <div class="header-right">
       <div class="menu-container">
-        <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-          <div class="menulinha"></div>
-          <div class="menulinha"></div>
-          <div class="menulinha"></div>
-        </div>
+        <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
         <ul class="dropdown-menu" id="dropdownMenu"></ul>
       </div>
     </div>
@@ -58,7 +63,7 @@
       <div class="container">
         <div class="containerdois">
           <div class="adicionar-usuario" style="margin-bottom: 2rem;">
-            <a href="addMultas.html" class="btn btn-primary">Adicionar Multa</a>
+            <a  href="addMultas.html" class="btn btn-primary"><i class="fa-solid fa-money-bill"></i> Adicionar Multa</a>
           </div>
         </div>
 

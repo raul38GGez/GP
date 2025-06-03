@@ -31,14 +31,12 @@
         .pix-param-section label {
             font-weight: 600;
             color: #314279;
-            font-family: 'Poppins', 'Montserrat', sans-serif;
         }
 
         .pix-param-section input[type="text"],
         .pix-param-section input[type="file"] {
-            border-radius: 8px;
+            border-radius: 25px;
             border: 1.5px solid #E0E6F6;
-            font-family: 'Montserrat', 'Poppins', sans-serif;
         }
 
         .pix-param-section input[type="file"] {
@@ -46,20 +44,22 @@
         }
 
         .pix-param-section .btn-primary {
-            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            background: var(--primary-color);
             border: none;
-            border-radius: 22px;
+            width: 47rem;
+            border-radius: 25px;
             font-weight: 600;
             font-size: 1.07rem;
             padding: 10px 32px;
             color: #fff;
+            
             transition: background 0.18s, transform 0.18s;
             box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
         }
 
         .pix-param-section .btn-primary:hover,
         .pix-param-section .btn-primary:focus {
-            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
+            background: black;
             transform: translateY(-2px) scale(1.045);
             color: #fff;
             box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
@@ -115,7 +115,7 @@
             <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
                     alt="Logo Asa Literária"></a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+        <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
@@ -124,11 +124,16 @@
         </form>
         <div class="header-right">
             <div class="menu-container">
-                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                </div>
+                <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
                 <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
         </div>
@@ -165,7 +170,7 @@
                     <div class="logo-preview mt-2"></div>
                 </div>
                 <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-5">Salvar Parametrização</button>
+                    <button type="submit" class="botn btn-primary px-5">Salvar Parametrização</button>
                 </div>
             </form>
         </section>

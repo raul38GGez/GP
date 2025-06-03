@@ -820,7 +820,7 @@ a {
 }
 
 .search-button {
-    margin-left: 10px;
+    margin-left: -100px;
     padding: 5px 20px;
     background-color: var(--secondary-color);
     color: white;

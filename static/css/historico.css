@@ -43,31 +43,6 @@ body {
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    position: absolute;
-    left: 15px;
-    color: var(--text-light);
-}
-
-.search-box {
-    width: 100%;
-    padding: 10px 15px 10px 40px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.9);
-    transition: var(--transition);
-}
 .btn-catalogo {
     background-color: #3380ca;
 }

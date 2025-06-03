@@ -53,30 +53,6 @@ header {
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -502,16 +478,15 @@ input:checked + .slider:before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     max-width: 900px;
     margin: auto;
-    font-family: 'Poppins', sans-serif;
 }
 
 .pix-param-section h2 {
-    color: var(--azul-escuro);
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 .pix-param-section label {
-    color: var(--azul);
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -660,6 +635,11 @@ label{
     margin-left: 36rem;
 }
 
+.col-12 {
+    display: flex;
+    justify-content: center;
+}
+
 .formEditarLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
@@ -795,7 +775,6 @@ button.edit:hover {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

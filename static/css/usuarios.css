@@ -582,8 +582,6 @@ input:checked+.slider:before {
 }
 
 .container {
-    margin-top: 35px;
-    margin-bottom: 35px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -725,7 +723,7 @@ select {
   z-index: 1;
   font-size: 17px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 25px;
 }
 
 .detalhes-btn:before {

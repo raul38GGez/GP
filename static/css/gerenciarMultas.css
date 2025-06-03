@@ -57,31 +57,6 @@ header {
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -622,10 +597,10 @@ select {
 }
 
 #tabela-usuarios thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-usuarios tbody tr:hover {
@@ -717,10 +692,12 @@ button.botao-multas {
 }
 
 .acoes {
-    --color: #3380ca;
+    color: var(--primary-color);
     background-color: white;
     font-family: inherit;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: -50px;
     width: 6em;
     height: 2.5em;
@@ -728,20 +705,19 @@ button.botao-multas {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    border: 2px solid var(--azul);
+    border: 2px solid var(--primary-color);
     transition: color 0.5s;
     z-index: 1;
     font-size: 17px;
     font-weight: bold;
-    border-radius: 6px;
-    color: var(--azul);
+    border-radius: 25px;
 }
 
 .acoes:before {
     content: "";
     position: absolute;
     z-index: -1;
-    background: var(--color);
+    background: var(--primary-color);
     height: 120px;
     width: 500px;
     border-radius: 50%;
@@ -763,7 +739,7 @@ button.botao-multas {
 }
 
 .acoes:active:before {
-    background: #0060BB;
+    background: black;
     transition: background 0s;
 }
 
@@ -842,20 +818,30 @@ button.botao-multas {
     font-weight: bold;
 }
 
+.adicionar-usuario {
+    display: flex;
+    justify-content: center;
+}
 
 .btn-primary {
-    padding: 7px;
-    padding-left: 50px;
-    padding-right: 50px;
-    background-color: var(--azul);
+    padding: 7px; 
+    display: block;
+    gap: 10px;
+    width: 255px;
+    height: 45px;
+    border: none;
     font-weight: bold;
+    margin-bottom: -35px;
+    font-size: 20px;
+    transition: 0.5s;
+    background-color: var(--primary-color);
+    color: white;
     margin-top: 20px;
-    margin-left: 420px;
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 25px; 
 }
 
 .btn-primary:hover {
-    background-color: var(--azul-escuro);
+    background-color: black;
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -939,7 +925,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

@@ -19,22 +19,17 @@
   <style>
     .table-container {
       margin-top: 2rem;
-      border-radius: 16px;
       overflow-x: auto;
       background: #fff;
       box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.07);
-      padding: 24px;
     }
 
     .table {
       width: 100%;
-      border-collapse: separate !important;
       border-spacing: 0;
       background: #fff;
-      font-family: 'Poppins', 'Montserrat', sans-serif;
       font-size: 1rem;
       color: #222;
-      border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 3px 16px 0 rgba(40, 40, 40, 0.08);
     }
@@ -48,8 +43,6 @@
       text-align: center;
       font-size: 1.08rem;
       letter-spacing: 1px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
     }
 
     .table tbody tr {
@@ -71,28 +64,6 @@
       border-bottom: none;
     }
 
-    .botao-reserva {
-      background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
-      color: #fff;
-      border: none;
-      border-radius: 22px;
-      padding: 7px 28px;
-      font-weight: 600;
-      font-size: 1.03rem;
-      transition: background 0.18s, transform 0.18s;
-      box-shadow: 0 2px 10px 0 rgba(75, 112, 226, 0.12);
-      cursor: pointer;
-      outline: none;
-    }
-
-    .botao-reserva:hover,
-    .botao-reserva:focus {
-      background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-      transform: translateY(-2px) scale(1.045);
-      color: #fff;
-      box-shadow: 0 4px 16px 0 rgba(75, 112, 226, 0.18);
-    }
-
     .pagination {
       display: flex;
       justify-content: center;
@@ -105,7 +76,6 @@
       background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
       color: #fff;
       border: none;
-      border-radius: 22px;
       padding: 8px 24px;
       font-weight: 600;
       font-size: 1.04rem;
@@ -124,9 +94,8 @@
     }
 
     .current-page {
-      font-family: 'Poppins', 'Montserrat', sans-serif;
       font-size: 1.08rem;
-      color: #4B70E2;
+      color: var(--secondary-color);
       font-weight: 600;
     }
   </style>
@@ -138,7 +107,7 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-    <form id="formBuscaLivro" class="search-form" style="display: flex;">
+    <form id="formBuscaLivro" class="search-form">
       <div class="search-container">
         <i class="fas fa-search"></i>
         <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
@@ -147,11 +116,16 @@
     </form>
     <div class="header-right">
       <div class="menu-container">
-        <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-          <div class="menulinha"></div>
-          <div class="menulinha"></div>
-          <div class="menulinha"></div>
-        </div>
+        <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                <span class="text">MENU</span>
+          </button>
         <ul class="dropdown-menu" id="dropdownMenu"></ul>
       </div>
     </div>
@@ -164,11 +138,11 @@
         <p class="welcome-text">Visualize e gerencie todas as reservas feitas no sistema.</p>
       </div>
     </section>
-    <section class="catalog-section" style="background: #fff; box-shadow: none; padding-bottom: 2rem;">
+    <section class="catalog-section" style="background: #fff; box-shadow: none; padding-bottom: 2rem; padding-top: 2rem;">
       <div class="container">
         <h1 class="section-title" style="margin-bottom: 1.5rem;">Reservas Realizadas</h1>
         <div class="table-container">
-          <table class="table" id="tabela-reservas">
+          <table class="table" id="tabela-reservas" border="3">
             <thead>
               <tr>
                 <th>Usuário</th>
