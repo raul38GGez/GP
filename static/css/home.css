@@ -821,7 +821,6 @@ a {
   border: none;
   transition: all 0.5s ease-in-out;
   font-size: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -933,7 +932,7 @@ a {
 .section-title:after {
     content: '';
     display: block;
-    width: 80px;
+    width: 180px;
     height: 3px;
     background-color: var(--secondary-color);
     margin: 10px auto;
