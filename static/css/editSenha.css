@@ -15,6 +15,14 @@ p {
     margin-bottom: 0rem;
 }
 
+.swal2-confirm {
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
+}
+
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;

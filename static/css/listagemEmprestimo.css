@@ -11,6 +11,11 @@ a{
     text-decoration: none;
     color:black;
 }
+
+p {
+    margin: 0;
+}
+
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;
@@ -85,7 +90,11 @@ header {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
@@ -539,11 +548,14 @@ select {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#tabela-emprestimos th, 
-#tabela-emprestimos td {
+#tabela-emprestimos th, #tabela-emprestimos td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+#tabela-emprestimos th, #tabela-emprestimos td p {
+    padding: 10px 10px;
 }
 
 #tabela-emprestimos thead th {
@@ -671,7 +683,7 @@ button.botao-multas {
 }
 
 .botao-devolucao {
-  --color: #3380ca;
+  color: var(--primary-color);
   background-color: white;
   font-family: inherit;
   display: flex;
@@ -683,20 +695,19 @@ button.botao-multas {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid var(--azul);
+  border: 2px solid var(--primary-color);
   transition: color 0.5s;
   z-index: 1;
   font-size: 17px;
   font-weight: bold;
-  border-radius: 6px;
-  color: var(--azul);
+  border-radius: 25px;
 }
 
 .botao-devolucao:before {
   content: "";
   position: absolute;
   z-index: -1;
-  background: var(--color);
+  background: var(--primary-color);
   height: 120px;
   width: 500px;
   border-radius: 50%;
@@ -718,7 +729,7 @@ button.botao-multas {
 }
 
 .botao-devolucao:active:before {
-  background: #0060BB;
+  background: black;
   transition: background 0s;
 }
 

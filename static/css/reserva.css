@@ -439,7 +439,11 @@ header li a {
 }
 
 .swal2-confirm {
-    background-color: #d33;
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */

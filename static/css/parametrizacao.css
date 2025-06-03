@@ -374,11 +374,10 @@ input:checked + .slider:before {
 
   .pix-display-card .info {
     flex: 1 1 300px;
-    margin-right: 1rem;
   }
 
   .pix-display-card .info h3 {
-    color: #1947a8;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
     padding-bottom: 8px;
@@ -413,11 +412,15 @@ input:checked + .slider:before {
 }
 
 .swal2-confirm {
-    background-color: rgb(221, 51, 51);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
-    background-color: var(--azul);
+    background-color: rgb(221, 51, 51);
 }
 
 .menu-item {
@@ -494,7 +497,7 @@ input:checked + .slider:before {
     border: 1px solid var(--azul);
     border-radius: 6px;
     margin-bottom: 10px;
-    background-color:#eef3ff;
+    background-color:#e9e9e9;
 }
 
 .pix-param-section .btn-primary {

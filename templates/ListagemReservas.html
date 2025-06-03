@@ -73,7 +73,7 @@
     }
 
     .pagination-button {
-      background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+      background: var(--primary-color);
       color: #fff;
       border: none;
       padding: 8px 24px;
@@ -86,8 +86,8 @@
 
     .pagination-button:hover,
     .pagination-button:focus {
-      background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-      transform: translateY(-2px) scale(1.045);
+      background: black;
+      transform: translateY(-2px);
       color: #fff;
       box-shadow: 0 4px 16px 0 rgba(75, 112, 226, 0.18);
       text-decoration: none;
@@ -313,10 +313,10 @@
               reservas.forEach(reserva => {
                 let linha =
                   `<tr>
-                    <td>${reserva.nome_usuario}</td>
-                    <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
-                    <td>${reserva.titulo_livro}</td>
-                    <td>${reserva.autor_livro}</td>
+                    <td><p>${reserva.nome_usuario}</p></td>
+                    <td><p>${reserva.data_reserva.replaceAll("-", "/")}</p></td>
+                    <td><p>${reserva.titulo_livro}</p></td>
+                    <td><p>${reserva.autor_livro}</p></td>
                     <td>
                       <button class="botao-reserva" type="button"
                         onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
