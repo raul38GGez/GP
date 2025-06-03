@@ -36,17 +36,6 @@ body {
     background-color: #fff;
 }
 
-header {
-    background-color: #0060BB;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
 /* Logo */
 .header-left img {
     width: 50px;
@@ -65,18 +54,19 @@ header {
 }
 
 .search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
+    position: absolute;
+    left: 15px;
+    color: var(--text-light);
 }
 
 .search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
     width: 100%;
-    padding: 5px;
-    background-color: white
+    padding: 10px 15px 10px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: var(--transition);
 }
 .btn-catalogo {
     background-color: #3380ca;
@@ -534,14 +524,19 @@ select {
 }
 
 .nav-pills .nav-link.active {
-    color: var(--azul);
-    background-color: #eef3ff;;
+    color: var(--primary-color);
+    background-color: #3498db12;
+    border-bottom: 2px solid var(--primary-color);
+    border-radius: 8px 8px 0px 0px;
     font-weight: bold;
 }
 
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
 .nav-link {
-    border-radius: 0px;
-    color: var(--azul);
+    color: var(--secondary-color);
     font-weight: bold;
     display: inline-block;
     position: relative;
@@ -555,7 +550,7 @@ select {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--azul);
+    background-color: var(--secondary-color);
     transition: transform 0.25s ease-out;
 }
 
@@ -640,10 +635,10 @@ select {
 }
 
 #tabela-emprestimos thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-emprestimos tbody tr:hover {
@@ -669,10 +664,10 @@ select {
 }
 
 #tabela-reservas thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);;
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-emprestimos tbody tr:hover {
@@ -774,6 +769,60 @@ button.botao-multas {
 .acoes:hover {
     background-color: var(--azul-escuro);
     transform: scale(1.05);
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #2980b9;
+  color: #f5f5f5;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn .text {
+  transform: translateX(55px);
+}
+
+.btn:hover .icon {
+  width: 175px;
+}
+
+.btn:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active .icon {
+  transform: scale(0.85);
+}
+
+.item-relatorios {
+    display: flex;
+    align-items: center;
 }
 
 .botao-multar {
@@ -949,10 +998,6 @@ label {
     padding: 2px 6px;
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
-
 .inter {
     background-color: var(--escuro);
 }
@@ -989,7 +1034,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {
