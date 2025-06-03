@@ -2,220 +2,350 @@
 <html lang="pt-br" dir="ltr">
 
 <head>
-    <title>Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <title>Login - Biblioteca Asa Literária</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/login.css">
-
+    <!-- Google Fonts e Bootstrap -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=visibility" />
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility_off" />
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <script src="../static/js/paginaip.js"></script>
-
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/login.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="../static/js/paginaip.js"></script>
+    <style>
+        body {
+            background: linear-gradient(120deg, #eaf1ff 0%, #f6f9fe 100%);
+            min-height: 100vh;
+        }
+
+        .login-header {
+            width: 100%;
+            padding: 35px 0 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+
+        #logoImage {
+            width: 65px;
+            height: auto;
+            transition: transform 0.19s;
+        }
+
+        #logoImage:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+
+        .login-main-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 0;
+            min-height: 80vh;
+            margin-top: 0;
+        }
+
+        .login-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4B70E2 40%, #7eaaff 100%);
+            border-radius: 22px 0 0 22px;
+            box-shadow: 0 5px 44px 0 rgba(75, 112, 226, 0.08);
+            min-width: 320px;
+            max-width: 440px;
+        }
+
+        .login-img img {
+            width: 320px;
+            max-width: 91vw;
+            min-width: 150px;
+            object-fit: contain;
+            padding: 30px 0;
+            filter: drop-shadow(0 8px 24px rgba(44, 90, 190, 0.14));
+        }
+
+        .login-form-bloco {
+            background: #fff;
+            border-radius: 0 22px 22px 0;
+            box-shadow: 0 5px 44px 0 rgba(75, 112, 226, 0.12);
+            padding: 48px 44px;
+            min-width: 340px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            .login-main-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login-img {
+                border-radius: 22px 22px 0 0;
+                max-width: 100vw;
+                min-width: 0;
+            }
+
+            .login-form-bloco {
+                border-radius: 0 0 22px 22px;
+                min-width: 0;
+                max-width: 98vw;
+                padding: 38px 8vw;
+            }
+        }
+
+        .login-form-bloco .titulo {
+            color: #3a4c7e;
+            font-weight: 800;
+            font-size: 2.1rem;
+            text-align: center;
+            margin-bottom: 29px;
+            letter-spacing: 1px;
+        }
+
+        .login-form-bloco .login label {
+            color: #4B70E2;
+            font-weight: 700;
+            font-size: 1.09rem;
+            margin-bottom: 4px;
+        }
+
+        .login-form-bloco .inserir1,
+        .login-form-bloco .inserir2 {
+            border-radius: 9px;
+            font-size: 1.15rem;
+            border: 2px solid #E0E6F6;
+            background: #f3f5fd;
+            padding: 12px 16px;
+            margin-bottom: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: border .15s;
+        }
+
+        .login-form-bloco .inserir1:focus,
+        .login-form-bloco .inserir2:focus {
+            border-color: #4B70E2;
+            outline: none;
+            background: #eff5ff;
+        }
+
+        .login-form-bloco .visivelbtn {
+            background: transparent;
+            border: none;
+            position: absolute;
+            right: 5px;
+            top: 4px;
+            bottom: 0;
+            cursor: pointer;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            border-radius: 9px;
+        }
+
+        .login-form-bloco .botao-login {
+            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            color: #fff;
+            font-size: 1.13rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 22px;
+            padding: 11px 0;
+            margin-top: 16px;
+            margin-bottom: 13px;
+            transition: background 0.17s;
+            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.12);
+        }
+
+        .login-form-bloco .botao-login:hover,
+        .login-form-bloco .botao-login:focus {
+            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
+            box-shadow: 0 5px 18px 0 rgba(75, 112, 226, 0.19);
+        }
+
+        .login-form-bloco .final {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .login-form-bloco .texto {
+            font-size: 1.065rem;
+            color: #3a4c7e;
+            margin-bottom: 0px;
+        }
+
+        .login-form-bloco .link {
+            color: #4B70E2 !important;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-form-bloco .link:hover {
+            color: #294885 !important;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .login-img img {
+                width: 75vw;
+            }
+
+            .login-form-bloco {
+                padding: 31px 5vw;
+                min-width: 0;
+            }
+
+            .login-form-bloco .titulo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
-    <header>
-
-        <a id="logoHeader" href="index.html">
-            <img id="logoImage" alt="Logo">
+    <header class="login-header">
+        <a id="logoHeader" href="home.html">
+            <img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária">
         </a>
-
     </header>
 
-    <section class="tudo">
-
-        <div>
-
-            <img class="livro-1" src="../static/img/login-image.png" alt="">
-
+    <section class="login-main-section">
+        <div class="login-img" aria-hidden="true">
+            <img src="../static/img/login-image.png" alt="Livro e login">
         </div>
-
-        <div class="formulario">
-
+        <div class="login-form-bloco">
             <h1 class="titulo">Login</h1>
-
-
             <form id="formLoginUsuario" class="login">
-                <label class="coisa" for="email">Email:</label>
+                <label for="email">Email:</label>
                 <input placeholder="email@email.com" class="inserir1" type="email" id="email" name="email" required>
 
-                <label class="coisa" for="senha">Senha:</label>
+                <label for="senha">Senha:</label>
                 <div style="position:relative;">
                     <input placeholder="Sua senha" class="inserir2" type="password" id="senha" name="senha" required>
-
-                    <i class="visivelbtn" id="visivelBtn">
+                    <button type="button" class="visivelbtn" id="visivelBtn" tabindex="-1"
+                        aria-label="Mostrar/ocultar senha">
                         <img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                    </i>
-
+                    </button>
                 </div>
-                <button type="submit" class="botao-login">Login</button>
+                <button type="submit" class="botao-login">Entrar</button>
             </form>
-
-
             <div class="final">
                 <p class="texto">Não possui uma conta? <a target="_blank" class="link"
                         href="cadastro.html">Cadastre-se</a></p>
-                <p class="texto">Esqueceu a Senha?</p><a class="link" href="email.html">Criar
-                    Nova</a>
+                <p class="texto">Esqueceu a senha? <a class="link" href="email.html">Criar nova</a></p>
             </div>
-
         </div>
-
-        <script>
-
-            const visivelBtn = document.getElementById("visivelBtn");
-                visivelBtn.addEventListener("click", toggleSenha);
-
-                function toggleSenha() {
-                const passwordInput = document.getElementById("senha");
-                const icon = document.getElementById("visivelBtn");
-                
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    icon.innerHTML = `<img id="icon" src="../static/img/visibility_off_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`
-                } else {
-                    passwordInput.type = "password";
-                    icon.innerHTML = `<img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`;
-                }
-                }
-
-
-
-            $("#formLoginUsuario").on("submit", function (e) {
-
-                e.preventDefault();
-
-                let dados = new FormData(this);
-
-
-                let envia = {
-                    email: dados.get("email"),
-                    senha: dados.get("senha"),
-                }
-
-                envia = JSON.stringify(envia)
-
-                $.ajax({
-                    method: "post",
-                    url: ipPython + "/login",
-                    contentType: "application/json",
-                    data: envia,
-
-                    success: function (retorno) {
-
-                        localStorage.setItem("token", retorno.token)
-                        localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
-                        localStorage.setItem("nome", retorno.usuario.nome)
-                        localStorage.setItem("cargo", retorno.usuario.cargo)
-                        localStorage.setItem("email", retorno.usuario.email)
-                        localStorage.setItem("multa", retorno.usuario.multa)
-                        localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
-                        localStorage.setItem("telefone", retorno.usuario.telefone)
-                        localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario)
-
-                        var cargo = localStorage.getItem("cargo")
-
-                        if (cargo === "ADM") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de ADM realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "home.html";
-                            });
-                        } else if (cargo === "Biblitecario") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de Biblitecário realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "home.html"
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "home.html"
-                            })
-                        };
-
-                    },
-
-                    error: function (retorno) {
-                        Swal.fire({
-                            title: "Inválido!",
-                            text: JSON.parse(retorno.responseText).error,
-                            icon: "error"
-                        });
-                    }
-
-                })
-
-            })
-            
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
-            function atualizarLogoSite() {
-                let i = 0;
-                function tentarProxima() {
-                    if (i >= logoExts.length) {
-                        let logoImage = document.getElementById("logoImage");
-                        let logoImage2 = document.getElementById("logoImage2");
-                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
-                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
-                        return;
-                    }
-                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
-                    fetch(url).then(resp => {
-                        if (resp.ok) {
-                            let logoImage = document.getElementById("logoImage");
-                            let logoImage2 = document.getElementById("logoImage2");
-                            if (logoImage) logoImage.src = url;
-                            if (logoImage2) logoImage2.src = url;
-                        } else {
-                            i++;
-                            tentarProxima();
-                        }
-                    });
-                }
-                tentarProxima();
-            }
-            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
-
-        </script>
-
     </section>
 
+    <script>
+        // Logo dinâmico igual home
+        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+        function atualizarLogoSite() {
+            let i = 0;
+            function tentarProxima() {
+                if (i >= logoExts.length) {
+                    let logoImage = document.getElementById("logoImage");
+                    if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                    return;
+                }
+                let url = (typeof ipPython !== "undefined" ? ipPython : "") + `/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                fetch(url).then(resp => {
+                    if (resp.ok) {
+                        let logoImage = document.getElementById("logoImage");
+                        if (logoImage) logoImage.src = url;
+                    } else {
+                        i++;
+                        tentarProxima();
+                    }
+                });
+            }
+            tentarProxima();
+        }
+        document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+
+        // Mostrar/ocultar senha
+        document.getElementById("visivelBtn").addEventListener("click", function (e) {
+            e.preventDefault();
+            const passwordInput = document.getElementById("senha");
+            const icon = document.getElementById("icon");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.src = "../static/img/visibility_off_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg";
+            } else {
+                passwordInput.type = "password";
+                icon.src = "../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg";
+            }
+        });
+
+        // Login AJAX
+        $("#formLoginUsuario").on("submit", function (e) {
+            e.preventDefault();
+            let dados = new FormData(this);
+            let envia = {
+                email: dados.get("email"),
+                senha: dados.get("senha"),
+            };
+            envia = JSON.stringify(envia);
+
+            $.ajax({
+                method: "post",
+                url: ipPython + "/login",
+                contentType: "application/json",
+                data: envia,
+                success: function (retorno) {
+                    localStorage.setItem("token", retorno.token);
+                    localStorage.setItem("id_usuario", retorno.usuario.id_usuario);
+                    localStorage.setItem("nome", retorno.usuario.nome);
+                    localStorage.setItem("cargo", retorno.usuario.cargo);
+                    localStorage.setItem("email", retorno.usuario.email);
+                    localStorage.setItem("multa", retorno.usuario.multa);
+                    localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento);
+                    localStorage.setItem("telefone", retorno.usuario.telefone);
+                    localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario);
+
+                    var cargo = retorno.usuario.cargo;
+                    if (cargo === "ADM") {
+                        Swal.fire({
+                            title: "Sucesso!",
+                            text: "Login de ADM realizado com sucesso",
+                            icon: "success"
+                        }).then(() => window.location.href = "home.html");
+                    } else if (cargo === "Bibliotecario" || cargo === "Biblitecario") {
+                        Swal.fire({
+                            title: "Sucesso!",
+                            text: "Login de Bibliotecário realizado com sucesso",
+                            icon: "success"
+                        }).then(() => window.location.href = "home.html");
+                    } else {
+                        Swal.fire({
+                            title: "Sucesso!",
+                            text: "Login realizado com sucesso",
+                            icon: "success"
+                        }).then(() => window.location.href = "home.html");
+                    }
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: retorno.responseJSON?.error || "E-mail ou senha incorretos.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

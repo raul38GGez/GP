@@ -102,6 +102,25 @@ header {
     margin-left: 10px;
     height: auto;
 }
+.livro-devolvido {
+    color: green;
+    font-weight: bold;
+}
+
+.livro-emprestado {
+    color: orange;
+    font-weight: bold;
+}
+
+.livro-reservado {
+    color: blue;
+    font-weight: bold;
+}
+
+.livro-cancelado {
+    color: red;
+    font-weight: bold;
+}
 
 /* Barra de pesquisa */
 .search-container {
