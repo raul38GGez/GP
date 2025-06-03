@@ -4,123 +4,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Livros</title>
+    <title>Gerenciar Livros - Biblioteca Asa Literária</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <!-- SEGURANÇA DO SITE (IMPEDE A NAVEGAÇÃO P' OUTRAS PÁGINAS APENAS POR MEIO DO LINK) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../static/js/paginaip.js"></script>
-    <script src="../static/js/scripts.js"></script>
+    <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/livros.css">
-
-    <script src="../static/js/seguranca.js" defer></script>
-    <script src="../static/js/segurancaADM.js" defer></script>
-
-    <!-- FIM DO SCRIPT DA SEGURANÇA -->
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <style>
+        .livros-section {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.10);
+            margin: 36px auto 36px auto;
+            max-width: 1100px;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+
+        .livros-section h1 {
+            color: #314279;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .add-btn.btn-primary {
+            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            border: none;
+            border-radius: 22px;
+            font-weight: 600;
+            font-size: 1.07rem;
+            padding: 10px 32px;
+            color: #fff;
+            transition: background 0.18s, transform 0.18s;
+            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
+            margin-bottom: 16px;
+        }
+
+        .add-btn.btn-primary:hover,
+        .add-btn.btn-primary:focus {
+            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
+            transform: translateY(-2px) scale(1.045);
+            color: #fff;
+            box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
+        }
+
+        .table-responsive {
+            border-radius: 12px;
+            box-shadow: 0 1.5px 7px 0 rgba(75, 112, 226, 0.07);
+            margin-bottom: 28px;
+            background: #f8f9fd;
+        }
+
+        .table thead th {
+            background: #4B70E2;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.04rem;
+            border: none;
+        }
+
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            background-color: #f5f7fc;
+        }
+
+        .table td,
+        .table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .botoes .btn {
+            margin: 0 4px;
+        }
+
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 2rem;
+        }
+
+        .paginacao .btn {
+            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 8px 24px;
+            font-weight: 600;
+            font-size: 1.04rem;
+            transition: background 0.18s, transform 0.18s;
+            box-shadow: 0 2px 10px 0 rgba(75, 112, 226, 0.11);
+            text-decoration: none;
+        }
+
+        .paginacao .btn:hover,
+        .paginacao .btn:focus {
+            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
+            transform: translateY(-2px) scale(1.045);
+            color: #fff;
+            box-shadow: 0 4px 16px 0 rgba(75, 112, 226, 0.18);
+            text-decoration: none;
+        }
+
+        .paginacao .paginaAtual {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            font-size: 1.08rem;
+            color: #4B70E2;
+            font-weight: 600;
+            margin: 0 4px;
+        }
+
+        @media (max-width: 900px) {
+            .livros-section {
+                padding: 1.2rem 2vw !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+    <header class="header">
+        <div class="header-left">
+            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
+                    alt="Logo Asa Literária"></a>
         </div>
-
-            <!-- Barra de Pesquisa -->
+        <form id="formBuscaLivro" class="search-form" style="display: flex;">
             <div class="search-container">
-                <a href="catalogo.html"><i class="fas fa-search"></i></a>
-                <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
+                <i class="fas fa-search"></i>
+                <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+                <button type="submit" class="search-button">Buscar</button>
             </div>
-
-        <div class="coisa">
-            <!-- Ícone de Menu com Dropdown -->
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu">
-
-                    </ul>
-
+        </form>
+        <div class="header-right">
+            <div class="menu-container">
+                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
+                <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
+        </div>
     </header>
 
-    <h1>Gerenciamento de Livros</h1>
+    <main>
+        <section class="livros-section" id="livrosContainer">
+            <h1>Gerenciamento de Livros</h1>
+            <div class="bot text-center">
+                <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#modalCadastroLivro">
+                    <i class="fa-solid fa-plus"></i>Adicionar Livro
+                </button>
+            </div>
+            <div class="table-responsive mt-3">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Ano de Publicação</th>
+                            <th>ISBN</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="livrosList"></tbody>
+                </table>
+            </div>
+            <div class="paginacao">
+                <a href="#" class="btn" id="pagina-anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+                <a href="#" class="btn" id="pagina-proxima">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </section>
 
-    <section id="livrosContainer">
-        <div class="bot">
-            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#modalCadastroLivro">
-                <i class="fa-solid fa-plus"></i>Adicionar Livro
-            </button>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>Ano de Publicação</th>
-                        <th>ISBN</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="livrosList"></tbody>
-            </table>
-        </div>
-
-        <div class="paginacao">
-            <a href="#" class="btn" id="pagina-anterior">
-                <i class="fa-solid fa-chevron-left"></i>
-            </a>
-            <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-            <a href="#" class="btn" id="pagina-proxima">
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-        </div>
-
-        <!-- Modal para exibir detalhes do livro -->
-        <div class="modal fade" id="modalDetalhesLivro" tabindex="-1" aria-labelledby="modalDetalhesLivroLabel">
+        <!-- MODAL PARA CADASTRO DE LIVRO -->
+        <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalDetalhesLivroLabel">Detalhes do Livro</h5>
+                        <h5 class="modal-title" id="modalCadastrarLivroLabel">Cadastrar Livro</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <img id="detalhesImagem" src="" alt="Capa do Livro" style="max-width: 100%; height: auto;">
-                        <p id="detalhesTitulo"></p>
-                        <p id="detalhesAutor"></p>
-                        <p id="detalhesAno"></p>
-                        <p id="detalhesISBN"></p>
-                        <p id="detalhesDescricao"></p>
+                        <form class="formCadastroLivro" id="formCadastroLivro">
+                            <div class="mb-9">
+                                <div class="mb-6">
+                                    <div class="mb-3">
+                                        <label class="bloco">Titulo:</label>
+                                        <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo"
+                                            name="titulo" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Autor:</label>
+                                        <input type="text" placeholder="Nome do autor" class="inserir" id="autor"
+                                            name="autor" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Ano de publicação:</label>
+                                        <input type="number" class="inserir" id="data_publicacao" name="data_publicacao"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">ISBN:</label>
+                                        <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBN"
+                                            name="ISBN" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Descrição:</label>
+                                        <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir"
+                                            id="descricao" name="descricao">
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="mb-3">
+                                        <label class="bloco">Quantidade:</label>
+                                        <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir"
+                                            id="quantidade" name="quantidade" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Páginas:</label>
+                                        <input type="number" placeholder="Número de páginas" class="inserir"
+                                            id="paginasEditar" name="paginas" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Idioma:</label>
+                                        <select class="inserir" name="idioma" id="idioma" required>
+                                            <option value="">Selecione um idioma</option>
+                                            <option value="Alemão">Alemão</option>
+                                            <option value="Árabe">Árabe</option>
+                                            <option value="Chinês">Chinês</option>
+                                            <option value="Coreano">Coreano</option>
+                                            <option value="Espanhol">Espanhol</option>
+                                            <option value="Francês">Francês</option>
+                                            <option value="Hebraico">Hebraico</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="Inglês">Inglês</option>
+                                            <option value="Italiano">Italiano</option>
+                                            <option value="Japonês">Japonês</option>
+                                            <option value="Latim">Latim</option>
+                                            <option value="Mandarim">Mandarim</option>
+                                            <option value="Português">Português</option>
+                                            <option value="Russo">Russo</option>
+                                            <option value="Sueco">Sueco</option>
+                                            <option value="Tupi">Tupi</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="coisa">Categoria:</label>
+                                        <select class="inserir" name="categoria" id="categoria">
+                                            <!-- opções igual seu HTML original -->
+                                            <!-- (mantidas aqui do seu código) -->
+                                            <optgroup label="Ficção">
+                                                <option class="inserir" value="Aventura">Aventura</option>
+                                                <option class="inserir" value="Conto">Conto</option>
+                                                <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                                <option class="inserir" value="Distopia">Distopia</option>
+                                                <option class="inserir" value="Drama">Drama</option>
+                                                <option class="inserir" value="Fantasia">Fantasia</option>
+                                                <option class="inserir" value="Ficcao_cientifica">Ficção científica
+                                                </option>
+                                                <option class="inserir" value="Realismo_magico">Realismo mágico</option>
+                                                <option class="inserir" value="Romance">Romance</option>
+                                                <option class="inserir" value="Romance_historico">Romance histórico
+                                                </option>
+                                                <option class="inserir" value="Romance_policial">Romance policial
+                                                </option>
+                                                <option class="inserir" value="Romance_psicologico">Romance psicológico
+                                                </option>
+                                                <option class="inserir" value="Steampunk">Steampunk</option>
+                                                <option class="inserir" value="Suspense">Suspense</option>
+                                                <option class="inserir" value="Terror">Terror</option>
+                                                <option class="inserir" value="Thriller">Thriller</option>
+                                                <option class="inserir" value="Utopia">Utopia</option>
+                                                <option class="inserir" value="Western">Faroeste / Western</option>
+                                            </optgroup>
+                                            <optgroup label="Não Ficção">
+                                                <option class="inserir" value="Antropologia">Antropologia</option>
+                                                <option class="inserir" value="Arte">Arte</option>
+                                                <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                                <option class="inserir" value="Autobiografia">Autobiografia</option>
+                                                <option class="inserir" value="Biografia">Biografia</option>
+                                                <option class="inserir" value="Cinema">Cinema</option>
+                                                <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)
+                                                </option>
+                                                <option class="inserir" value="Diario">Diário</option>
+                                                <option class="inserir" value="Ecologia">Ecologia</option>
+                                                <option class="inserir" value="Economia">Economia</option>
+                                                <option class="inserir" value="Ensaios">Ensaios</option>
+                                                <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                                <option class="inserir" value="Filosofia">Filosofia</option>
+                                                <option class="inserir" value="Gastronomia">Gastronomia / Culinária
+                                                </option>
+                                                <option class="inserir" value="Historia">História</option>
+                                                <option class="inserir" value="Moda">Moda</option>
+                                                <option class="inserir" value="Memorias">Memórias</option>
+                                                <option class="inserir" value="Musica">Música</option>
+                                                <option class="inserir" value="Politica">Política</option>
+                                                <option class="inserir" value="Proposito">Propósito</option>
+                                                <option class="inserir" value="Psicologia">Psicologia</option>
+                                                <option class="inserir" value="Religioso">Religioso</option>
+                                                <option class="inserir" value="Saude">Saúde</option>
+                                                <option class="inserir" value="Sociologia">Sociologia</option>
+                                                <option class="inserir" value="Tratado">Tratado</option>
+                                                <option class="inserir" value="Viagem">Viagem</option>
+                                            </optgroup>
+                                            <optgroup label="Educacional / Técnico">
+                                                <option class="inserir" value="Apostila">Apostila</option>
+                                                <option class="inserir" value="Didatico">Didático</option>
+                                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                                <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                                <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                                <option class="inserir" value="Preparacao_enem">Preparação para ENEM /
+                                                    Vestibular
+                                                </option>
+                                                <option class="inserir" value="Tecnico">Técnico</option>
+                                            </optgroup>
+                                            <optgroup label="Outros">
+                                                <option class="inserir" value="Erótico">Erótico</option>
+                                                <option class="inserir" value="Esporte">Esporte</option>
+                                                <option class="inserir" value="HQ">HQ / Mangá</option>
+                                                <option class="inserir" value="Infantil">Infantil</option>
+                                                <option class="inserir" value="Juvenil">Juvenil</option>
+                                                <option class="inserir" value="Mitologia">Mitologia</option>
+                                                <option class="inserir" value="Poesia">Poesia</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="imagem" class="form-label">Imagem do Livro</label>
+                                        <input type="file" class="form-control" id="imagem" name="imagem"
+                                            accept="image/*">
+                                        <img id="previewImagem" src="" alt="Pré-visualização da Imagem"
+                                            style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="save-btn">Enviar</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
+        <!-- MODAL PARA EDIÇÃO DE LIVROS -->
+        <div class="modal fade" id="modalEditarLivro" tabindex="-1" aria-labelledby="modalEditarLivroLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarLivroLabel">Editar Livro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="formEditarLivro" id="formEditarLivro">
+                            <div class="mb-9">
+                                <div class="mb-6">
+                                    <div class="mb-3">
+                                        <input type="hidden" id="id_livro" name="id_livro">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Titulo:</label>
+                                        <input type="text" placeholder="Titulo do livro" class="inserir"
+                                            id="tituloEditar" name="titulo" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Autor:</label>
+                                        <input type="text" placeholder="Nome do autor" class="inserir" id="autorEditar"
+                                            name="autor" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Ano de publicação:</label>
+                                        <input type="number" class="inserir" id="data_publicacaoEditar"
+                                            name="data_publicacao" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">ISBN:</label>
+                                        <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBNEditar"
+                                            name="ISBN" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Descrição:</label>
+                                        <input type="text" placeholder="Conte um pouco sobre o livro"
+                                            class="inserir-descricao" id="descricaoEditar" name="descricao" required>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="mb-3">
+                                        <label class="bloco">Quantidade:</label>
+                                        <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir"
+                                            id="quantidadeEditar" name="quantidade" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Páginas:</label>
+                                        <input type="number" placeholder="Número de páginas" class="inserir"
+                                            id="paginas" name="paginas" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="statusEditar" class="coisa">Status:</label>
+                                        <select class="inserir" name="status" id="statusEditar">
+                                            <option class="inserir" value="1">Disponível</option>
+                                            <option class="inserir" value="2">Indisponível</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="bloco">Idioma:</label>
+                                        <select class="inserir" name="idioma" id="idiomaEditar">
+                                            <option value="">Selecione um idioma</option>
+                                            <option value="Alemão">Alemão</option>
+                                            <option value="Árabe">Árabe</option>
+                                            <option value="Chinês">Chinês</option>
+                                            <option value="Coreano">Coreano</option>
+                                            <option value="Espanhol">Espanhol</option>
+                                            <option value="Francês">Francês</option>
+                                            <option value="Hebraico">Hebraico</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="Inglês">Inglês</option>
+                                            <option value="Italiano">Italiano</option>
+                                            <option value="Japonês">Japonês</option>
+                                            <option value="Latim">Latim</option>
+                                            <option value="Mandarim">Mandarim</option>
+                                            <option value="Português">Português</option>
+                                            <option value="Russo">Russo</option>
+                                            <option value="Sueco">Sueco</option>
+                                            <option value="Tupi">Tupi</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoriaEditar" class="coisa">Categoria:</label>
+                                        <select class="inserir" name="categoria" id="categoriaEditar">
+                                            <!-- opções igual seu HTML original -->
+                                            <!-- (mantidas aqui do seu código) -->
+                                            <optgroup label="Ficção">
+                                                <option class="inserir" value="Aventura">Aventura</option>
+                                                <option class="inserir" value="Conto">Conto</option>
+                                                <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                                <option class="inserir" value="Distopia">Distopia</option>
+                                                <option class="inserir" value="Drama">Drama</option>
+                                                <option class="inserir" value="Fantasia">Fantasia</option>
+                                                <option class="inserir" value="Ficcao_cientifica">Ficção científica
+                                                </option>
+                                                <option class="inserir" value="Realismo_magico">Realismo mágico</option>
+                                                <option class="inserir" value="Romance">Romance</option>
+                                                <option class="inserir" value="Romance_historico">Romance histórico
+                                                </option>
+                                                <option class="inserir" value="Romance_policial">Romance policial
+                                                </option>
+                                                <option class="inserir" value="Romance_psicologico">Romance psicológico
+                                                </option>
+                                                <option class="inserir" value="Steampunk">Steampunk</option>
+                                                <option class="inserir" value="Suspense">Suspense</option>
+                                                <option class="inserir" value="Terror">Terror</option>
+                                                <option class="inserir" value="Thriller">Thriller</option>
+                                                <option class="inserir" value="Utopia">Utopia</option>
+                                                <option class="inserir" value="Western">Faroeste / Western</option>
+                                            </optgroup>
+                                            <optgroup label="Não Ficção">
+                                                <option class="inserir" value="Antropologia">Antropologia</option>
+                                                <option class="inserir" value="Arte">Arte</option>
+                                                <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                                <option class="inserir" value="Autobiografia">Autobiografia</option>
+                                                <option class="inserir" value="Biografia">Biografia</option>
+                                                <option class="inserir" value="Cinema">Cinema</option>
+                                                <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)
+                                                </option>
+                                                <option class="inserir" value="Diario">Diário</option>
+                                                <option class="inserir" value="Ecologia">Ecologia</option>
+                                                <option class="inserir" value="Economia">Economia</option>
+                                                <option class="inserir" value="Ensaios">Ensaios</option>
+                                                <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                                <option class="inserir" value="Filosofia">Filosofia</option>
+                                                <option class="inserir" value="Gastronomia">Gastronomia / Culinária
+                                                </option>
+                                                <option class="inserir" value="Historia">História</option>
+                                                <option class="inserir" value="Moda">Moda</option>
+                                                <option class="inserir" value="Memorias">Memórias</option>
+                                                <option class="inserir" value="Musica">Música</option>
+                                                <option class="inserir" value="Politica">Política</option>
+                                                <option class="inserir" value="Psicologia">Psicologia</option>
+                                                <option class="inserir" value="Religioso">Religioso</option>
+                                                <option class="inserir" value="Saude">Saúde</option>
+                                                <option class="inserir" value="Sociologia">Sociologia</option>
+                                                <option class="inserir" value="Viagem">Viagem</option>
+                                            </optgroup>
+                                            <optgroup label="Educacional / Técnico">
+                                                <option class="inserir" value="Apostila">Apostila</option>
+                                                <option class="inserir" value="Didatico">Didático</option>
+                                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                                <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                                <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                                <option class="inserir" value="Preparacao_enem">Preparação para ENEM /
+                                                    Vestibular
+                                                </option>
+                                                <option class="inserir" value="Tecnico">Técnico</option>
+                                            </optgroup>
+                                            <optgroup label="Outros">
+                                                <option class="inserir" value="Erótico">Erótico</option>
+                                                <option class="inserir" value="Esporte">Esporte</option>
+                                                <option class="inserir" value="HQ">HQ / Mangá</option>
+                                                <option class="inserir" value="Infantil">Infantil</option>
+                                                <option class="inserir" value="Juvenil">Juvenil</option>
+                                                <option class="inserir" value="Mitologia">Mitologia</option>
+                                                <option class="inserir" value="Poesia">Poesia</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="imagemEditar" class="form-label">Imagem do Livro</label>
+                                        <input type="file" class="form-control" id="imagemEditar" name="imagem"
+                                            accept="image/*">
+                                        <img id="previewImagemEditar" src="" alt="Pré-visualização da Imagem"
+                                            style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="save-btn">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-contact">
+                <h3>Entre em contato conosco</h3>
+                <div class="social-links">
+                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <div class="footer-column">
+                    <h4>Informações</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-envelope"></i> asa.literaria@email.com</p>
+                    <p><i class="fas fa-phone"></i> (18) 99999-9999</p>
+                </div>
+                <div class="footer-column footer-logo">
+                    <img id="logoImage2" src="../static/img/logo.png" alt="Logo Asa Literária" class="footer-logo-img">
+                </div>
+                <div class="footer-column">
+                    <h4>Localização</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-map-marker-alt"></i> Birigui - SP</p>
+                    <p>Rua Exemplo, 123 - Centro</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="https://www.google.com.br/?hl=pt-BR">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR">Política de privacidade</a>
+            <p>&copy; 2023 Asa Literária. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/paginaip.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
+    <script src="../static/js/segurancaADM.js" defer></script>
     <script>
+        // Busca de livro no header (igual home)
+        $("#formBuscaLivro").on("submit", function (e) {
+            e.preventDefault();
+            let termo = $("#campoBusca").val().trim();
+            if (!termo) {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Digite algo para buscar.",
+                    icon: "warning"
+                });
+                return;
+            }
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
+        });
+
+        // Logo adaptativo (igual Home)
+        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+        function atualizarLogoSite() {
+            let i = 0;
+            function tentarProxima() {
+                if (i >= logoExts.length) {
+                    let logoImage = document.getElementById("logoImage");
+                    let logoImage2 = document.getElementById("logoImage2");
+                    if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                    if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                    return;
+                }
+                let url = (typeof ipPython !== "undefined" ? ipPython : "") + `/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                fetch(url).then(resp => {
+                    if (resp.ok) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = url;
+                        if (logoImage2) logoImage2.src = url;
+                    } else {
+                        i++;
+                        tentarProxima();
+                    }
+                });
+            }
+            tentarProxima();
+        }
+        document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+
+        // [SEU JS DE CRUD DE LIVROS VAI AQUI - código igual ao seu exemplo, mantido!]
+        // ...
+
         // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET) COM PAGINAÇÃO:
         function carregarLivros(pagina = 1) {
             var token = localStorage.getItem("token");
@@ -136,22 +643,25 @@
                     if (response.livros && response.livros.length > 0) {
                         response.livros.forEach(function (livro) {
                             let row = `
-                                <tr>
-                                    <td>${livro.titulo}</td>
-                                    <td>${livro.autor}</td>
-                                    <td>${livro.data_publicacao}</td>
-                                    <td>${livro.ISBN}</td>
-                                    <td>
-                                        <div class="botoes">
-                                            <a href="reserva.html?id=${livro.id_livro}" class="btn btn-info">
-                                                <i class="fa-solid fa-info"></i>
-                                            </a>
-                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>`;
+                                    <tr data-id="${livro.id_livro}">
+                                        <td>${livro.titulo}</td>
+                                        <td>${livro.autor}</td>
+                                        <td>${livro.data_publicacao}</td>
+                                        <td>${livro.ISBN}</td>
+                                        <td>
+                                            <div class="botoes">
+                                                <a href="reserva.html?id=${livro.id_livro}" class="btn btn-info">
+                                                    <i class="fa-solid fa-info"></i>
+                                                </a>
+                                                <button class="btn btn-warning btn-editar-livro" data-id="${livro.id_livro}" data-bs-toggle="modal" data-bs-target="#modalEditarLivro">
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm" onclick="inativarLivro(${livro.id_livro})" style="font-size: 0.9rem;">
+                                                    <i class="fa-solid fa-trash"></i> Inativar
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>`;
 
                             $("#livrosList").append(row);
                         });
@@ -162,6 +672,7 @@
                     // Atualiza paginação
                     atualizarPaginacao(response.pagina_atual, response.total_paginas);
                 },
+
                 error: function (error) {
                     console.error("Erro ao carregar livros:", error);
                     Swal.fire({
@@ -208,637 +719,147 @@
             carregarLivros(); // Chama a função para carregar os livros ao iniciar
         });
 
-            // Corrige o erro de null reference para o botão relatorios (se existir)
-            if (document.getElementById('relatorios')) {
-                document.getElementById('relatorios').addEventListener('click', function () {
-                    // Sua lógica aqui
-                });
-            }
-
-        $("#formCadastroLivro").on("submit", function (e) {
+        // Função para cadastrar um novo livro
+        $(document).on('submit', '#formCadastroLivro', function (e) {
             e.preventDefault(); // Impede o envio padrão do formulário
-            var token = localStorage.getItem("token");
+
             var formData = new FormData(this); // Coleta os dados do formulário
+            var token = localStorage.getItem("token");
 
             $.ajax({
                 method: "POST",
-                url: ipPython + "/livros", // Rota para cadastrar livro
+                url: ipPython + "/livros",
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 data: formData,
-                processData: false,
-                contentType: false,
-                success: function (retorno) {
-                    Swal.fire("Sucesso!", "Livro cadastrado com sucesso", "success");
-                    carregarLivros(); // Atualiza a lista de livros
-                    $("#modalCadastroLivro").modal("hide"); // Fecha o modal
+                processData: false, // Impede o jQuery de processar os dados
+                contentType: false, // Impede o jQuery de definir o tipo de conteúdo
+                success: function (response) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: response.message,
+                        icon: "success"
+                    });
+                    $('#modalCadastroLivro').modal('hide'); // Fecha o modal
+                    carregarLivros(); // Recarrega a lista de livros
                 },
-                error: function (retorno) {
-                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao cadastrar livro.", "error");
+                error: function (error) {
+                    console.error("Erro ao cadastrar livro:", error);
+                    Swal.fire({
+                        title: "Erro!",
+                        text: error.responseJSON ? error.responseJSON.error : "Falha ao cadastrar livro",
+                        icon: "error"
+                    });
                 }
             });
         });
 
-        // FUNÇÃO PARA EDITAR LIVROS (PUT):
-        $("#formEditarLivro").on("submit", function (e) {
-            e.preventDefault(); // Impede o envio padrão do formulário
-            var token = localStorage.getItem("token");
-            var formData = new FormData(this); // Coleta os dados do formulário
-            var id = $("#id_livro").val(); // Obtém o ID do livro a ser editado
+        // FUNÇÃO DE EDIÇÃO DO LIVRO
+        $(document).on('click', '.btn-editar-livro', function () {
+            const id_livro = $(this).data('id'); // Obtém o ID do livro a partir do data-id
 
-            $.ajax({
-                method: "PUT",
-                url: ipPython + "/livros/" + id, // Rota para editar livro
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (retorno) {
-                    Swal.fire("Sucesso!", "Livro editado com sucesso", "success");
-                    carregarLivros(); // Atualiza a lista de livros
-                    $("#modalEditarLivro").modal("hide"); // Fecha o modal
-                },
-                error: function (retorno) {
-                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao editar livro.", "error");
-                }
-            });
-        });
-
-        function editarLivro(button) {
-            var livroElement = $(button).closest('tr');
-            var id = livroElement.data("id_livro");
-            console.log("ID do livro:", id); // Verifique o ID
-
+            // Faz uma requisição para obter os dados do livro
             $.ajax({
                 method: "GET",
-                url: ipPython + "/livro/" + id,
+                url: ipPython + "/livro/" + id_livro,
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
-                success: function (response) {
-                    console.log(response); // Verifique a resposta
-
-                    var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
-
-                    // Preenche o formulário de edição com os dados do livro
-                    $("#id_livro").val(livro.id_livro);
-                    $("#tituloEditar").val(livro.titulo);
-                    $("#autorEditar").val(livro.autor);
-                    $("#data_publicacaoEditar").val(livro.data_publicacao);
-                    $("#ISBNEditar").val(livro.ISBN);
-                    $("#descricaoEditar").val(livro.descricao);
-                    $("#quantidadeEditar").val(livro.quantidade);
-                    $("#paginasEditar").val(livro.paginas);
-                    $("#statusEditar").val(livro.status);
-                    $("#idiomaEditar").val(livro.idioma);
-                    $("#categoriaEditar").val(livro.categoria);
-                    $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
+                success: function (retorno) {
+                    // Preenche os campos do modal com os dados do livro
+                    $('#id_livro').val(retorno.livro.id_livro);
+                    $('#tituloEditar').val(retorno.livro.titulo);
+                    $('#autorEditar').val(retorno.livro.autor);
+                    $('#data_publicacaoEditar').val(retorno.livro.data_publicacao);
+                    $('#ISBNEditar').val(retorno.livro.ISBN);
+                    $('#descricaoEditar').val(retorno.livro.descricao);
+                    $('#quantidadeEditar').val(retorno.livro.quantidade);
+                    $('#paginas').val(retorno.livro.paginas);
+                    $('#idiomaEditar').val(retorno.livro.idioma);
+                    $('#categoriaEditar').val(retorno.livro.categoria);
+                    $('#statusEditar').val(retorno.livro.status);
                 },
-                error: function () {
-                    Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
+                error: function (error) {
+                    console.error("Erro ao carregar dados do livro:", error);
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Falha ao carregar dados do livro",
+                        icon: "error"
+                    });
                 }
-            });
-        }
-    </script>
-
-    <!-- MODAL PARA CADASTRO DE LIVRO -->
-    <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCadastrarLivroLabel">Cadastrar Livro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <form class="formCadastroLivro" id="formCadastroLivro">
-                        <div class="mb-9">
-                            <div class="mb-6">
-                                <div class="mb-3">
-                                    <label class="bloco">Titulo:</label>
-                                    <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo"
-                                        name="titulo" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Autor:</label>
-                                    <input type="text" placeholder="Nome do autor" class="inserir" id="autor"
-                                        name="autor" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Ano de publicação:</label>
-                                    <input type="number" class="inserir" id="data_publicacao" name="data_publicacao"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">ISBN:</label>
-                                    <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBN" name="ISBN"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Descrição:</label>
-                                    <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir"
-                                        id="descricao" name="descricao">
-                                </div>
-
-                            </div>
-
-                            <div class="mb-6">
-
-                                <div class="mb-3">
-                                    <label class="bloco">Quantidade:</label>
-                                    <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidade"
-                                        name="quantidade" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Páginas:</label>
-                                    <input type="number" placeholder="Número de páginas" class="inserir"
-                                        id="paginasEditar" name="paginas" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Idioma:</label>
-                                    <select class="inserir" name="idioma" id="idioma" required>
-                                        <option value="">Selecione um idioma</option>
-                                        <option value="Alemão">Alemão</option>
-                                        <option value="Árabe">Árabe</option>
-                                        <option value="Chinês">Chinês</option>
-                                        <option value="Coreano">Coreano</option>
-                                        <option value="Espanhol">Espanhol</option>
-                                        <option value="Francês">Francês</option>
-                                        <option value="Hebraico">Hebraico</option>
-                                        <option value="Hindi">Hindi</option>
-                                        <option value="Inglês">Inglês</option>
-                                        <option value="Italiano">Italiano</option>
-                                        <option value="Japonês">Japonês</option>
-                                        <option value="Latim">Latim</option>
-                                        <option value="Mandarim">Mandarim</option>
-                                        <option value="Português">Português</option>
-                                        <option value="Russo">Russo</option>
-                                        <option value="Sueco">Sueco</option>
-                                        <option value="Tupi">Tupi</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="categoria" class="coisa">Categoria:</label>
-                                    <select class="inserir" name="categoria" id="categoria">
-                                        <!-- FICÇÃO -->
-                                        <optgroup label="Ficção">
-                                            <option class="inserir" value="Aventura">Aventura</option>
-                                            <option class="inserir" value="Conto">Conto</option>
-                                            <option class="inserir" value="Cyberpunk">Cyberpunk</option>
-                                            <option class="inserir" value="Distopia">Distopia</option>
-                                            <option class="inserir" value="Drama">Drama</option>
-                                            <option class="inserir" value="Fantasia">Fantasia</option>
-                                            <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-                                            <option class="inserir" value="Realismo_magico">Realismo mágico</option>
-                                            <option class="inserir" value="Romance">Romance</option>
-                                            <option class="inserir" value="Romance_historico">Romance histórico</option>
-                                            <option class="inserir" value="Romance_policial">Romance policial</option>
-                                            <option class="inserir" value="Romance_psicologico">Romance psicológico
-                                            </option>
-                                            <option class="inserir" value="Steampunk">Steampunk</option>
-                                            <option class="inserir" value="Suspense">Suspense</option>
-                                            <option class="inserir" value="Terror">Terror</option>
-                                            <option class="inserir" value="Thriller">Thriller</option>
-                                            <option class="inserir" value="Utopia">Utopia</option>
-                                            <option class="inserir" value="Western">Faroeste / Western</option>
-                                        </optgroup>
-
-                                        <!-- NÃO FICÇÃO -->
-                                        <optgroup label="Não Ficção">
-                                            <option class="inserir" value="Antropologia">Antropologia</option>
-                                            <option class="inserir" value="Arte">Arte</option>
-                                            <option class="inserir" value="Autoajuda">Autoajuda</option>
-                                            <option class="inserir" value="Autobiografia">Autobiografia</option>
-                                            <option class="inserir" value="Biografia">Biografia</option>
-                                            <option class="inserir" value="Cinema">Cinema</option>
-                                            <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)
-                                            </option>
-                                            <option class="inserir" value="Diario">Diário</option>
-                                            <option class="inserir" value="Ecologia">Ecologia</option>
-                                            <option class="inserir" value="Economia">Economia</option>
-                                            <option class="inserir" value="Ensaios">Ensaios</option>
-                                            <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
-                                            <option class="inserir" value="Filosofia">Filosofia</option>
-                                            <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
-                                            <option class="inserir" value="Historia">História</option>
-                                            <option class="inserir" value="Moda">Moda</option>
-                                            <option class="inserir" value="Memorias">Memórias</option>
-                                            <option class="inserir" value="Musica">Música</option>
-                                            <option class="inserir" value="Politica">Política</option>
-                                            <option class="inserir" value="Proposito">Propósito</option>
-                                            <option class="inserir" value="Psicologia">Psicologia</option>
-                                            <option class="inserir" value="Religioso">Religioso</option>
-                                            <option class="inserir" value="Saude">Saúde</option>
-                                            <option class="inserir" value="Sociologia">Sociologia</option>
-                                            <option class="inserir" value="Tratado">Tratado</option>
-                                            <option class="inserir" value="Viagem">Viagem</option>
-                                        </optgroup>
-
-                                        <!-- EDUCACIONAL / TÉCNICO -->
-                                        <optgroup label="Educacional / Técnico">
-                                            <option class="inserir" value="Apostila">Apostila</option>
-                                            <option class="inserir" value="Didatico">Didático</option>
-                                            <option class="inserir" value="Enciclopedia">Enciclopédia</option>
-                                            <option class="inserir" value="Exercicios">Livros de exercícios</option>
-                                            <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
-                                            <option class="inserir" value="Preparacao_enem">Preparação para ENEM /
-                                                Vestibular
-                                            </option>
-                                            <option class="inserir" value="Tecnico">Técnico</option>
-                                        </optgroup>
-
-                                        <!-- HQs / INFANTIL / MITOLOGIA -->
-                                        <optgroup label="Outros">
-                                            <option class="inserir" value="Erótico">Erótico</option>
-                                            <option class="inserir" value="Esporte">Esporte</option>
-                                            <option class="inserir" value="HQ">HQ / Mangá</option>
-                                            <option class="inserir" value="Infantil">Infantil</option>
-                                            <option class="inserir" value="Juvenil">Juvenil</option>
-                                            <option class="inserir" value="Mitologia">Mitologia</option>
-                                            <option class="inserir" value="Poesia">Poesia</option>
-                                        </optgroup>
-                                    </select>
-
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="imagem" class="form-label">Imagem do Livro</label>
-                                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
-                                    <img id="previewImagem" src="" alt="Pré-visualização da Imagem"
-                                        style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-                        <button type="submit" class="save-btn">Enviar</button>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIM DO MODAL DE CADASTRO -->
-
-
-    <!-- MODAL PARA EDIÇÃO DE LIVROS -->
-    <div class="modal fade" id="modalEditarLivro" tabindex="-1" aria-labelledby="modalEditarLivroLabel">
-
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarLivroLabel">Editar Livro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <form class="formEditarLivro" id="formEditarLivro">
-
-                        <div class="mb-9">
-
-                            <div class="mb-6">
-
-                                <div class="mb-3">
-                                    <input type="hidden" id="id_livro" name="id_livro">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Titulo:</label>
-                                    <input type="text" placeholder="Titulo do livro" class="inserir" id="tituloEditar"
-                                        name="titulo" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Autor:</label>
-                                    <input type="text" placeholder="Nome do autor" class="inserir" id="autorEditar" name="autor"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Ano de publicação:</label>
-                                    <input type="number" class="inserir" id="data_publicacaoEditar" name="data_publicacao"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">ISBN:</label>
-                                    <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBNEditar" name="ISBN"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Descrição:</label>
-                                    <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir-descricao"
-                                        >
-                                </div>
-
-                            </div>
-
-                            <div class="mb-6">
-
-                                <div class="mb-3">
-                                    <label class="bloco">Quantidade:</label>
-                                    <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar"
-                                        name="quantidade" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Páginas:</label>
-                                    <input type="number" placeholder="Número de páginas" class="inserir" id="paginas"
-                                        name="paginas" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="statusEditar" class="coisa">Status:</label>
-                                    <select class="inserir" name="status" id="statusEditar">
-                                        <option class="inserir" value="1">Disponível</option>
-                                        <option class="inserir" value="2">Indisponível</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="bloco">Idioma:</label>
-                                    <select class="inserir" name="idioma" id="idiomaEditar">
-                                        <option value="">Selecione um idioma</option>
-                                        <option value="Alemão">Alemão</option>
-                                        <option value="Árabe">Árabe</option>
-                                        <option value="Chinês">Chinês</option>
-                                        <option value="Coreano">Coreano</option>
-                                        <option value="Espanhol">Espanhol</option>
-                                        <option value="Francês">Francês</option>
-                                        <option value="Hebraico">Hebraico</option>
-                                        <option value="Hindi">Hindi</option>
-                                        <option value="Inglês">Inglês</option>
-                                        <option value="Italiano">Italiano</option>
-                                        <option value="Japonês">Japonês</option>
-                                        <option value="Latim">Latim</option>
-                                        <option value="Mandarim">Mandarim</option>
-                                        <option value="Português">Português</option>
-                                        <option value="Russo">Russo</option>
-                                        <option value="Sueco">Sueco</option>
-                                        <option value="Tupi">Tupi</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label for="categoriaEditar" class="coisa">Categoria:</label>
-                                    <select class="inserir" name="categoria" id="categoriaEditar">
-                                        <optgroup label="Ficção">
-                                            <option class="inserir" value="Aventura">Aventura</option>
-                                            <option class="inserir" value="Conto">Conto</option>
-                                            <option class="inserir" value="Cyberpunk">Cyberpunk</option>
-                                            <option class="inserir" value="Distopia">Distopia</option>
-                                            <option class="inserir" value="Drama">Drama</option>
-                                            <option class="inserir" value="Fantasia">Fantasia</option>
-                                            <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-                                            <option class="inserir" value="Realismo_magico">Realismo mágico</option>
-                                            <option class="inserir" value="Romance">Romance</option>
-                                            <option class="inserir" value="Romance_historico">Romance histórico</option>
-                                            <option class="inserir" value="Romance_policial">Romance policial</option>
-                                            <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
-                                            <option class="inserir" value="Steampunk">Steampunk</option>
-                                            <option class="inserir" value="Suspense">Suspense</option>
-                                            <option class="inserir" value="Terror">Terror</option>
-                                            <option class="inserir" value="Thriller">Thriller</option>
-                                            <option class="inserir" value="Utopia">Utopia</option>
-                                            <option class="inserir" value="Western">Faroeste / Western</option>
-                                        </optgroup>
-
-                                        <optgroup label="Não Ficção">
-                                            <option class="inserir" value="Antropologia">Antropologia</option>
-                                            <option class="inserir" value="Arte">Arte</option>
-                                            <option class="inserir" value="Autoajuda">Autoajuda</option>
-                                            <option class="inserir" value="Autobiografia">Autobiografia</option>
-                                            <option class="inserir" value="Biografia">Biografia</option>
-                                            <option class="inserir" value="Cinema">Cinema</option>
-                                            <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
-                                            <option class="inserir" value="Diario">Diário</option>
-                                            <option class="inserir" value="Ecologia">Ecologia</option>
-                                            <option class="inserir" value="Economia">Economia</option>
-                                            <option class="inserir" value="Ensaios">Ensaios</option>
-                                            <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
-                                            <option class="inserir" value="Filosofia">Filosofia</option>
-                                            <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
-                                            <option class="inserir" value="Historia">História</option>
-                                            <option class="inserir" value="Memorias">Memórias</option>
-                                            <option class="inserir" value="Moda">Moda</option>
-                                            <option class="inserir" value="Musica">Música</option>
-                                            <option class="inserir" value="Politica">Política</option>
-                                            <option class="inserir" value="Psicologia">Psicologia</option>
-                                            <option class="inserir" value="Religioso">Religioso</option>
-                                            <option class="inserir" value="Saude">Saúde</option>
-                                            <option class="inserir" value="Sociologia">Sociologia</option>
-                                            <option class="inserir" value="Viagem">Viagem</option>
-                                        </optgroup>
-
-                                        <optgroup label="Educacional / Técnico">
-                                            <option class="inserir" value="Apostila">Apostila</option>
-                                            <option class="inserir" value="Didatico">Didático</option>
-                                            <option class="inserir" value="Enciclopedia">Enciclopédia</option>
-                                            <option class="inserir" value="Exercicios">Livros de exercícios</option>
-                                            <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
-                                            <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
-                                            </option>
-                                            <option class="inserir" value="Tecnico">Técnico</option>
-                                        </optgroup>
-
-                                        <optgroup label="Outros">
-                                            <option class="inserir" value="Erótico">Erótico</option>
-                                            <option class="inserir" value="Esporte">Esporte</option>
-                                            <option class="inserir" value="HQ">HQ / Mangá</option>
-                                            <option class="inserir" value="Infantil">Infantil</option>
-                                            <option class="inserir" value="Juvenil">Juvenil</option>
-                                            <option class="inserir" value="Mitologia">Mitologia</option>
-                                            <option class="inserir" value="Poesia">Poesia</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="imagemEditar" class="form-label">Imagem do Livro</label>
-                                    <input type="file" class="form-control" id="imagemEditar" name="imagem" accept="image/*">
-                                    <img id="previewImagemEditar" src="" alt="Pré-visualização da Imagem"
-                                        style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <button type="submit" class="save-btn">Salvar Alterações</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIM DO MODAL DE EDIÇÃO -->
-
-    <footer class="inter">
-        <div class="separacao1">
-            <p>Entre em contato conosco</p>
-            <ul class="wrapper">
-                <a href="https://www.facebook.com/asa.literaria.biblioteca" target="_blank">
-                    <li class="icon facebook" title="Facebook">
-                        <span class="tooltip">Facebook</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://twitter.com" target="_blank">
-                    <li class="icon twitter" title="Twitter">
-                        <span class="tooltip">Twitter</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M459.4 151.7c.3 4.5.3 9 .3 13.6 0 138.7-105.6 298.7-298.7 298.7-59.5 0-114.9-17.2-161.4-47 8.4 1 16.8 1.3 25.5 1.3 49.2 0 94.6-16.7 130.7-44.8-46-.9-84.8-31.2-98.3-72.9 6.5 1 12.9 1.6 19.7 1.6 9.4 0 18.5-1.3 27.1-3.6-48.1-9.7-84-52-84-102.8v-1.3c14 7.8 30 12.6 47 13.1-27.8-18.5-46-50.2-46-86 0-18.5 5-35.7 13.7-50.6 50.1 61.3 125 101.4 209.5 105.6-1.7-7.7-2.6-15.7-2.6-23.9 0-57.9 46.9-104.8 104.8-104.8 30.2 0 57.6 12.6 76.8 32.9 23.9-4.5 46.4-13.5 66.5-25.6-7.8 24.4-24.4 44.8-46.4 57.6 21.2-2.4 41.6-8.2 60.4-16.7-14 20.8-31.8 39.1-52.4 53.8z" />
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://www.instagram.com" target="_blank">
-                    <li class="icon instagram" title="Instagram">
-                        <span class="tooltip">Instagram</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor" class="bi bi-instagram"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
-                            </path>
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://api.whatsapp.com" target="_blank">
-                    <li class="icon whatsapp" title="WhatsApp">
-                        <span class="tooltip">WhatsApp</span>
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </li>
-                </a>
-                <a href="https://www.linkedin.com/company/asa-literaria-biblioteca/" target="_blank">
-                    <li class="icon linkedin" title="LinkedIn">
-                        <span class="tooltip">LinkedIn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.5 53.5 0 1 1 0-107 53.5 53.5 0 1 1 0 107zm394.92 340h-92.68V302.4c0-34.7-.7-79.4-48.4-79.4-48.6 0-56 38.1-56 77.5V448h-92.68V148.9h89V196h1.3c12.4-23.5 42.5-48.4 87.5-48.4 93.7 0 111 61.7 111 141.9V448z" />
-                        </svg>
-                    </li>
-                </a>
-            </ul>
-        </div>
-        <div class="rodape-inter">
-            <div class="informacao">
-                <p class="informacoes">INFORMAÇÕES</p>
-                <div class="linha"></div>
-                <div class="display">
-                    <i class="fa-solid fa-envelope icons"></i>
-                    <p class="text">asa.literaria@email.com</p>
-                </div>
-                <div class="display">
-                    <i class="fa-solid fa-phone icons"></i>
-                    <p class="text">(18)99999-9999</p>
-                </div>
-            </div>
-            <div class="imagem">
-                <a id="logoHeader" href="home.html">
-                    <img id="logoImage2" alt="Logo">
-                </a>
-            </div>
-            <div class="localizacao">
-                <p class="local">LOCALIZAÇÃO
-                    <br>
-                    Birigui - SP
-                </p>
-            </div>
-        </div>
-        <div class="as">
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
-        </div>
-    </footer>
-
-    <script>
-        // DEBUG: Verifica se o jQuery está carregado
-        console.log("jQuery version:", $.fn.jquery);
-
-        // DEBUG: Verifica a variável ipPython
-        console.log("ipPython:", ipPython);
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
             });
         });
 
 
-        // Função para atualizar os hrefs dos relatórios
-        function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
+        // --- 2) Ao submeter o formulário de edição:
+        $(document).on('submit', '#formEditarLivro', function (e) {
+            e.preventDefault();
+
+            const id_livro = $('#id_livro').val();
+            if (!id_livro) {
+                return Swal.fire('Erro!', 'ID do livro não definido. Abra o modal corretamente.', 'error');
             }
-        }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+            // garante multipart
+            $(this).attr('enctype', 'multipart/form-data');
 
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+            const formData = new FormData(this);
+            const token = localStorage.getItem("token");
 
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
-            function atualizarLogoSite() {
-                let i = 0;
-                function tentarProxima() {
-                    if (i >= logoExts.length) {
-                        let logoImage = document.getElementById("logoImage");
-                        let logoImage2 = document.getElementById("logoImage2");
-                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
-                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
-                        return;
+            $.ajax({
+                url: `${ipPython}/livros/${id_livro}`,
+                type: 'PUT',
+                headers: { 'Authorization': `Bearer ${token}` },
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                cache: false,
+                success: function (response) {
+                    Swal.fire('Sucesso!', response.message, 'success');
+                    $('#modalEditarLivro').modal('hide');
+                    carregarLivros();
+                },
+                error: function (xhr) {
+                    console.error('Erro ao editar livro:', xhr);
+                    let msg = 'Falha ao editar livro';
+                    if (xhr.responseJSON) {
+                        msg = xhr.responseJSON.error || xhr.responseJSON.mensagem || msg;
                     }
-                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
-                    fetch(url).then(resp => {
-                        if (resp.ok) {
-                            let logoImage = document.getElementById("logoImage");
-                            let logoImage2 = document.getElementById("logoImage2");
-                            if (logoImage) logoImage.src = url;
-                            if (logoImage2) logoImage2.src = url;
-                        } else {
-                            i++;
-                            tentarProxima();
-                        }
+                    Swal.fire('Erro!', msg, 'error');
+                }
+            });
+        });
+
+        // Função para inativar um livro
+        function inativarLivro(id) {
+            var token = localStorage.getItem("token");
+
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/livro_indisp/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: response.message,
+                        icon: "success"
+                    });
+                    carregarLivros(); // Recarrega a lista de livros
+                },
+                error: function (error) {
+                    console.error("Erro ao inativar livro:", error);
+                    Swal.fire({
+                        title: "Erro!",
+                        text: error.responseJSON ? error.responseJSON.error : "Falha ao inativar livro",
+                        icon: "error"
                     });
                 }
-                tentarProxima();
-            }
-            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+            });
+        }
     </script>
 </body>
 
