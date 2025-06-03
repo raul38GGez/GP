@@ -52,6 +52,7 @@ header {
 /* Logo */
 .header-left img {
   width: 50px;
+  margin-left: 10px;
   height: auto;
 }
 

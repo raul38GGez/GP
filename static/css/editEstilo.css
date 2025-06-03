@@ -44,8 +44,9 @@ body {
 }
 
 .header-left img {
-    height: 50px;
-    transition: var(--transition);
+    width: 50px;
+    margin-left: 10px;
+    height: auto;
 }
 
 .header-left img:hover {

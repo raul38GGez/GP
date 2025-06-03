@@ -188,6 +188,7 @@ select {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
@@ -746,7 +747,6 @@ button.botao-multas {
     border: solid var(--azul) 4px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    padding: 30px;
 }
 
 .multa-tabela {
@@ -850,7 +850,9 @@ button.botao-multas {
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
 }
-
+.btn-pagar-multa{
+    margin:10px;
+}
 .algo-legal {
     display: block;
 }
@@ -1064,7 +1066,9 @@ footer{
         background-color: #fff;
     }
 }
-
+.fiote1, .fiote2{
+    margin:20px ;
+}
 @media (max-width: 480px) {
     .search-container {
         width: 120px; /* Ajuste fino para telas muito pequenas */

@@ -126,6 +126,7 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
@@ -311,7 +312,7 @@ header {
 }
 
 .item img {
-    width: 100%;
+    width: 90%;
     height: 250px;
     object-fit: contain;
 }
@@ -579,6 +580,7 @@ input:checked+.slider:before {
     background-color: #f0f0f0;
     /* Cor de fundo ao passar o mouse */
 }
+
 .submenu {
     display: none;
 }
@@ -586,18 +588,22 @@ input:checked+.slider:before {
 .submenu.show {
     display: block;
 }
-.star{
+
+.star {
     color: #ffcc00;
 }
+
 option span {
     color: black;
 }
+
 /* Imagem do perfil no menu */
 .menu-icon-img {
     width: 20px;
     height: 20px;
     border-radius: 50%;
 }
+
 .wrapper {
     display: inline-flex;
     list-style: none;

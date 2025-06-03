@@ -147,15 +147,16 @@
     <script src="../static/js/paginaip.js"></script>
 
     <script>
-        // Adaptação para Home 1 seguir Home 2
+        // --- EXIBE NOME DO USUÁRIO (MISTURA DOS DOIS SCRIPTS) ---
         document.addEventListener('DOMContentLoaded', function () {
             // Exibe o nome do usuário do localStorage
-            var nome = localStorage.getItem("nome");
+            const nome = localStorage.getItem('nome');
             if (nome) {
-                document.getElementById("nomeUsuario").innerHTML = ", " + nome;
+                const nomeSpan = document.getElementById("nomeUsuario");
+                if (nomeSpan) nomeSpan.innerHTML = ', ' + nome;
             }
 
-            // Carregar gêneros para filtro
+            // Carregar gêneros para filtro (DO SEGUNDO SCRIPT)
             $.ajax({
                 url: typeof ipPython !== "undefined" ? (ipPython + "/generos") : "/generos",
                 method: "GET",
@@ -169,168 +170,43 @@
                 }
             });
 
-            // Filtros
-            $('#filterGenre, #filterAvailability').change(function () {
-                carregaLivros();
-            });
+            // Menu de relatórios (DO PRIMEIRO SCRIPT)
+            const relatoriosItem = document.getElementById('relatorios');
+            if (relatoriosItem) {
+                const submenu = relatoriosItem.querySelector('.submenu');
+                relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                    submenu.classList.toggle('show');
+                });
+            }
 
-            // Carrega todos os livros
+            // Atualiza links dos relatórios (DO PRIMEIRO SCRIPT)
+            atualizarLinksRelatorios();
+
+            // Logo adaptativo (AMBOS)
+            atualizarLogoSite();
+
+            // Carrega todos os livros ao iniciar (MIX)
             carregaLivros();
         });
 
-        function carregaLivros() {
-            const params = new URLSearchParams(window.location.search);
-            var pagina = parseInt(params.get('pagina')) || 1;
-            // Aplica filtros
-            const genero = $('#filterGenre').val();
-            const disponibilidade = $('#filterAvailability').val();
-            if (genero) params.set('genero', genero);
-            if (disponibilidade) params.set('disponivel', disponibilidade === 'available' ? 'true' : 'false');
-            var urlAjax = typeof ipPython !== "undefined" ? (ipPython + "/livro?" + params.toString()) : ("/livro?" + params.toString());
-
-            if (pagina <= 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            } else {
-                document.getElementById('pagina-anterior').style.display = "block";
-            }
-
-            $.ajax({
-                url: urlAjax,
-                method: "GET",
-                success: function (retorno) {
-                    var total = retorno.total_paginas;
-                    var paginaAtual = retorno.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
-
-                    params.set('pagina', anterior);
-                    document.getElementById("pagina-anterior").href = "home.html?" + params.toString();
-
-                    params.set('pagina', proxima);
-                    document.getElementById("pagina-proxima").href = "home.html?" + params.toString();
-
-                    params.set('pagina', paginaAtual);
-
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    } else {
-                        document.getElementById('pagina-proxima').style.display = "block";
-                    }
-
-                    var html = document.getElementById("listaLivros");
-                    html.innerHTML = "";
-
-                    if (!retorno.livros || retorno.livros.length === 0) {
-                        html.innerHTML = `<div class="no-books"><i class="fas fa-book-open"></i><p>Nenhum livro encontrado!</p></div>`;
-                        return;
-                    }
-
-                    document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
-
-                    retorno.livros.forEach((livro) => {
-                        html.innerHTML += `
-                            <div class="book-card">
-                                <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
-                                    <div class="book-image">
-                                        <img src="${typeof ipPython !== "undefined" ? ipPython : ""}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                        <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
-                                            ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
-                                        </div>
-                                    </div>
-                                    <div class="book-info">
-                                        <h4 class="book-title">${livro.titulo}</h4>
-                                        <p class="book-author">${livro.autor}</p>
-                                        <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
-                                    </div>
-                                </a>
-                            </div>
-                        `;
-                    });
-                },
-                error: function () {
-                    document.getElementById("listaLivros").innerHTML = `
-                        <div class="no-books error">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <p>Erro ao carregar livros. Tente novamente mais tarde.</p>
-                        </div>
-                    `;
+        // --- ATUALIZA LINKS DE RELATÓRIOS (PRIMEIRO SCRIPT) ---
+        function atualizarLinksRelatorios() {
+            if (typeof ipPython2 === 'undefined') return;
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
                 }
-            });
+            }
         }
 
-        // Busca
-        $("#formBuscaLivro").on("submit", function (e) {
-            e.preventDefault();
-            let termo = $("#campoBusca").val().trim();
-            if (!termo) {
-                Swal.fire({
-                    title: "Atenção!",
-                    text: "Digite algo para buscar.",
-                    icon: "warning"
-                });
-                return;
-            }
-            // Limpa filtros ao buscar
-            $('#filterGenre').val('');
-            $('#filterAvailability').val('');
-            $.ajax({
-                method: "GET",
-                url: (typeof ipPython !== "undefined" ? ipPython : "") + "/pesquisar_livro?q=" + encodeURIComponent(termo),
-                success: function (retorno) {
-                    $("#listaLivros").empty();
-                    if (retorno.livros && retorno.livros.length > 0) {
-                        retorno.livros.forEach(livro => {
-                            $("#listaLivros").append(`
-                                <div class="book-card">
-                                    <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
-                                        <div class="book-image">
-                                            <img src="${typeof ipPython !== "undefined" ? ipPython : ""}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                            <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
-                                                ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
-                                            </div>
-                                        </div>
-                                        <div class="book-info">
-                                            <h4 class="book-title">${livro.titulo}</h4>
-                                            <p class="book-author">${livro.autor}</p>
-                                            <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            `);
-                        });
-                    } else {
-                        $("#listaLivros").html(`
-                            <div class="no-books">
-                                <i class="fas fa-search"></i>
-                                <p>Nenhum livro encontrado para "${termo}"</p>
-                            </div>
-                        `);
-                    }
-                },
-                error: function (xhr) {
-                    let erroMsg = "Erro ao buscar livros.";
-                    if (xhr.responseText) {
-                        try {
-                            erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
-                        } catch (e) { }
-                    }
-                    Swal.fire({
-                        title: "Erro!",
-                        text: erroMsg,
-                        icon: "error"
-                    });
-                }
-            });
-        });
-
-        // Detecta se o usuário limpou o campo de busca
-        $("#campoBusca").on("input", function () {
-            if ($(this).val().trim() === "") {
-                carregaLivros();
-            }
-        });
-
-        // Logo adaptativo (igual Home 1)
+        // --- LOGO ADAPTATIVO (AMBOS) ---
         const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
         function atualizarLogoSite() {
             let i = 0;
@@ -357,7 +233,159 @@
             }
             tentarProxima();
         }
-        document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+
+        // --- PRINCIPAL: CARREGAR LIVROS (MISTURA DOS DOIS SCRIPTS) ---
+        function carregaLivros() {
+            // Monta params a partir da URL
+            const params = new URLSearchParams(window.location.search);
+            let pagina = parseInt(params.get('pagina')) || 1;
+
+            // Adiciona filtros dos selects (gênero e disponibilidade)
+            const genero = $('#filterGenre').val();
+            const disponibilidade = $('#filterAvailability').val();
+            if (genero) params.set('genero', genero);
+            else params.delete('genero');
+            if (disponibilidade) params.set('disponivel', disponibilidade === 'available' ? 'true' : 'false');
+            else params.delete('disponivel');
+
+            // Se tiver termo de busca, busca por ele
+            const termo = $("#campoBusca").val() ? $("#campoBusca").val().trim() : (params.get('q') || '');
+
+            let urlAjax = '';
+            if (termo) {
+                // Busca por termo (igual ao primeiro script)
+                params.set('q', termo);
+                params.set('pagina', pagina);
+                urlAjax = (typeof ipPython !== "undefined" ? ipPython : "") + "/pesquisar_livro?" + params.toString();
+            } else {
+                // Busca geral (igual ao segundo script)
+                params.set('pagina', pagina);
+                urlAjax = (typeof ipPython !== "undefined" ? ipPython : "") + "/livro?" + params.toString();
+            }
+
+            // Controle de paginação
+            $('#pagina-anterior').toggle(pagina > 1);
+
+            $.ajax({
+                url: urlAjax,
+                method: "GET",
+                dataType: "json",
+                success: function (retorno) {
+                    let total = retorno.total_paginas || 1;
+                    let paginaAtual = retorno.pagina_atual || 1;
+                    let anterior = paginaAtual - 1;
+                    let proxima = paginaAtual + 1;
+
+                    // Atualiza links mantendo filtros
+                    let paramsAnterior = new URLSearchParams(params);
+                    paramsAnterior.set('pagina', anterior);
+                    $("#pagina-anterior").attr("href", "?" + paramsAnterior.toString());
+
+                    let paramsProxima = new URLSearchParams(params);
+                    paramsProxima.set('pagina', proxima);
+                    $("#pagina-proxima").attr("href", "?" + paramsProxima.toString());
+
+                    // Oculta ou mostra botões de navegação
+                    $('#pagina-proxima').toggle(paginaAtual < total);
+
+                    $("#paginaAtual").text(`Página ${paginaAtual} de ${total}`);
+
+                    let html = "";
+                    if (!retorno.livros || retorno.livros.length === 0) {
+                        html = `<div class="no-books"><i class="fas fa-book-open"></i><p>Nenhum livro encontrado!</p></div>`;
+                    } else {
+                        retorno.livros.forEach((livro) => {
+                            html += `
+                                    <div class="book-card">
+                                        <a href="reserva.html?id=${livro.id_livro}" title="${livro.titulo}">
+                                            <div class="book-image">
+                                                <img src="${typeof ipPython !== "undefined" ? ipPython : ""}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                                <div class="book-badge ${livro.quantidade > 0 ? 'available' : 'unavailable'}">
+                                                    ${livro.quantidade > 0 ? 'Disponível' : 'Indisponível'}
+                                                </div>
+                                            </div>
+                                            <div class="book-info">
+                                                <h4 class="book-title">${livro.titulo}</h4>
+                                                <p class="book-author">${livro.autor || ''}</p>
+                                                <p class="book-genre">${livro.genero || 'Gênero não informado'}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                `;
+                        });
+                    }
+
+                    $("#listaLivros").html(html);
+                },
+                error: function () {
+                    $("#listaLivros").html(`
+                            <div class="no-books error">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>Erro ao carregar livros. Tente novamente mais tarde.</p>
+                            </div>
+                        `);
+                }
+            });
+        }
+
+        // --- FILTROS (SEGUNDO SCRIPT) ---
+        $('#filterGenre, #filterAvailability').change(function () {
+            // Limpa a página ao trocar filtro
+            const params = new URLSearchParams(window.location.search);
+            params.set('pagina', 1);
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+            carregaLivros();
+        });
+
+        // --- FORM DE BUSCA (AMBOS) ---
+        $("#formBuscaLivro").on("submit", function (e) {
+            e.preventDefault();
+            let termo = $("#campoBusca").val().trim();
+            if (!termo) {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Digite algo para buscar.",
+                    icon: "warning"
+                });
+                return;
+            }
+            // Limpa filtros ao buscar
+            $('#filterGenre').val('');
+            $('#filterAvailability').val('');
+            const params = new URLSearchParams(window.location.search);
+            params.set('q', termo);
+            params.set('pagina', 1);
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+            carregaLivros();
+        });
+
+        // Busca dinâmica conforme digita (primeiro script)
+        $("#campoBusca").on("input", function () {
+            let termo = $(this).val().trim();
+            const params = new URLSearchParams(window.location.search);
+            if (termo) {
+                params.set('q', termo);
+                params.set('pagina', 1);
+            } else {
+                params.delete('q');
+                params.set('pagina', 1);
+            }
+            // Limpa filtros ao digitar busca
+            $('#filterGenre').val('');
+            $('#filterAvailability').val('');
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+            carregaLivros();
+        });
+
+        // Ao carregar a página, preenche campo busca se houver termo na URL
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const termoInicial = params.get('q');
+            if (termoInicial) {
+                $("#campoBusca").val(termoInicial);
+            }
+        })();
+
     </script>
 </body>
 

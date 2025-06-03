@@ -4,61 +4,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
+    <title>Catálogo - Biblioteca Asa Literária</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/catalogo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <script src="../static/js/paginaip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="../static/js/paginaip.js"></script>
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <script src="../static/js/paginaip.js"></script>
-
-
+    <script src="../static/js/segurancaBiblio.js" defer></script>
+    <style>
+        .filtros-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.07);
+            padding: 2rem 2rem 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            margin-top: 24px;
+        }
+        .filtros-container label {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #314279;
+        }
+        .filtros-container select, .filtros-container input[type="number"] {
+            border-radius: 8px;
+            border: 1.5px solid #E0E6F6;
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+        }
+        .btn-secondary {
+            border-radius: 20px;
+            padding: 7px 24px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #6b7bd6 60%, #a2b6ff 100%);
+            color: #fff;
+            border: none;
+            transition: background 0.18s, transform 0.18s;
+            box-shadow: 0 2px 10px 0 rgba(75,112,226,0.08);
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            transform: translateY(-2px) scale(1.045);
+            color: #fff;
+        }
+        .listalivros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 28px;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+        .item {
+            flex: 1 1 210px;
+            min-width: 180px;
+            max-width: 200px;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fd;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(75, 112, 226, 0.09);
+            text-align: center;
+            margin: 0 auto 20px auto;
+            transition: box-shadow 0.18s, transform 0.14s;
+        }
+        .item:hover {
+            box-shadow: 0 6px 24px 0 rgba(75,112,226,0.15);
+            transform: translateY(-6px) scale(1.03);
+        }
+        .item img {
+            border-radius: 10px;
+            box-shadow: 0 1px 8px rgba(75,112,226,0.16);
+            max-width: 100%;
+            min-height: 140px;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+        .livro-titulo {
+            font-weight: bold;
+            font-size: 1.11rem;
+            color: #2740a0;
+            margin-bottom: 0.25rem;
+        }
+        .livro-autor {
+            font-size: 0.98rem;
+            color: #4B70E2;
+            margin-bottom: 0.2rem;
+        }
+        .livro-nota {
+            font-size: 0.98rem;
+            margin-bottom: 0.2rem;
+            color: #222;
+        }
+        .livro-paginas {
+            font-size: 0.92rem;
+            color: #555;
+        }
+        .livro-disponibilidade {
+            font-size: 0.93rem;
+            margin-top: 0.25rem;
+            font-weight: 600;
+            border-radius: 11px;
+            padding: 2px 12px;
+            display: inline-block;
+        }
+        .livro-disponibilidade.disponivel {
+            background: #d3f9e5;
+            color: #16936a;
+            border: 1.2px solid #43d8a5;
+        }
+        .livro-disponibilidade.indisponivel {
+            background: #ffe5e5;
+            color: #c21d1d;
+            border: 1.2px solid #ff9b9b;
+        }
+        .titulo {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            text-align: center;
+            margin-top: 34px;
+            color: #314279;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .pagination, .paginacao {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 2rem;
+        }
+        .btn, .pagination-button {
+            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 8px 24px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.18s, transform 0.18s;
+            box-shadow: 0 2px 10px 0 rgba(75,112,226,0.11);
+            text-decoration: none;
+        }
+        .btn:hover, .pagination-button:hover, .btn:focus, .pagination-button:focus {
+            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
+            transform: translateY(-2px) scale(1.045);
+            color: #fff;
+            text-decoration: none;
+        }
+        .paginaAtual, .current-page {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            font-size: 1.13rem;
+            color: #4B70E2;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+        @media (max-width: 850px) {
+            .listalivros { gap: 16px; }
+        }
+        @media (max-width: 600px) {
+            .filtros-container { padding: 1rem 0.3rem !important; }
+            .listalivros { gap: 8px; }
+            .item { min-width: 140px; max-width: 100%; padding: 0.8rem 0.3rem 1rem 0.3rem;}
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+    <!-- HEADER igual home -->
+    <header class="header">
+        <div class="header-left">
+            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
         </div>
-
-        <form id="formBuscaLivro">
+        <form id="formBuscaLivro" class="search-form" style="display: flex;">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
+                <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
             </div>
         </form>
-        <div class="catalogo">
-            <a class="btn-catalogo" href="catalogo.html">
-                <svg class="edit-svgIcon" viewBox="0 0 512 512">
-                    <path d="M88.7 223.8L0 375.8 0 96C0 60.7 28.7 32 64 32l117.5 0c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7L416 96c35.3 0 64 28.7 64 64l0 32-336 0c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224l400 0c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480L32 480c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z"></path>
-                  </svg>
-            </a>
-        </div>
-
-        <div class="coisa">
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
-                    <ul class="dropdown-menu" id="dropdownMenu"></ul>
+        <div class="header-right">
+            <div class="menu-container">
+                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
+                <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
         </div>
     </header>
@@ -111,98 +250,59 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-end">
-                        <button id="btnLimparFiltros" type="button" class="btn btn-secondary ms-2">Limpar
-                            Filtros</button>
+                        <button id="btnLimparFiltros" type="button" class="btn btn-secondary ms-2">Limpar Filtros</button>
                     </div>
                 </div>
             </div>
             <div class="listalivros" id="listaLivros"></div>
-            <div class="paginacao">
-                <a href="#" class="btn" id="pagina-anterior"><i class="fa-solid fa-chevron-left"></i></a>
-                <h3 class="paginaAtual" id="paginaAtual">1</h3>
-                <a href="#" class="btn" id="pagina-proxima"><i class="fa-solid fa-chevron-right"></i></a>
+            <div class="pagination" style="margin-top: 2rem;">
+                <a href="#" class="pagination-button" id="pagina-anterior"><i class="fa-solid fa-chevron-left"></i> Anterior</a>
+                <span class="current-page" id="paginaAtual">1</span>
+                <a href="#" class="pagination-button" id="pagina-proxima">Próxima <i class="fa-solid fa-chevron-right"></i></a>
             </div>
         </div>
     </main>
-    <footer class="inter">
-        <div class="separacao1">
-            <p>Entre em contato conosco</p>
-            <ul class="wrapper">
-                <a href="https://www.facebook.com/asa.literaria.biblioteca" target="_blank">
-                    <li class="icon facebook" title="Facebook">
-                        <span class="tooltip">Facebook</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://twitter.com" target="_blank">
-                    <li class="icon twitter" title="Twitter">
-                        <span class="tooltip">Twitter</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M459.4 151.7c.3 4.5.3 9 .3 13.6 0 138.7-105.6 298.7-298.7 298.7-59.5 0-114.9-17.2-161.4-47 8.4 1 16.8 1.3 25.5 1.3 49.2 0 94.6-16.7 130.7-44.8-46-.9-84.8-31.2-98.3-72.9 6.5 1 12.9 1.6 19.7 1.6 9.4 0 18.5-1.3 27.1-3.6-48.1-9.7-84-52-84-102.8v-1.3c14 7.8 30 12.6 47 13.1-27.8-18.5-46-50.2-46-86 0-18.5 5-35.7 13.7-50.6 50.1 61.3 125 101.4 209.5 105.6-1.7-7.7-2.6-15.7-2.6-23.9 0-57.9 46.9-104.8 104.8-104.8 30.2 0 57.6 12.6 76.8 32.9 23.9-4.5 46.4-13.5 66.5-25.6-7.8 24.4-24.4 44.8-46.4 57.6 21.2-2.4 41.6-8.2 60.4-16.7-14 20.8-31.8 39.1-52.4 53.8z" />
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://www.instagram.com" target="_blank">
-                    <li class="icon instagram" title="Instagram">
-                        <span class="tooltip">Instagram</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor" class="bi bi-instagram"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
-                            </path>
-                        </svg>
-                    </li>
-                </a>
-                <a href="https://api.whatsapp.com" target="_blank">
-                    <li class="icon whatsapp" title="WhatsApp">
-                        <span class="tooltip">WhatsApp</span>
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </li>
-                </a>
-                <a href="https://www.linkedin.com/company/asa-literaria-biblioteca/" target="_blank">
-                    <li class="icon linkedin" title="LinkedIn">
-                        <span class="tooltip">LinkedIn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="currentColor">
-                            <path
-                                d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.5 53.5 0 1 1 0-107 53.5 53.5 0 1 1 0 107zm394.92 340h-92.68V302.4c0-34.7-.7-79.4-48.4-79.4-48.6 0-56 38.1-56 77.5V448h-92.68V148.9h89V196h1.3c12.4-23.5 42.5-48.4 87.5-48.4 93.7 0 111 61.7 111 141.9V448z" />
-                        </svg>
-                    </li>
-                </a>
-            </ul>
-        </div>
-        <div class="rodape-inter">
-            <div class="informacao">
-                <p class="informacoes">INFORMAÇÕES</p>
-                <div class="linha"></div>
-                <div class="display">
-                    <i class="fa-solid fa-envelope icons"></i>
-                    <p class="text">asa.literaria@email.com</p>
-                </div>
-                <div class="display">
-                    <i class="fa-solid fa-phone icons"></i>
-                    <p class="text">(18)99999-9999</p>
+    <!-- FOOTER igual home -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-contact">
+                <h3>Entre em contato conosco</h3>
+                <div class="social-links">
+                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-            <div class="imagem">
-                <img class="logo_rodape" id="logoImage2" src="" alt="logo">
-            </div>
-            <div class="localizacao">
-                <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
+            <div class="footer-info">
+                <div class="footer-column">
+                    <h4>Informações</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-envelope"></i> asa.literaria@email.com</p>
+                    <p><i class="fas fa-phone"></i> (18) 99999-9999</p>
+                </div>
+                <div class="footer-column footer-logo">
+                    <img id="logoImage2" src="../static/img/logo.png" alt="Logo Asa Literária" class="footer-logo-img">
+                </div>
+                <div class="footer-column">
+                    <h4>Localização</h4>
+                    <div class="footer-line"></div>
+                    <p><i class="fas fa-map-marker-alt"></i> Birigui - SP</p>
+                    <p>Rua Exemplo, 123 - Centro</p>
+                </div>
             </div>
         </div>
-        <div class="as">
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+        <div class="footer-bottom">
+            <a href="https://www.google.com.br/?hl=pt-BR">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR">Política de privacidade</a>
+            <p>&copy; 2023 Asa Literária. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
-
+        const ipPython = "http://192.168.1.135:5000";
         // Logo dinâmico
         function atualizarLogoSite() {
             const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
@@ -239,28 +339,18 @@
 
             function montarParametros() {
                 const params = new URLSearchParams(window.location.search);
-
-                // Filtros
                 if ($('#filtroCategoria').val()) params.set('categoria', $('#filtroCategoria').val()); else params.delete('categoria');
                 if ($('#filtroDisponibilidade').val()) params.set('disponibilidade', $('#filtroDisponibilidade').val()); else params.delete('disponibilidade');
                 if ($('#filtroNotaMin').val()) params.set('nota_min', $('#filtroNotaMin').val()); else params.delete('nota_min');
                 if ($('#filtroPaginasMin').val()) params.set('paginas_min', $('#filtroPaginasMin').val()); else params.delete('paginas_min');
                 if ($('#filtroPaginasMax').val()) params.set('paginas_max', $('#filtroPaginasMax').val()); else params.delete('paginas_max');
                 if ($('#filtroIdioma').val()) params.set('idioma', $('#filtroIdioma').val()); else params.delete('idioma');
-
-                // Busca
                 let termoBusca = $('#campoBusca').val().trim();
                 if (termoBusca) params.set('q', termoBusca); else params.delete('q');
-
-                // Página
                 params.set('pagina', paginaAtual);
-
-                // Atualiza a URL sem recarregar
                 window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
-
                 return params.toString();
             }
-
             function carregarCategorias() {
                 $.ajax({
                     url: ipPython + "/todas_categorias",
@@ -279,7 +369,6 @@
                     }
                 });
             }
-
             function carregarIdiomas() {
                 $.ajax({
                     url: ipPython + "/todos_idiomas",
@@ -298,7 +387,6 @@
                     }
                 });
             }
-
             function carregarLivros() {
                 $('#listaLivros').html('<p>Carregando livros...</p>');
                 $.ajax({
@@ -324,7 +412,6 @@
                     }
                 });
             }
-
             function exibirLivros(livros) {
                 const listaLivros = $('#listaLivros');
                 listaLivros.empty();
@@ -349,9 +436,8 @@
                     `);
                 });
             }
-
             function atualizarControlesPaginacao() {
-                $('#paginaAtual').text(paginaAtual);
+                $('#paginaAtual').text(`Página ${paginaAtual} de ${totalPaginas}`);
                 if (paginaAtual > 1) {
                     $('#pagina-anterior').show();
                 } else {
@@ -363,28 +449,15 @@
                     $('#pagina-proxima').hide();
                 }
             }
-
-            // --- Eventos ---
-
-            // Busca dinâmica ao digitar
             $('#campoBusca').on('input', function () {
                 paginaAtual = 1;
                 carregarLivros();
             });
-
-            // Busca ao enviar form
             $('#formBuscaLivro').submit(function (e) {
                 e.preventDefault();
                 paginaAtual = 1;
                 carregarLivros();
             });
-
-            // Filtros
-            $('#btnAplicarFiltros').click(function () {
-                paginaAtual = 1;
-                carregarLivros();
-            });
-
             $('#btnLimparFiltros').click(function () {
                 $('#filtroCategoria').val('');
                 $('#filtroDisponibilidade').val('');
@@ -396,13 +469,10 @@
                 paginaAtual = 1;
                 carregarLivros();
             });
-
             $('#filtroCategoria, #filtroDisponibilidade, #filtroNotaMin, #filtroPaginasMin, #filtroPaginasMax, #filtroIdioma').change(function () {
                 paginaAtual = 1;
                 carregarLivros();
             });
-
-            // Paginação
             $('#pagina-anterior').on('click', function (e) {
                 e.preventDefault();
                 if (paginaAtual > 1) {
@@ -410,7 +480,6 @@
                     carregarLivros();
                 }
             });
-
             $('#pagina-proxima').on('click', function (e) {
                 e.preventDefault();
                 if (paginaAtual < totalPaginas) {
@@ -418,8 +487,6 @@
                     carregarLivros();
                 }
             });
-
-            // Preenche filtros e busca se tiver na URL
             function preencherCamposPorURL() {
                 const params = new URLSearchParams(window.location.search);
                 if (params.has('q')) $('#campoBusca').val(params.get('q'));
@@ -431,20 +498,31 @@
                 if (params.has('idioma')) $('#filtroIdioma').val(params.get('idioma'));
                 if (params.has('pagina')) paginaAtual = parseInt(params.get('pagina'));
             }
-
             carregarCategorias();
             carregarIdiomas();
             preencherCamposPorURL();
             carregarLivros();
         });
 
-
-        const logoImage = document.getElementById("logoImage");
-            logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-            const logoImage2 = document.getElementById("logoImage2");
-            logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            if (relatoriosItem) {
+                const submenuToggle = relatoriosItem.querySelector('.submenu-toggle');
+                const submenu = relatoriosItem.querySelector('.submenu');
+                if (submenuToggle && submenu) {
+                    submenuToggle.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        submenu.classList.toggle('show');
+                    });
+                    document.addEventListener('click', function (e) {
+                        if (!relatoriosItem.contains(e.target)) {
+                            submenu.classList.remove('show');
+                        }
+                    });
+                }
+            }
+        });
+         // Logo adaptativo (igual Home 1)
             const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
             function atualizarLogoSite() {
                 let i = 0;
@@ -456,7 +534,7 @@
                         if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
                         return;
                     }
-                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    let url = (typeof ipPython !== "undefined" ? ipPython : "") + `/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
                     fetch(url).then(resp => {
                         if (resp.ok) {
                             let logoImage = document.getElementById("logoImage");
@@ -472,27 +550,6 @@
                 tentarProxima();
             }
             document.addEventListener('DOMContentLoaded', atualizarLogoSite);
-
-
-            document.addEventListener('DOMContentLoaded', function () {
-                    const relatoriosItem = document.getElementById('relatorios');
-                    if (relatoriosItem) {
-                        const submenuToggle = relatoriosItem.querySelector('.submenu-toggle');
-                        const submenu = relatoriosItem.querySelector('.submenu');
-                        if (submenuToggle && submenu) {
-                            submenuToggle.addEventListener('click', function (e) {
-                                e.stopPropagation();
-                                submenu.classList.toggle('show');
-                            });
-                            document.addEventListener('click', function (e) {
-                                if (!relatoriosItem.contains(e.target)) {
-                                    submenu.classList.remove('show');
-                                }
-                            });
-                        }
-                    }
-                });
     </script>
 </body>
-
 </html>
