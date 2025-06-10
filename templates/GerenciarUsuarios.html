@@ -27,28 +27,32 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
+
     <form id="formBuscaLivro" class="search-form">
-      <div class="search-container">
-        <i class="fas fa-search"></i>
-        <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-        <button type="submit" class="search-button">Buscar</button>
-      </div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+            <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                <p>Buscar</p>
+            </a>
+        </div>
     </form>
-        <div class="header-right">
-          <div class="menu-container">
-              <button class="btn" id="menuButton">
-                        <span class="icon">
-                            <svg viewBox="0 0 175 80" width="40" height="40">
-                                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                            </svg>
-                        </span>
-                        <span class="text">MENU</span>
-                    </button>
-                <ul class="dropdown-menu" id="dropdownMenu"></ul>
-            </div>
-          </div>
+
+    <div class="header-right">
+      <div class="menu-container">
+        <button class="btn" id="menuButton">
+          <span class="icon">
+            <svg viewBox="0 0 175 80" width="40" height="40">
+              <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+              <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+              <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+          </span>
+          <span class="text">MENU</span>
+        </button>
+        <ul class="dropdown-menu" id="dropdownMenu"></ul>
+      </div>
+    </div>
   </header>
   <!-- FIM DO CABEÇALHO -->
 
@@ -138,11 +142,31 @@
       <div class="footer-contact">
         <h3>Entre em contato conosco</h3>
         <div class="social-links">
-          <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <!-- From Uiverse.io by david-mohseni -->
+          <ul class="wrapper">
+            <li class="icon facebook">
+              <span class="tooltip">Facebook</span>
+              <i class="fa-brands fa-facebook-f redes"></i>
+            </li>
+            <li class="icon twitter">
+              <span class="tooltip">Twitter</span>
+              <i class="fa-brands fa-twitter redes"></i>
+            </li>
+            <li class="icon instagram">
+              <span class="tooltip">Instagram</span>
+              <i class="fa-brands fa-instagram redes"></i>
+              </svg>
+            </li>
+            <li class="icon whatsapp">
+              <span class="tooltip">WhatsApp</span>
+              <i class="fa-brands fa-whatsapp redes"></i>
+            </li>
+            <li class="icon linkedin">
+              <span class="tooltip">LinkedIn</span>
+              <i class="fa-brands fa-linkedin-in redes"></i>
+            </li>
+          </ul>
+
         </div>
       </div>
       <div class="footer-info">

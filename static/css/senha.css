@@ -13,6 +13,28 @@
     --branco: white;
 }
 
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --terciary-color: #2a6b97;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #1aac5f;
+    --warning-color: #f39c12;
+    --danger-color: #e90039;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+    --white: #fff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+img, svg {
+    vertical-align: middle;
+    max-width: 75px;
+}
+
 .sair{
     background-color: #00010000;
     border: #00010000;
@@ -25,7 +47,12 @@
 body {
     background-color: var(--branco);
 }
-
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 .logo-header {
     height: 100px;
     width: auto;
@@ -37,7 +64,7 @@ section {
 }
 
 .titulo {
-    color: var(--azul);
+    color: var(--primary-color);
     text-align: center;
     font-weight: bold;
     font-size: 45px;
@@ -66,7 +93,7 @@ section {
 
 .coisa {
     text-align: left;
-    color: var(--azul);
+    color: var(--primary-color);
     font-weight: bold;
     font-size: 22px;
     padding-top: 10px;
@@ -74,15 +101,15 @@ section {
 }
 
 .inserir {  
-    border-radius: 5px;
+    border-radius: 25px;
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     padding-left: 15px;
     padding-right: 60px; 
     margin-bottom: 10px;
     font-size: 18px;
-    border: 2px solid var(--azul);
-    background-color: var(--azul-claro);
+    border: 2px solid var(--preto);
+    background-color: #f3f5fd;
 }
 
 input::placeholder {
@@ -94,20 +121,21 @@ input::placeholder {
 .botao-login {
     width: 405px;
     height: 48.5px;
-    color: var(--azul);
+    color: white;
     margin-top: 20px;
-    background-color: var(--branco);
-    border: 2px solid var(--azul);
-    border-radius: 5px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
     font-weight: bold;
     font-size: 18px;
     transition: 0.2s;
 }
 
 .botao-login:hover {
-    background-color: var(--azul);
-    color: var(--branco);
+    background-color: black;
+    color: white;
     transition: 0.2s;
+    transform: translateY(-2px);
 }
 
 .texto {

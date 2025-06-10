@@ -16,15 +16,8 @@
   <link rel="stylesheet" href="../static/css/home.css">
   <link rel="stylesheet" href="../static/css/listagemEmprestimo.css">
   <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-  <style>
-    .table-container {
-      margin-top: 2rem;
-      overflow-x: auto;
-      background: #fff;
-      box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.07);
-      padding: 24px;
-    }
 
+<style>
     .table {
       width: 100%;
       border-collapse: separate !important;
@@ -75,11 +68,12 @@
     }
 
     .pagination-button {
-      background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+      background: var(--primary-color);
       color: #fff;
       border: none;
       padding: 8px 24px;
       font-weight: 600;
+      border-radius: 25px;
       font-size: 1.04rem;
       transition: background 0.18s, transform 0.18s;
       box-shadow: 0 2px 10px 0 rgba(75, 112, 226, 0.11);
@@ -88,8 +82,8 @@
 
     .pagination-button:hover,
     .pagination-button:focus {
-      background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-      transform: translateY(-2px) scale(1.045);
+      background: black;
+      transform: translateY(-2px);
       color: #fff;
       box-shadow: 0 4px 16px 0 rgba(75, 112, 226, 0.18);
       text-decoration: none;
@@ -97,10 +91,11 @@
 
     .current-page {
       font-size: 1.08rem;
-      color: #4B70E2;
+      color: var(--primary-color);
       font-weight: 600;
     }
   </style>
+
 </head>
 
 <body>
@@ -109,13 +104,18 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-    <form id="formBuscaLivro" class="search-form">
-      <div class="search-container">
-        <i class="fas fa-search"></i>
-        <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-        <button type="submit" class="search-button">Buscar</button>
-      </div>
-    </form>
+      <form id="formBuscaLivro" class="search-form">
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+            <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                <p>Buscar</p>
+            </a>
+        </div>
+
+      </form>
+
     <div class="header-right">
       <div class="menu-container">
         <button class="btn" id="menuButton">
@@ -177,11 +177,31 @@
       <div class="footer-contact">
         <h3>Entre em contato conosco</h3>
         <div class="social-links">
-          <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <!-- From Uiverse.io by david-mohseni -->
+          <ul class="wrapper">
+            <li class="icon facebook">
+              <span class="tooltip">Facebook</span>
+              <i class="fa-brands fa-facebook-f redes"></i>
+            </li>
+            <li class="icon twitter">
+              <span class="tooltip">Twitter</span>
+              <i class="fa-brands fa-twitter redes"></i>
+            </li>
+            <li class="icon instagram">
+              <span class="tooltip">Instagram</span>
+              <i class="fa-brands fa-instagram redes"></i>
+              </svg>
+            </li>
+            <li class="icon whatsapp">
+              <span class="tooltip">WhatsApp</span>
+              <i class="fa-brands fa-whatsapp redes"></i>
+            </li>
+            <li class="icon linkedin">
+              <span class="tooltip">LinkedIn</span>
+              <i class="fa-brands fa-linkedin-in redes"></i>
+            </li>
+          </ul>
+  
         </div>
       </div>
       <div class="footer-info">
@@ -219,175 +239,192 @@
   <script src="../static/js/segurancaBiblio.js" defer></script>
   <script src="../static/js/paginaip.js"></script>
 
-  <script>
-    // Exibe o nome do usuário do localStorage
-    document.addEventListener('DOMContentLoaded', function () {
-      var nome = localStorage.getItem("nome");
-      if (nome) {
-        document.getElementById("nomeUsuario").innerHTML = ", " + nome;
-      }
-    });
+<script>
+  // Exibe o nome do usuário do localStorage
+  document.addEventListener('DOMContentLoaded', function () {
+    var nome = localStorage.getItem("nome");
+    if (nome) {
+      document.getElementById("nomeUsuario").innerHTML = ", " + nome;
+    }
+  });
 
-    // Busca de livro no header (igual home)
-    $("#formBuscaLivro").on("submit", function (e) {
-      e.preventDefault();
-      let termo = $("#campoBusca").val().trim();
-      if (!termo) {
-        Swal.fire({
-          title: "Atenção!",
-          text: "Digite algo para buscar.",
-          icon: "warning"
-        });
+  // Busca de livro no header (igual home)
+  $("#formBuscaLivro").on("submit", function (e) {
+    e.preventDefault();
+    let termo = $("#campoBusca").val().trim();
+    if (!termo) {
+      Swal.fire({
+        title: "Atenção!",
+        text: "Digite algo para buscar.",
+        icon: "warning"
+      });
+      return;
+    }
+    window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
+  });
+
+  // Logo adaptativo (igual Home)
+  const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+  function atualizarLogoSite() {
+    let i = 0;
+    function tentarProxima() {
+      if (i >= logoExts.length) {
+        let logoImage = document.getElementById("logoImage");
+        let logoImage2 = document.getElementById("logoImage2");
+        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
         return;
       }
-      window.location.href = "home.html?q=" + encodeURIComponent(termo);
-    });
-
-    // Logo adaptativo (igual Home)
-    const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
-    function atualizarLogoSite() {
-      let i = 0;
-      function tentarProxima() {
-        if (i >= logoExts.length) {
+      let url = (typeof ipPython !== "undefined" ? ipPython : "") + `/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+      fetch(url).then(resp => {
+        if (resp.ok) {
           let logoImage = document.getElementById("logoImage");
           let logoImage2 = document.getElementById("logoImage2");
-          if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
-          if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
-          return;
-        }
-        let url = (typeof ipPython !== "undefined" ? ipPython : "") + `/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
-        fetch(url).then(resp => {
-          if (resp.ok) {
-            let logoImage = document.getElementById("logoImage");
-            let logoImage2 = document.getElementById("logoImage2");
-            if (logoImage) logoImage.src = url;
-            if (logoImage2) logoImage2.src = url;
-          } else {
-            i++;
-            tentarProxima();
-          }
-        });
-      }
-      tentarProxima();
-    }
-    document.addEventListener('DOMContentLoaded', atualizarLogoSite);
-
-    // Função para formatar as datas
-    function formatarData(dataISO) {
-      if (!dataISO) return "";
-      let data = new Date(dataISO);
-      let dia = data.getDate().toString().padStart(2, "0");
-      let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-      let ano = data.getFullYear();
-      return `${dia}/${mes}/${ano}`;
-    }
-
-    // Listagem de empréstimos
-    function carregaremprestimo() {
-      const token = localStorage.getItem("token");
-      const params = new URLSearchParams(window.location.search);
-      var pagina = params.get('pagina');
-      if (!pagina) pagina = 1;
-      if (pagina == 1) {
-        document.getElementById('pagina-anterior').style.display = "none";
-      }
-      $.ajax({
-        method: "GET",
-        url: (typeof ipPython !== "undefined" ? ipPython : "") + "/emprestimos?pagina=" + pagina,
-        headers: {
-          'Authorization': 'Bearer ' + token
-        },
-        success: function (data) {
-          let emprestimos = data.emprestimos;
-          let tabela = $("#tabela-emprestimos tbody");
-          tabela.empty();
-
-          var total = data.total_paginas;
-          var paginaAtual = data.pagina_atual;
-          var anterior = paginaAtual - 1;
-          var proxima = paginaAtual + 1;
-
-          document.getElementById("pagina-anterior").href = "EmprestimosReservas.html?pagina=" + anterior;
-          document.getElementById("pagina-proxima").href = "EmprestimosReservas.html?pagina=" + proxima;
-
-          if (paginaAtual >= total) {
-            document.getElementById('pagina-proxima').style.display = "none";
-          }
-
-          if (emprestimos.length === 0) {
-            tabela.append('<tr><td colspan="6" class="text-center">Nenhum empréstimo foi realizado!</td></tr>');
-            document.getElementById('pagina-anterior').style.display = "none";
-            document.getElementById('pagina-proxima').style.display = "none";
-          } else {
-            emprestimos.forEach(emprestimo => {
-              let linha = `
-                <tr data-id="${emprestimo.id_emprestimo}">
-                  <td><p>${emprestimo.nome_usuario}</p></td>
-                  <td><p>${emprestimo.data_emprestimo.replaceAll("-", "/")}</p></td>
-                  <td><p>${emprestimo.data_devolucao.replaceAll("-", "/")}</p></td>
-                  <td><p>${emprestimo.titulo_livro}</p></td>
-                  <td><p>${emprestimo.autor_livro}</p></td>
-                  <td>
-                    <button class="botao-devolucao" type="button" onclick="devolverLivro(this)">Devolver</button>
-                  </td>
-                </tr>
-              `;
-              tabela.append(linha);
-            });
-          }
-          document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
-        },
-        error: function (params) {
-          console.error(params)
+          if (logoImage) logoImage.src = url;
+          if (logoImage2) logoImage2.src = url;
+        } else {
+          i++;
+          tentarProxima();
         }
       });
     }
+    tentarProxima();
+  }
+  document.addEventListener('DOMContentLoaded', atualizarLogoSite);
 
-    // Função do botão de devolução
-    async function devolverLivro(botao) {
-      const id_emprestimo = $(botao).closest('tr').data('id');
-      const token = localStorage.getItem("token");
+  // Listagem de empréstimos
+  function carregaremprestimo() {
+    const token = localStorage.getItem("token");
+    const params = new URLSearchParams(window.location.search);
+    var pagina = parseInt(params.get('pagina')) || 1;
 
-      try {
-        const resposta = await fetch((typeof ipPython !== "undefined" ? ipPython : "") + `/devolucao/${id_emprestimo}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
-        });
+    const btnAnterior = document.getElementById('pagina-anterior');
+    const btnProxima = document.getElementById('pagina-proxima');
+    const paginacao = document.querySelector(".pagination");
 
-        if (!resposta.ok) {
-          const erro = await resposta.json();
-          throw new Error(erro.mensagem || "Erro ao realizar a devolução.");
-        }
-
-        const dados = await resposta.json();
-
-        Swal.fire({
-          title: 'Devolvido!',
-          text: 'A devolução foi realizada com sucesso!',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          carregaremprestimo();
-        });
-
-      } catch (erro) {
-        Swal.fire({
-          title: 'Erro!',
-          text: erro.message || "Erro ao devolver livro.",
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
+    if (btnAnterior) {
+      btnAnterior.style.display = (pagina <= 1) ? "none" : "inline-block";
     }
 
-    // Chama a função ao iniciar
-    $(document).ready(function () {
-      carregaremprestimo();
+    $.ajax({
+      method: "GET",
+      url: (typeof ipPython !== "undefined" ? ipPython : "") + "/emprestimos?pagina=" + pagina,
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (data) {
+        let emprestimos = data.emprestimos || [];
+        let tabela = $("#tabela-emprestimos tbody");
+        tabela.empty();
+
+        let total = parseInt(data.total_paginas) || 1;
+        let paginaAtual = parseInt(data.pagina_atual) || 1;
+
+        if (emprestimos.length === 0) {
+          tabela.append(`
+            <tr>
+              <td colspan="6" style="text-align:center; color: red; font-weight: bold;">
+                Nenhum empréstimo foi realizado!
+              </td>
+            </tr>
+          `);
+          if (paginacao) paginacao.style.display = "none";
+        } else {
+          if (paginacao) paginacao.style.display = "flex";
+          emprestimos.forEach(emprestimo => {
+            tabela.append(`
+              <tr data-id="${emprestimo.id_emprestimo}">
+                <td><p>${emprestimo.nome_usuario}</p></td>
+                <td><p>${emprestimo.data_emprestimo.replaceAll("-", "/")}</p></td>
+                <td><p>${emprestimo.data_devolucao.replaceAll("-", "/")}</p></td>
+                <td><p>${emprestimo.titulo_livro}</p></td>
+                <td><p>${emprestimo.autor_livro}</p></td>
+                <td>
+                  <button class="botao-devolucao" type="button" onclick="devolverLivro(this)">Devolver</button>
+                </td>
+              </tr>
+            `);
+          });
+        }
+
+        if (btnAnterior) {
+          btnAnterior.href = "EmprestimosReservas.html?pagina=" + (paginaAtual - 1);
+          btnAnterior.style.display = (paginaAtual <= 1) ? "none" : "inline-block";
+        }
+        if (btnProxima) {
+          btnProxima.href = "EmprestimosReservas.html?pagina=" + (paginaAtual + 1);
+          btnProxima.style.display = (paginaAtual >= total) ? "none" : "inline-block";
+        }
+
+        document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
+      },
+      error: function () {
+        let tabela = $("#tabela-emprestimos tbody");
+        tabela.empty();
+        tabela.append(`
+          <tr>
+            <td colspan="6" style="text-align:center; color: red; font-weight: bold;">
+              Nenhum empréstimo foi realizado!
+            </td>
+          </tr>
+        `);
+        const paginacao = document.querySelector(".pagination");
+        if (paginacao) paginacao.style.display = "none";
+      }
     });
-  </script>
+  }
+
+  // Função do botão de devolução
+  async function devolverLivro(botao) {
+    const id_emprestimo = $(botao).closest('tr').data('id');
+    const token = localStorage.getItem("token");
+
+    const paginacao = document.querySelector('.pagination');
+    if (paginacao) paginacao.style.display = "none";
+
+    try {
+      const resposta = await fetch((typeof ipPython !== "undefined" ? ipPython : "") + `/devolucao/${id_emprestimo}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.mensagem || "Erro ao realizar a devolução.");
+      }
+
+      Swal.fire({
+        title: 'Devolvido!',
+        text: 'A devolução foi realizada com sucesso!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        carregaremprestimo();
+      });
+
+    } catch (erro) {
+      Swal.fire({
+        title: 'Erro!',
+        text: erro.message || "Erro ao devolver livro.",
+        icon: 'error',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        const paginacao = document.querySelector('.pagination');
+        if (paginacao) paginacao.style.display = "flex";
+      });
+    }
+  }
+
+  $(document).ready(function () {
+    carregaremprestimo();
+  });
+</script>
+
+
 </body>
 
 </html>

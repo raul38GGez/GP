@@ -15,119 +15,7 @@
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/livros.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        .livros-section {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.10);
-            margin: 36px auto 36px auto;
-            max-width: 1100px;
-            padding: 2.5rem 2rem 2rem 2rem;
-        }
 
-        .livros-section h1 {
-            color: #314279;
-            font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 28px;
-            text-align: center;
-        }
-
-        .add-btn.btn-primary {
-            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
-            border: none;
-            border-radius: 22px;
-            font-weight: 600;
-            font-size: 1.07rem;
-            padding: 10px 32px;
-            color: #fff;
-            transition: background 0.18s, transform 0.18s;
-            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
-            margin-bottom: 16px;
-        }
-
-        .add-btn.btn-primary:hover,
-        .add-btn.btn-primary:focus {
-            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-            transform: translateY(-2px) scale(1.045);
-            color: #fff;
-            box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
-        }
-
-        .table-responsive {
-            border-radius: 12px;
-            box-shadow: 0 1.5px 7px 0 rgba(75, 112, 226, 0.07);
-            margin-bottom: 28px;
-            background: #f8f9fd;
-        }
-
-        .table thead th {
-            background: #4B70E2;
-            color: #fff;
-            font-weight: 600;
-            text-align: center;
-            font-size: 1.04rem;
-            border: none;
-        }
-
-        .table-striped>tbody>tr:nth-of-type(odd)>* {
-            background-color: #f5f7fc;
-        }
-
-        .table td,
-        .table th {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .botoes .btn {
-            margin: 0 4px;
-        }
-
-        .paginacao {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 18px;
-            margin-top: 2rem;
-        }
-
-        .paginacao .btn {
-            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
-            color: #fff;
-            border: none;
-            border-radius: 22px;
-            padding: 8px 24px;
-            font-weight: 600;
-            font-size: 1.04rem;
-            transition: background 0.18s, transform 0.18s;
-            box-shadow: 0 2px 10px 0 rgba(75, 112, 226, 0.11);
-            text-decoration: none;
-        }
-
-        .paginacao .btn:hover,
-        .paginacao .btn:focus {
-            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-            transform: translateY(-2px) scale(1.045);
-            color: #fff;
-            box-shadow: 0 4px 16px 0 rgba(75, 112, 226, 0.18);
-            text-decoration: none;
-        }
-
-        .paginacao .paginaAtual {
-            font-family: 'Poppins', 'Montserrat', sans-serif;
-            font-size: 1.08rem;
-            color: #4B70E2;
-            font-weight: 600;
-            margin: 0 4px;
-        }
-
-        @media (max-width: 900px) {
-            .livros-section {
-                padding: 1.2rem 2vw !important;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -136,23 +24,57 @@
             <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
                     alt="Logo Asa Literária"></a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+
+        <!-- Barra de Pesquisa -->
+        <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                    <p>Buscar</p>
+                </a>
             </div>
         </form>
-        <div class="header-right">
-            <div class="menu-container">
-                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
+
+        <script>
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+                let termo = $("#campoBusca").val().trim();
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+                // Redireciona para home com busca
+                window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
+            });
+        </script>
+
+        <div class="coisa">
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="header-end">
+                <div class="menu-container">
+                    <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
                 </div>
-                <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
-        </div>
+        </form>
     </header>
 
     <main>
@@ -178,15 +100,19 @@
                     <tbody id="livrosList"></tbody>
                 </table>
             </div>
-            <div class="paginacao">
-                <a href="#" class="btn" id="pagina-anterior">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </a>
-                <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-                <a href="#" class="btn" id="pagina-proxima">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </a>
-            </div>
+            <section class="catalog-section">
+                <div class="container">
+                    <div class="pagination">
+                        <a href="" class="pagination-button" id="pagina-anterior">
+                            <i class="fas fa-chevron-left"></i> Anterior
+                        </a>
+                        <span class="current-page" id="paginaAtual">Página 1</span>
+                        <a href="" class="pagination-button" id="pagina-proxima">
+                            Próxima <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+                </section>
         </section>
 
         <!-- MODAL PARA CADASTRO DE LIVRO -->
@@ -540,12 +466,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -656,8 +601,8 @@
                                                 <button class="btn btn-warning btn-editar-livro" data-id="${livro.id_livro}" data-bs-toggle="modal" data-bs-target="#modalEditarLivro">
                                                     <i class="fa-solid fa-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-danger btn-sm" onclick="inativarLivro(${livro.id_livro})" style="font-size: 0.9rem;">
-                                                    <i class="fa-solid fa-trash"></i> Inativar
+                                                <button class="btn-danger btn-sm" onclick="inativarLivro(${livro.id_livro})" >
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
                                         </td>

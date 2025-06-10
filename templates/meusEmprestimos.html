@@ -32,9 +32,14 @@
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                    <p>Buscar</p>
+                </a>
+
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
                 <button class="btn" id="menuButton">
@@ -77,15 +82,6 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <div class="pagination" style="margin-top: 2rem;">
-                    <a href="" class="pagination-button" id="pagina-anterior">
-                        <i class="fas fa-chevron-left"></i> Anterior
-                    </a>
-                    <span class="current-page" id="paginaAtual">Página 1</span>
-                    <a href="" class="pagination-button" id="pagina-proxima">
-                        Próxima <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
             </div>
         </section>
     </main>
@@ -96,12 +92,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -153,19 +168,11 @@
         // Função para carregar empréstimos ativos
         function carregarEmprestimosAtivos() {
             const token = localStorage.getItem("token");
-            var id_usuario = localStorage.getItem("id_usuario");
-            const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina') || 1;
-
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            } else {
-                document.getElementById('pagina-anterior').style.display = "inline-block";
-            }
+            const id_usuario = localStorage.getItem("id_usuario");
 
             $.ajax({
                 method: "GET",
-                url: (typeof ipPython !== "undefined" ? ipPython : "") + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                url: (typeof ipPython !== "undefined" ? ipPython : "") + "/reservasusuario/" + id_usuario,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -173,21 +180,6 @@
                     let reservas = data.reservas;
                     let tabela = $("#tabela-emprestimos tbody");
                     tabela.empty();
-
-                    var total = data.total_paginas;
-                    var paginaAtual = data.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
-
-                    document.getElementById("pagina-anterior").href = "meusEmprestimos.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "meusEmprestimos.html?pagina=" + proxima;
-                    document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
-
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    } else {
-                        document.getElementById('pagina-proxima').style.display = "inline-block";
-                    }
 
                     // Filtra os empréstimos ativos (status = 2)
                     let emprestimosAtivos = reservas.filter(reserva => reserva.status === 2);
@@ -280,7 +272,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
 
         // Logo adaptativo (igual Home)

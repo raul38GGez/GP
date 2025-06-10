@@ -15,98 +15,6 @@
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/editSenha.css" />
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        .edit-senha-section {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            background: #fff;
-            border-radius: 18px;
-            padding: 2.5rem 2rem 2rem 2rem;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.10);
-        }
-
-        .edit-senha-section h1 {
-            text-align: center;
-            color: #314279;
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        .edit-senha-section .formulario {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .edit-senha-section .form-group label {
-            font-weight: 600;
-            color: #314279;
-            margin-bottom: 0.3rem;
-        }
-
-        .edit-senha-section .inserir {
-            width: 100%;
-            border-radius: 9px !important;
-            border: 1.5px solid #E0E6F6;
-            font-family: 'Montserrat', 'Poppins', sans-serif;
-            padding: 11px 12px;
-            font-size: 1.06rem;
-            margin-bottom: 6px;
-        }
-
-        .edit-senha-section .btn-save {
-            background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
-            border: none;
-            border-radius: 22px;
-            font-weight: 600;
-            font-size: 1.07rem;
-            padding: 10px 0;
-            color: #fff;
-            transition: background 0.18s, transform 0.18s;
-            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
-            margin-top: 12px;
-            width: 100%;
-        }
-
-        .edit-senha-section .btn-save:hover,
-        .edit-senha-section .btn-save:focus {
-            background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-            transform: translateY(-2px) scale(1.045);
-            color: #fff;
-            box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
-        }
-
-        .edit-senha-section .div-botao-voltar {
-            text-align: center;
-            margin-top: 12px;
-        }
-
-        .edit-senha-section .btn-voltar {
-            background: #f0f3fa;
-            border: none;
-            color: #314279;
-            border-radius: 22px;
-            font-weight: 500;
-            font-size: 1.01rem;
-            padding: 8px 30px;
-            box-shadow: 0 1.5px 7px 0 rgba(75, 112, 226, 0.07);
-            transition: background 0.16s;
-        }
-
-        .edit-senha-section .btn-voltar:hover {
-            background: #e2e6f9;
-            color: #314279;
-        }
-
-        @media (max-width: 600px) {
-            .edit-senha-section {
-                padding: 1.2rem 2vw !important;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -116,20 +24,26 @@
             <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
                     alt="Logo Asa Literária"></a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+        <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
-                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                </div>
+                <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
                 <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
         </div>
@@ -168,12 +82,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -220,7 +153,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
 
         // Logo adaptativo (igual Home)

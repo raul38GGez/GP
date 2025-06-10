@@ -34,6 +34,22 @@ p {
     --azul-modoescuro: #73A8FE;
 }
 
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+    --white: #fff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -462,6 +478,95 @@ input:checked + .slider:before {
     padding-right: 7px;
     padding-left: 1px;
 }
+.edit-senha-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.10);
+}
+
+.edit-senha-section h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.edit-senha-section .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.edit-senha-section .form-group label {
+    font-weight: 600;
+    color: #314279;
+    margin-bottom: 0.3rem;
+}
+
+.edit-senha-section .inserir {
+    width: 28rem;
+    border-radius: 25px !important;
+    border: 1.5px solid #E0E6F6;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    padding: 5px 12px;
+    font-size: 1.06rem;
+    margin-bottom: 6px;
+}
+
+.edit-senha-section .btn-save {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 22px;
+    font-weight: 600;
+    font-size: 1.07rem;
+    padding: 10px 0;
+    color: white;
+    transition: var(--transition);
+    box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
+    margin-top: 12px;
+    width: 28rem;
+}
+
+.edit-senha-section .btn-save:hover,
+.edit-senha-section .btn-save:focus {
+    background: black;
+    transform: translateY(-2px);
+    color: #fff;
+    box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
+}
+
+.edit-senha-section .div-botao-voltar {
+    text-align: center;
+}
+
+.edit-senha-section .btn-voltar {
+    width: 28rem;
+    background-color: var(--light-color);
+    border: none;
+    padding: 10px 0px;
+    border-radius: 22px;
+    font-weight: 600;
+    font-size: 1.07rem;
+    box-shadow: 0 1.5px 7px 0 rgba(75, 112, 226, 0.07);
+    transition: var(--transition);
+}
+
+.edit-senha-section .btn-voltar:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .edit-senha-section {
+        padding: 1.2rem 2vw !important;
+    }
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -608,61 +713,6 @@ input {
     width: 100%;
     margin-top: 10px;
 }
-.btn-voltar span:hover{
-    color: whitesmoke;
-}
-.btn-voltar {
-  --color: #3380ca;
-  background-color: white;
-  font-family: inherit;
-  display: inline-block;
-  width: 21.5em;
-  height: 2.5em;
-  line-height: 2.5em;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border: 2px solid var(--azul);
-  transition: color 0.5s;
-  z-index: 1;
-  font-size: 17px;
-  font-weight: bold;
-  border-radius: 6px;
-}
-
-.btn-voltar:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background: var(--color);
-  height: 120px;
-  width: 500px;
-  border-radius: 50%;
-  color: var(--branco);
-}
-
-.btn-voltar:hover {
-  color: white;
-}
-
-.btn-voltar:before {
-  top: 100%;
-  left: 100%;
-  transition: all 0.7s;
-
-}
-
-.btn-voltar:hover:before {
-  top: -30px;
-  left: -30px;
-color: white;
-}
-
-.btn-voltar:active:before {
-  background: #0060BB;
-  transition: background 0s;
-  color: white;
-}
 
 .div-botao-voltar {
     display: flex;
@@ -670,27 +720,6 @@ color: white;
     align-items: center;
     padding: 10px;
     width: 400px;
-}
-
-.btn-save {
-    padding: 5px 150px;
-    cursor: pointer;
-    margin-top: 15px;
-    color: var(--branco);
-    background-color: var(--azul);
-    border: 2px solid var(--azul);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: large;
-    transition: 0.2s;
-}
-
-.btn-save:hover {
-    background-color: var(--azul-escuro);
-    border: 2px solid var(--azul-escuro);
-    transform: scale(1.05);
-    font-size: large;
-    transition: 0.2s;
 }
 
 /* RODAPÉ */

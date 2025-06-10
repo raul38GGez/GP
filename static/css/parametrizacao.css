@@ -46,13 +46,6 @@ header {
     margin-bottom: 50px;
 }
 
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -410,6 +403,96 @@ input:checked + .slider:before {
     padding: 0;
     margin: 0;
 }
+ /* Extra boniteza integrando com home.css */
+ .pix-param-section {
+     background: #fff;
+     border-radius: 8px;
+     box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
+     margin-top: 40px;
+     padding: 2.5rem 2rem 2rem 2rem;
+     max-width: 820px;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .pix-param-section label {
+     font-weight: 600;
+     color: #314279;
+ }
+
+ .pix-param-section input[type="text"],
+ .pix-param-section input[type="file"] {
+     border-radius: 25px;
+     border: 1px solid var(--primary-color);
+ }
+
+ .pix-param-section input[type="file"] {
+     padding: 8px 10px;
+ }
+
+ .pix-param-section .btn-primary {
+     background: var(--primary-color);
+     border: none;
+     width: 52rem;
+     border-radius: 25px;
+     font-weight: 600;
+     font-size: 1.07rem;
+     padding: 10px 32px;
+     color: #fff;
+
+     transition: background 0.18s, transform 0.18s;
+     box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
+ }
+
+ .pix-param-section .btn-primary:hover,
+ .pix-param-section .btn-primary:focus {
+     background: black;
+     transform: translateY(-2px);
+     color: #fff;
+     box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
+ }
+
+ .logo-preview img {
+     max-width: 120px;
+     margin-top: 8px;
+     border-radius: 10px;
+     border: 1.5px solid #e0e6f6;
+     box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
+ }
+
+ .pix-display-section {
+     margin-top: 32px;
+     text-align: center;
+ }
+
+ .pix-display-card {
+     background: white;
+     border-radius: 8px;
+     width: 900px;
+     box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
+     display: inline-block;
+     padding: 2rem 2.5rem;
+     margin-top: 1.2rem;
+ }
+
+ .pix-display-card h3 {
+     color: #4B70E2;
+     font-weight: 700;
+ }
+
+ .pix-display-card p {
+     margin-bottom: 0.4rem;
+     font-size: 1.07rem;
+     color: var(--primary-color);
+ }
+
+ @media (max-width: 600px) {
+
+     .pix-param-section,
+     .pix-display-card {
+         padding: 1rem 0.5rem !important;
+     }
+ }
 
 .swal2-confirm {
     background-color: var(--primary-color);
@@ -478,7 +561,7 @@ input:checked + .slider:before {
 .pix-param-section {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
     max-width: 900px;
     margin: auto;
 }
@@ -501,7 +584,7 @@ input:checked + .slider:before {
 }
 
 .pix-param-section .btn-primary {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
     border: none;
     padding: 10px;
     transition: 0.3s;
@@ -510,8 +593,8 @@ input:checked + .slider:before {
 }
 
 .pix-param-section .btn-primary:hover {
-    background-color: var(--azul-escuro);
-    transform: scale(1.05);
+    background-color: black;
+    transform: translateY(-2px);
     transition: 0.3s;
 }
 

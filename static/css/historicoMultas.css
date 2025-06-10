@@ -125,7 +125,54 @@ select {
     padding-right: 7px;
     padding-left: 1px;
 }
+ /* Overlay semitransparente */
+ #overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
+     z-index: 9998;
+     display: none;
+ }
 
+ /* Container do QR code com visual mais “clean” */
+ #qrcodeContainer {
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background: #ffffff;
+     border-radius: 0.5rem;
+     padding: 1.5rem 1.75rem;
+     z-index: 9999;
+     display: none;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+     text-align: center;
+     max-width: 90vw;
+     width: 400px;
+ }
+
+ #qrcodeContainer h4 {
+     font-family: 'Poppins', sans-serif;
+     font-size: 1.25rem;
+     margin-bottom: 1rem;
+     color: #333;
+ }
+
+ #qrcodeContainer img {
+     width: 350px;
+     height: 350px;
+     max-width: 90%;
+     max-height: 90%;
+     border: 2px solid #eee;
+     border-radius: 0.25rem;
+ }
+
+ #qrcodeContainer button {
+     margin-top: 1rem;
+ }
 /* Modal */
 #modal-edicao {
     display: flex; /* Usar flexbox para centralizar o conteúdo */
@@ -184,7 +231,129 @@ select {
     transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
     transition: transform 0.3s; /* Transição suave para o efeito de aumento */
 }
+/* Estilo para a seção de multas */
+.multa-container {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.multa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.multa-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.multa-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pendente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-pago {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.multa-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.multa-info {
+    margin-bottom: 8px;
+}
+
+.multa-label {
+    font-weight: 600;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.multa-value {
+    color: #495057;
+}
+
+.multa-valor {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #dc3545;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.btn-pagar-multa {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+/* Estilo para o container do QR Code */
+#qrcodeContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    text-align: center;
+    max-width: 90%;
+}
+
+#qrcodeContainer h5 {
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+#qrcodeImage {
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    background: white;
+}
+
+#closeQr {
+    margin-top: 20px;
+    padding: 8px 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .multa-body {
+        grid-template-columns: 1fr;
+    }
+
+    .multa-valor {
+        text-align: left;
+    }
+}
 /* Logo */
 .header-left img {
     width: 50px;
@@ -251,12 +420,6 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(22px);
     background-color: #1C82E3;
-}
-
-/* Ícone do menu */
-.menu-container {
-    position: relative;
-    display: inline-block;
 }
 
 .header-end {
@@ -832,7 +995,7 @@ button.botao-multas {
     transition: background-color 0.3s, transform 0.3s;
 }
 .btn-pagar-multa{
-    margin:10px;
+    margin:5px;
 }
 .algo-legal {
     display: block;

@@ -74,12 +74,6 @@ a {
     font-weight: bold;
 }
 
-.btn {
-    font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
-}
-
 /* Header */
 header {
     background-color: #0060BB;
@@ -116,40 +110,6 @@ header {
 .livro-cancelado {
     color: red;
     font-weight: bold;
-}
-
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
-
-.btn-catalogo {
-    background-color: #3380ca;
-}
-
-.btn-catalogo:hover {
-    color: rgb(178, 178, 178) !important;
-    background-color: #4086c6;
 }
 
 /* Dark Mode */
@@ -435,18 +395,10 @@ header li a {
 }
 
 .swal2-confirm {
-    background-color: #e90039 !important;
-}
-
-.swal2-confirm:hover {
-    background-color: #af002c !important;
-}
-
-.swal2-cancel {
     background-color: var(--primary-color);
 }
 
-.swal2-cancel:hover {
+.swal2-confirm:hover {
     background-color: black;
 }
 
@@ -482,7 +434,25 @@ header li a {
     cursor: pointer;
     transition: background 0.3s;
 }
+.livro-devolvido {
+    color: green;
+    font-weight: bold;
+}
 
+.livro-emprestado {
+    color: blue;
+    font-weight: bold;
+}
+
+.livro-reservado {
+    color: orange;
+    font-weight: bold;
+}
+
+.livro-cancelado {
+    color: red;
+    font-weight: bold;
+}
 .submenu.show {
     display: flex;
     /* ou display: block */
@@ -531,7 +501,7 @@ h1 {
 .pai1 {
     justify-content: center;
     display: flex;
-    margin-right: 8px;
+    margin-right: 25px;
     margin-bottom: 50px
 }
 
@@ -542,17 +512,21 @@ h1 {
 }
 
 .filho2 {
-    margin-left: 20px;
-    padding: 15px 0px 15px 15px;
+    margin-left: 50px;
+    padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
 }
 
+.filho2 span {
+    font-weight: bold;
+}
+
 .filho1 {
     display: flex;
-    margin-left: 30px;
     flex-direction: column;
     align-items: center;
+    margin-left: 15px;
     gap: 10px;
 }
 
@@ -578,7 +552,7 @@ h1 {
     margin-bottom: 20px;
     background-color: var(--vermelho-claro);
     border: 3px solid var(--vermelho-escuro);
-    border-radius: 5px;
+    border-radius: 25px;
     font-weight: bold;
     font-size: x-large;
     transition: 0.2s;
@@ -614,15 +588,15 @@ h1 {
 }
 
 .nav-pills .nav-link.active {
-    color: var(--azul);
-    background-color: #eef3ff;
-    ;
-    font-weight: bold;
+    color: var(--primary-color);
+    background-color: #3498db12;
+    border-bottom: 2px solid var(--primary-color);
+    border-radius: 8px 8px 0px 0px;
+    font-weight: bold; 
 }
 
 .nav-link {
-    border-radius: 0px;
-    color: var(--azul);
+    color: var(--primary-color);
     font-weight: bold;
     display: inline-block;
     position: relative;
@@ -636,12 +610,16 @@ h1 {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--azul);
+    background-color: var(--primary-color);
     transition: transform 0.25s ease-out;
 }
 
 .nav-link:hover::after {
     transform: scaleX(1);
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
 }
 
 .botao-voltar {
@@ -783,21 +761,20 @@ form {
 }
 
 #submitReview {
-    background: #3380ca;
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 25px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
 #submitReview:hover {
-    background: #0060BB;
+    background: black;
     transition: 0.3s;
-    transform: scale(1.05);
-
+    transform: translateY(-2px);
 }
 
 .review {
@@ -931,10 +908,10 @@ form {
 }
 
 #tabela-historico thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-historico tbody tr:hover {
@@ -989,7 +966,6 @@ form {
     font-weight: bold;
 }
 
-/* From Uiverse.io by vinodjangid07 */ 
 .btn-excluir {
   width: 50px;
   height: 50px;
@@ -1011,27 +987,28 @@ form {
 }
 
 .svgIcon {
-  width: 12px;
-  transition-duration: 0.3s;
+    width: 12px;
+    transition-duration: 0.3s;
 }
 
 .svgIcon path {
-  fill: white;
+    fill: white;
 }
 
 .btn-excluir:hover {
-  transition-duration: 0.3s;
-  background-color: rgb(255, 69, 69);
-  align-items: center;
-  gap: 0;
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
 }
 
 .bin-top {
-  transform-origin: bottom right;
+    transform-origin: bottom right;
 }
+
 .btn-excluir:hover .bin-top {
-  transition-duration: 0.5s;
-  transform: rotate(160deg);
+    transition-duration: 0.5s;
+    transform: rotate(160deg);
 }
 
 

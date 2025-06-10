@@ -19,27 +19,7 @@
     <link rel="stylesheet" href="../static/css/reserva.css">
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        .livro-devolvido {
-            color: green;
-            font-weight: bold;
-        }
 
-        .livro-emprestado {
-            color: blue;
-            font-weight: bold;
-        }
-
-        .livro-reservado {
-            color: orange;
-            font-weight: bold;
-        }
-
-        .livro-cancelado {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -49,13 +29,14 @@
                 <img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária">
             </a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+        <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
                 <button class="btn" id="menuButton">
@@ -147,7 +128,7 @@
                 <!-- Histórico -->
                 <div class="tab-pane fade table-container" id="pills-contact" role="tabpanel"
                     aria-labelledby="pills-contact-tab" tabindex="0">
-                    <table class="tabela-container" id="tabela-historico" border="0">
+                    <table class="tabela-container" id="tabela-historico" border="3">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -170,12 +151,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -364,7 +364,8 @@
                         const dataFormatada = avaliacao.data_avaliacao ? new Date(avaliacao.data_avaliacao).toLocaleDateString('pt-BR') : "";
                         let btnExcluir = "";
                         if (cargo_usuario === "ADM" || cargo_usuario === "Bibliotecário") {
-                            btnExcluir = `<button class="btn-excluir">
+                            btnExcluir = `<!-- From Uiverse.io by vinodjangid07 --> 
+                                <button class="btn-excluir" data-id="${avaliacao.id_avaliacao}">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -402,7 +403,8 @@
                                     </clipPath>
                                     </defs>
                                 </svg>
-                                </button>`;
+                                </button>
+                                `;
                         }
                         reviewsContainer.innerHTML += `
                                 <div class="review">
@@ -560,7 +562,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
     </script>
 </body>

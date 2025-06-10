@@ -14,13 +14,6 @@
     --transition: all 0.3s ease;
 }
 
-/* Reset e estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
@@ -36,6 +29,7 @@ body {
     background-color: black;
 }
 
+
 /* Header */
 .header {
     background-color: var(--primary-color);
@@ -48,14 +42,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 15px 10px 15px 30px;
 }
 
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
 
 .header-left img:hover {
     transform: scale(1.05);
@@ -138,9 +127,13 @@ body {
     }
 }
 
+.fa-search {
+    color: #7f8c8d
+}
+header i{
+    color: black;
+}
 .search-container {
-    width: 50%;
-    padding: 10px 15px 10px 40px;
     border: none;
     border-radius: 30px;
     font-size: 16px;
@@ -148,9 +141,33 @@ body {
     transition: var(--transition);
 }
 
-.search-box {
-    border: none;
+
+
+.search-button {
+    margin-left: -130px;
+        padding: 5px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: var(--transition);
 }
+
+.search-box {
+    width: 100%;
+        padding: 10px 15px 10px 40px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        background-color: rgba(255, 255, 255, 0.9);
+        transition: var(--transition);
+        margin-top: 0px;
+}
+
 
 /* Foto de perfil */
 .profile-picture-container {
@@ -486,23 +503,22 @@ body {
     }
 }
 
-/* Dropdown Menu (igual ao da home) */
+.menu-container {
+    position: relative;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
-    right: 20px;
-    top: 70px;
-    background-color: white;
+    top: 100%;
+    right: 0;
+    min-width: 180px;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 250px;
-    max-height: 70vh;
-    /* Altura máxima com scroll */
-    overflow-y: auto;
-    /* Habilita scroll vertical */
-    list-style: none;
-    z-index: 1000;
-    padding: 5px 0;
+    z-index: 999;
+    margin-top: 0.5rem;
+    padding: 0;
 }
 
 .dropdown-menu.show {
@@ -531,7 +547,6 @@ body {
 
 .menu-item i {
     padding-right: 7px;
-    color: #3498db;
 }
 
 .menu-item .sair {
@@ -589,4 +604,13 @@ body {
 
 .dropdown-menu::-webkit-scrollbar-thumb:hover {
     background: #aaa;
+}
+@media (max-width: 320px) {
+    .search-container{
+        padding: 0px;
+
+    }
+    .search-box{
+        padding: 10px 4px 10px 0px;
+    }
 }

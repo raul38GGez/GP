@@ -20,72 +20,27 @@
     <link rel="stylesheet" href="../static/css/historicoMultas.css">
 
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        /* Overlay semitransparente */
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9998;
-            display: none;
-        }
 
-        /* Container do QR code com visual mais “clean” */
-        #qrcodeContainer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #ffffff;
-            border-radius: 0.5rem;
-            padding: 1.5rem 1.75rem;
-            z-index: 9999;
-            display: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 90vw;
-            width: 400px;
-        }
-
-        #qrcodeContainer h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        #qrcodeContainer img {
-            width: 350px;
-            height: 350px;
-            max-width: 90%;
-            max-height: 90%;
-            border: 2px solid #eee;
-            border-radius: 0.25rem;
-        }
-
-        #qrcodeContainer button {
-            margin-top: 1rem;
-        }
-    </style>
 </head>
 
 <body>
     <!-- HEADER igual da HOME -->
     <header class="header">
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
-                    alt="Logo Asa Literária"></a>
+            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
         </div>
         <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                    <p>Buscar</p>
+                </a>
+
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
                 <button class="btn" id="menuButton">
@@ -138,12 +93,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -204,7 +178,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
 
         // Função para carregar multas do usuário
@@ -233,38 +207,53 @@
 
                         retorno.multas.forEach((multa) => {
                             html.innerHTML += `
-                                <div class="item">
-                                  <div class="multa-tabela">
-                                    <div class="fiote1">
-                                      <span class="negrito">Nome do Usuário:</span>
-                                      <p>${multa.usuario.nome}</p>
-                                      <span class="negrito">Email do Usuário:</span>
-                                      <p>${multa.usuario.email}</p>
-                                      <span class="negrito">Data da Multa:</span>
-                                      <p>${multa.data_lancamento}</p>
+                                    <div class="multa-container">
+                                        <div class="multa-header">
+                                            <div class="multa-title">Multa #${multa.id_multa}</div>
+                                            <div class="multa-status status-pendente">PENDENTE</div>
+                                        </div>
+                                        
+                                        <div class="multa-body">
+                                            <div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Usuário</span>
+                                                    <span class="multa-value">${multa.usuario.nome}</span>
+                                                </div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Email</span>
+                                                    <span class="multa-value">${multa.usuario.email}</span>
+                                                </div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Data da Multa</span>
+                                                    <span class="multa-value">${new Date(multa.data_lancamento).toLocaleDateString('pt-BR')}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Valor Fixo</span>
+                                                    <span class="multa-value">R$ ${parseFloat(multa.configuracao.valorfixo).toFixed(2)}</span>
+                                                </div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Acréscimo</span>
+                                                    <span class="multa-value">R$ ${parseFloat(multa.configuracao.acrescimo).toFixed(2)}</span>
+                                                </div>
+                                                <div class="multa-info">
+                                                    <span class="multa-label">Ano da Multa</span>
+                                                    <span class="multa-value">${multa.configuracao.ano}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="multa-valor">
+                                            Total: R$ ${parseFloat(multa.valor).toFixed(2)}
+                                        </div>
+                                        
+                                        <button class="btn btn-success btn-pagar-multa" data-id="${multa.id_multa}">
+                                            <i class="fa-brands fa-pix"></i> Pagar com PIX
+                                        </button>
                                     </div>
-                                    <div class="fiote2">
-                                      <span class="negrito">Valor Fixo:</span>
-                                      <p>${multa.configuracao.valorfixo}</p>
-                                      <span class="negrito">Valor a ser pago:</span>
-                                      <p>${multa.valor}</p>
-                                      <span class="negrito">Acréscimo:</span>
-                                      <p>${multa.configuracao.acrescimo}</p>
-                                      <span class="negrito">Ano da Multa:</span>
-                                      <p>${multa.configuracao.ano}</p>
-                                    </div>
-                                  </div>
-                                  <!-- Botão para gerar e exibir o QR code PIX desta multa -->
-                                  <div class="text-center mt-2">
-                                    <button
-                                      class="btn btn-success btn-pagar-multa"
-                                      data-id="${multa.id_multa}">
-                                      Pagar Multa
-                                    </button>
-                                  </div>
-                                </div>
-                                <hr>
-                            `;
+                                `;
                         });
 
                         document.querySelectorAll('.btn-pagar-multa').forEach(button => {
@@ -358,6 +347,39 @@
             }
             document.addEventListener('DOMContentLoaded', atualizarLogoSite);
         });
+        const logoImage = document.getElementById("logoImage");
+            logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoImage2 = document.getElementById("logoImage2");
+            logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
 
     </script>
 </body>

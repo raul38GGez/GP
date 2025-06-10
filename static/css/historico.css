@@ -1,16 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    transition: all 0.3s;
-    font-family: "Montserrat", sans-serif;
-}
 
-a{
-    text-decoration: none;
-    color:black;
-}
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;
@@ -34,13 +22,6 @@ a{
 body {
     font-family: Arial, sans-serif;
     background-color: #fff;
-}
-
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
 }
 
 .btn-catalogo {
@@ -117,10 +98,7 @@ input:checked + .slider:before {
 }
 
 /* Ícone do menu */
-.menu-container {
-    position: relative;
-    display: inline-block;
-}
+
 
 .menu-icon {
     display: flex;
@@ -515,7 +493,7 @@ select {
 }
 
 .nav-link {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-weight: bold;
     display: inline-block;
     position: relative;
@@ -529,7 +507,7 @@ select {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     transition: transform 0.25s ease-out;
 }
 
@@ -750,38 +728,6 @@ button.botao-multas {
     transform: scale(1.05);
 }
 
-.btn {
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  border: none;
-  transition: all 0.5s ease-in-out;
-  font-size: 20px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  background: #2980b9;
-  color: #f5f5f5;
-}
-
-.btn:hover {
-  box-shadow: 0 0 20px 0px #2e2e2e3a;
-}
-
-.btn .icon {
-  position: absolute;
-  height: 40px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.btn .text {
-  transform: translateX(55px);
-}
-
 .btn:hover .icon {
   width: 175px;
 }
@@ -971,11 +917,6 @@ label {
     font-weight: bold;
 }
 
-.btn {
-    font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
-}
 
 .inter {
     background-color: var(--escuro);
@@ -1009,10 +950,6 @@ label {
 
 .display {
     display: flex;
-}
-
-.text {
-    font-size: large;
 }
 
 .icons {
